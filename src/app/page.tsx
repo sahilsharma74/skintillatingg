@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import StatsSection from "@/components/StatsSection";
 import EditorialReelsSection from "@/components/EditorialReelsSection";
+import CelebrityTestimonialsSection from "@/components/CelebrityTestimonialsSection";
 import EditorialIntro from "@/components/EditorialIntro";
 import CelebrityReviewsSection from "@/components/CelebrityReviewsSection";
 import SanctuarySection from "@/components/SanctuarySection";
@@ -15,6 +16,7 @@ export default function Home() {
       <Hero />
       <StatsSection />
       <EditorialReelsSection />
+      <CelebrityTestimonialsSection />
       <EditorialIntro />
       <CelebrityReviewsSection />
       <SanctuarySection />
