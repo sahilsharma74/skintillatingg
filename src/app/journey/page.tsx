@@ -12,160 +12,225 @@ export default function JourneyPage() {
 
       {/* Hero Section */}
       <section className="relative px-[20px] md:px-[80px] max-w-[1440px] mx-auto pt-16 md:pt-24 pb-20 border-b border-[#657A6A]/30 overflow-hidden">
-        {/* Rich Fine-Line Botanical Branch Artwork (Top-Right Background) */}
+        {/* Exact Reference Botanical Leaf-Line Art Illustration (Top-Right Background) */}
         <div 
-          className="absolute top-0 right-0 w-[45%] sm:w-[48%] md:w-[50%] max-w-[650px] h-auto pointer-events-none z-0 select-none"
+          className="absolute top-0 right-0 w-[90%] sm:w-[70%] md:w-[55%] lg:w-[48%] h-full pointer-events-none z-0 select-none flex items-center justify-end"
           style={{
-            animation: "botanicalEntrance 1.5s ease-out forwards",
+            animation: "botanicalFadeIn 1.5s ease-out forwards",
           }}
         >
           <style jsx>{`
-            @keyframes botanicalEntrance {
+            @keyframes botanicalFadeIn {
               from {
                 opacity: 0;
-                transform: translate(14px, -14px);
+                transform: translate(12px, -12px);
               }
               to {
-                opacity: 1;
+                opacity: 0.35;
                 transform: translate(0, 0);
               }
             }
           `}</style>
           <svg
-            viewBox="0 0 600 700"
+            viewBox="0 0 800 480"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-auto opacity-[0.35] transform translate-x-4 -translate-y-4"
+            className="w-full h-auto max-h-[90%] transform translate-x-6 md:translate-x-10"
           >
-            {/* Main Sweeping Botanical Trunk */}
+            {/* Main Arching Stem from Bottom Right to Upper Left */}
             <path
-              d="M580,20 C490,90 400,210 320,350 C250,470 190,570 130,680"
+              d="M780,450 Q660,340 480,240 Q360,180 200,210"
+              stroke="rgba(145, 158, 130, 0.85)"
+              strokeWidth="2.0"
+              strokeLinecap="round"
+            />
+
+            {/* Top-Right Secondary Branch Stem */}
+            <path
+              d="M580,290 Q650,210 680,80"
               stroke="rgba(145, 158, 130, 0.75)"
-              strokeWidth="1.4"
+              strokeWidth="1.5"
               strokeLinecap="round"
             />
 
-            {/* Stem 1 - Top Branch */}
+            {/* Lower-Middle Secondary Branch Stem */}
             <path
-              d="M510,75 C430,45 340,55 260,85"
-              stroke="rgba(145, 158, 130, 0.65)"
-              strokeWidth="1.1"
+              d="M500,250 Q430,300 320,330"
+              stroke="rgba(145, 158, 130, 0.75)"
+              strokeWidth="1.5"
               strokeLinecap="round"
             />
 
-            {/* Stem 2 - Upper Middle Branch */}
+            {/* Bottom-Right Base Branch Stem */}
             <path
-              d="M420,180 C340,150 250,170 170,210"
+              d="M700,390 Q740,360 770,330"
               stroke="rgba(145, 158, 130, 0.65)"
-              strokeWidth="1.1"
+              strokeWidth="1.2"
               strokeLinecap="round"
             />
 
-            {/* Stem 3 - Lower Middle Branch */}
+            {/* --- LEAF CLUSTER 1: LEFT-MOST TIP LEAVES --- */}
+            {/* Tip Leaf 1 (Leftmost pointing left) */}
             <path
-              d="M330,330 C260,320 180,350 110,400"
-              stroke="rgba(145, 158, 130, 0.65)"
-              strokeWidth="1.1"
-              strokeLinecap="round"
+              d="M200,210 C160,200 130,215 145,230 C170,245 195,225 200,210 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
             />
+            <path d="M200,210 L145,230" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
+            <path d="M185,215 L175,210" stroke="rgba(145, 158, 130, 0.35)" strokeWidth="0.6" />
+            <path d="M175,220 L165,225" stroke="rgba(145, 158, 130, 0.35)" strokeWidth="0.6" />
 
-            {/* Stem 4 - Base Branch */}
+            {/* Tip Leaf 2 (Pointing up-left) */}
             <path
-              d="M230,490 C170,490 110,530 60,580"
-              stroke="rgba(145, 158, 130, 0.65)"
-              strokeWidth="1.1"
-              strokeLinecap="round"
+              d="M220,205 C195,175 175,185 190,210 C205,225 220,215 220,205 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
             />
+            <path d="M220,205 L190,210" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* --- DETAILED LEAVES WITH VEINS (22 Botanical Leaves) --- */}
+            {/* Tip Leaf 3 (Pointing down-left) */}
+            <path
+              d="M240,215 C210,245 195,270 215,280 C235,275 245,245 240,215 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M240,215 L215,280" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 1 (Top Stem End) */}
-            <path d="M260,85 C235,65 210,75 225,100 C245,105 258,95 260,85 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M260,85 L225,100" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* --- LEAF CLUSTER 2: UPPER-MIDDLE LEAVES --- */}
+            {/* Mid-Left Leaf (Pointing up-left) */}
+            <path
+              d="M310,195 C280,150 250,155 270,185 C295,200 310,195 310,195 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M310,195 L270,185" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 2 */}
-            <path d="M300,75 C275,50 248,58 262,82 C282,88 298,78 300,75 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M300,75 L262,82" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Mid-Center Leaf (Pointing up) */}
+            <path
+              d="M360,182 C340,130 315,135 330,168 C348,185 360,182 360,182 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M360,182 L330,168" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 3 */}
-            <path d="M340,65 C315,38 288,48 302,72 C322,78 338,68 340,65 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M340,65 L302,72" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Prominent Vertical Leaf (Main Arch Center) */}
+            <path
+              d="M440,210 C420,110 395,95 418,145 C435,185 440,210 440,210 Z"
+              stroke="rgba(145, 158, 130, 0.85)"
+              strokeWidth="1.3"
+            />
+            <path d="M440,210 L418,145" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
+            <path d="M430,180 L415,170" stroke="rgba(145, 158, 130, 0.35)" strokeWidth="0.6" />
+            <path d="M435,160 L420,150" stroke="rgba(145, 158, 130, 0.35)" strokeWidth="0.6" />
 
-            {/* Leaf 4 */}
-            <path d="M395,58 C370,32 342,42 356,66 C376,72 392,62 395,58 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M395,58 L356,66" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Mid-Right Upward Leaf */}
+            <path
+              d="M500,230 C490,140 470,130 488,175 C502,205 500,230 500,230 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M500,230 L488,175" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 5 (Top Main Trunk) */}
-            <path d="M550,45 C525,20 495,28 508,52 C528,58 545,48 550,45 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M550,45 L508,52" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* --- LEAF CLUSTER 3: TOP-RIGHT CORNER CLUSTER --- */}
+            {/* Top-Right Vertical Tip Leaf */}
+            <path
+              d="M680,80 C665,25 640,30 655,70 C670,95 680,80 680,80 Z"
+              stroke="rgba(145, 158, 130, 0.85)"
+              strokeWidth="1.2"
+            />
+            <path d="M680,80 L655,70" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 6 */}
-            <path d="M500,105 C475,80 445,88 458,112 C478,118 495,108 500,105 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M500,105 L458,112" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Top-Right Outer Right Leaf */}
+            <path
+              d="M675,100 C705,50 725,60 700,95 C685,115 675,100 675,100 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M675,100 L700,95" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 7 (Stem 2 End) */}
-            <path d="M170,210 C142,190 118,202 132,228 C152,232 166,220 170,210 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M170,210 L132,228" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Top-Right Mid-Upper Right Leaf */}
+            <path
+              d="M650,160 C690,110 710,125 680,155 C665,175 650,160 650,160 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M650,160 L680,155" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 8 */}
-            <path d="M215,200 C188,178 162,188 178,215 C198,218 212,208 215,200 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M215,200 L178,215" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Top-Right Inner Left Leaf */}
+            <path
+              d="M640,180 C600,120 580,135 610,165 C630,185 640,180 640,180 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M640,180 L610,165" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 9 */}
-            <path d="M260,185 C232,162 208,172 222,198 C242,202 256,192 260,185 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M260,185 L222,198" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Top-Right Lower Right Leaf */}
+            <path
+              d="M620,230 C665,190 685,205 655,235 C635,250 620,230 620,230 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M620,230 L655,235" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 10 */}
-            <path d="M310,170 C282,148 258,158 272,185 C292,188 306,178 310,170 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M310,170 L272,185" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* --- LEAF CLUSTER 4: LOWER-MIDDLE BRANCH CLUSTER --- */}
+            {/* Lower-Middle Leftmost Leaf */}
+            <path
+              d="M320,330 C270,310 250,330 285,345 C310,355 320,330 320,330 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M320,330 L285,345" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 11 (Mid Trunk Right) */}
-            <path d="M460,220 C432,198 408,208 422,235 C442,238 456,228 460,220 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M460,220 L422,235" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Lower-Middle Center Leaf */}
+            <path
+              d="M380,310 C330,300 315,320 345,335 C370,345 380,310 380,310 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M380,310 L345,335" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 12 */}
-            <path d="M400,280 C372,258 348,268 362,295 C382,298 396,288 400,280 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M400,280 L362,295" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Lower-Middle Right Leaf */}
+            <path
+              d="M440,280 C395,280 380,300 410,315 C430,325 440,280 440,280 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M440,280 L410,315" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 13 (Stem 3 End) */}
-            <path d="M110,400 C82,380 58,392 72,418 C92,422 106,410 110,400 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M110,400 L72,418" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* --- LEAF CLUSTER 5: MAIN TRUNK CENTER-BELOW LEAF --- */}
+            <path
+              d="M390,225 C345,260 330,290 365,295 C385,285 390,225 390,225 Z"
+              stroke="rgba(145, 158, 130, 0.85)"
+              strokeWidth="1.3"
+            />
+            <path d="M390,225 L365,295" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
+            <path d="M380,250 L365,260" stroke="rgba(145, 158, 130, 0.35)" strokeWidth="0.6" />
+            <path d="M375,270 L360,280" stroke="rgba(145, 158, 130, 0.35)" strokeWidth="0.6" />
 
-            {/* Leaf 14 */}
-            <path d="M160,380 C132,358 108,368 122,395 C142,398 156,388 160,380 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M160,380 L122,395" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* --- LEAF CLUSTER 6: BASE RIGHT CLUSTER --- */}
+            {/* Base Leaf 1 (Pointing right) */}
+            <path
+              d="M770,330 C795,300 810,315 790,340 C775,355 770,330 770,330 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M770,330 L790,340" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 15 */}
-            <path d="M210,360 C182,338 158,348 172,375 C192,378 206,368 210,360 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M210,360 L172,375" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Base Leaf 2 (Pointing up-right) */}
+            <path
+              d="M740,360 C780,325 795,340 765,370 C750,380 740,360 740,360 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M740,360 L765,370" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
 
-            {/* Leaf 16 */}
-            <path d="M260,345 C232,323 208,333 222,360 C242,363 256,353 260,345 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M260,345 L222,360" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
-
-            {/* Leaf 17 (Lower Trunk Right) */}
-            <path d="M330,420 C302,398 278,408 292,435 C312,438 326,428 330,420 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M330,420 L292,435" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
-
-            {/* Leaf 18 (Stem 4 End) */}
-            <path d="M60,580 C32,560 8,572 22,598 C42,602 56,590 60,580 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M60,580 L22,598" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
-
-            {/* Leaf 19 */}
-            <path d="M110,550 C82,528 58,538 72,565 C92,568 106,558 110,550 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M110,550 L72,565" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
-
-            {/* Leaf 20 */}
-            <path d="M160,520 C132,498 108,508 122,535 C142,538 156,528 160,520 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M160,520 L122,535" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
-
-            {/* Leaf 21 (Base Trunk Left) */}
-            <path d="M220,530 C192,508 168,518 182,545 C202,548 216,538 220,530 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M220,530 L182,545" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
-
-            {/* Leaf 22 (Base Trunk Bottom) */}
-            <path d="M160,630 C132,608 108,618 122,645 C142,648 156,638 160,630 Z" stroke="rgba(145, 158, 130, 0.75)" strokeWidth="1.0" />
-            <path d="M160,630 L122,645" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.6" />
+            {/* Base Leaf 3 (Pointing lower right) */}
+            <path
+              d="M720,380 C765,360 775,380 745,400 C730,410 720,380 720,380 Z"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.2"
+            />
+            <path d="M720,380 L745,400" stroke="rgba(145, 158, 130, 0.5)" strokeWidth="0.8" />
           </svg>
         </div>
 
