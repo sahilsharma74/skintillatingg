@@ -11,9 +11,155 @@ export default function JourneyPage() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="relative px-[20px] md:px-[80px] max-w-[1440px] mx-auto pt-16 md:pt-24 pb-20 border-b border-[#657A6A]/30">
+      <section className="relative px-[20px] md:px-[80px] max-w-[1440px] mx-auto pt-16 md:pt-24 pb-20 border-b border-[#657A6A]/30 overflow-hidden">
+        {/* Decorative Top-Right Botanical Leaf Line-Art Illustration */}
+        <div 
+          className="absolute top-0 right-0 w-[280px] sm:w-[400px] md:w-[520px] lg:w-[600px] h-auto pointer-events-none z-0 select-none transition-all duration-1000 ease-out"
+          style={{
+            animation: "botanicalFadeIn 1.3s ease-out forwards",
+          }}
+        >
+          <style jsx>{`
+            @keyframes botanicalFadeIn {
+              from {
+                opacity: 0;
+                transform: translateY(-12px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+          `}</style>
+          <svg
+            viewBox="0 0 500 500"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="w-full h-full transform translate-x-10 -translate-y-8 md:translate-x-12 md:-translate-y-10 opacity-[0.35]"
+          >
+            {/* Main Graceful Curved Branch */}
+            <path
+              d="M480,20 Q380,80 260,180 T100,380"
+              stroke="rgba(145, 158, 130, 0.8)"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+            />
+            
+            {/* Secondary Offshoot Branch 1 */}
+            <path
+              d="M380,80 Q320,50 240,60"
+              stroke="rgba(145, 158, 130, 0.6)"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+            />
+
+            {/* Secondary Offshoot Branch 2 */}
+            <path
+              d="M310,135 Q260,160 190,140"
+              stroke="rgba(145, 158, 130, 0.6)"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+            />
+
+            {/* Secondary Offshoot Branch 3 */}
+            <path
+              d="M210,230 Q160,270 110,240"
+              stroke="rgba(145, 158, 130, 0.6)"
+              strokeWidth="1.2"
+              strokeLinecap="round"
+            />
+
+            {/* Leaves Group 1 - Upper Branch */}
+            <path
+              d="M450,40 C430,20 400,25 410,50 C425,55 445,45 450,40 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M420,60 C400,35 375,40 385,70 C400,75 415,65 420,60 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M390,75 C370,50 345,60 360,85 C375,85 385,80 390,75 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+
+            {/* Leaves Group 2 - Middle Offshoot */}
+            <path
+              d="M315,55 C295,30 270,35 280,60 C295,65 310,60 315,55 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M270,58 C250,35 225,45 238,70 C252,72 265,65 270,58 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+
+            {/* Leaves Group 3 - Mid Branch */}
+            <path
+              d="M340,110 C315,90 290,100 305,125 C320,128 335,120 340,110 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M300,140 C275,120 250,135 268,155 C282,158 295,148 300,140 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M270,170 C245,150 220,165 238,185 C252,188 265,178 270,170 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+
+            {/* Leaves Group 4 - Lower Offshoot & Base */}
+            <path
+              d="M240,150 C215,130 190,145 205,168 C220,170 235,160 240,150 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M220,220 C195,195 170,210 185,235 C200,238 215,228 220,220 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M170,250 C145,230 125,245 140,268 C155,270 165,260 170,250 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+            <path
+              d="M140,300 C115,280 95,295 110,318 C125,320 135,310 140,300 Z"
+              fill="none"
+              stroke="rgba(145, 158, 130, 0.7)"
+              strokeWidth="1.2"
+            />
+
+            {/* Decorative Central Leaf Veins */}
+            <path d="M450,40 L410,50" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.8" />
+            <path d="M420,60 L385,70" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.8" />
+            <path d="M340,110 L305,125" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.8" />
+            <path d="M300,140 L268,155" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.8" />
+            <path d="M220,220 L185,235" stroke="rgba(145, 158, 130, 0.4)" strokeWidth="0.8" />
+          </svg>
+        </div>
+
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#657A6A]/10 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="relative max-w-3xl">
+        <div className="relative z-10 max-w-3xl">
           <div className="inline-block px-3 py-1 bg-[#657A6A]/30 border border-[#AEB9A9]/40 rounded text-[#F5F5DC] font-label-caps text-xs tracking-widest uppercase mb-6 font-semibold">
             OUR JOURNEY
           </div>
