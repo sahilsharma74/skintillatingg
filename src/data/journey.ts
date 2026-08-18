@@ -45,7 +45,7 @@ export const MILESTONES: Milestone[] = [
 
 export const CREDENTIALS: CredentialItem[] = [
   {
-    title: "12+ Years Clinical Practice",
+    title: "13+ Years Clinical Practice",
     subtitle: "Aesthetic Cosmetology & Trichology",
     description:
       "Over a decade of dedicated clinical experience in advanced skin rejuvenation, laser dermatology, and non-surgical facial enhancement.",

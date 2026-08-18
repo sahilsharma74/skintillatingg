@@ -12,11 +12,7 @@ export interface Article {
 
 export const INSIGHT_CATEGORIES = [
   "All",
-  "Treatments",
-  "Technology",
   "Education",
-  "Training",
-  "Career",
 ] as const;
 
 export const INSIGHTS_ARTICLES: Article[] = [

@@ -18,7 +18,7 @@ export default function StatsSection() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (prefersReducedMotion) {
-      setYearsVal("12+");
+      setYearsVal("13+");
       setTransformationsVal("10k+");
       setAwardsVal("3");
       hasAnimatedRef.current = true;
@@ -48,8 +48,8 @@ export default function StatsSection() {
             const progress = Math.min(elapsed / duration, 1);
             const easedProgress = easeOutCubic(progress);
 
-            // Stat 1: 12+
-            const yearsNum = Math.floor(easedProgress * 12);
+            // Stat 1: 13+
+            const yearsNum = Math.floor(easedProgress * 13);
             setYearsVal(`${yearsNum}+`);
 
             // Stat 2: 10k+ (0 -> 1k -> 2k -> ... -> 10k+)
@@ -68,7 +68,7 @@ export default function StatsSection() {
               animFrameId = requestAnimationFrame(animate);
             } else {
               // Ensure exact final values when animation completes
-              setYearsVal("12+");
+              setYearsVal("13+");
               setTransformationsVal("10k+");
               setAwardsVal("3");
             }

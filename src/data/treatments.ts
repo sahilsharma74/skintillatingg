@@ -1,8 +1,34 @@
+export type TreatmentSubcategory =
+  | "ALL"
+  | "ANTI-AGEING"
+  | "ACNE & SCARS"
+  | "SKIN"
+  | "HAIRCARE"
+  | "HAIR"
+  | "BODY"
+  | "INJECTABLES"
+  | "LASER"
+  | "AESTHETICS";
+
+export const TREATMENT_CATEGORIES: TreatmentSubcategory[] = [
+  "ALL",
+  "ANTI-AGEING",
+  "ACNE & SCARS",
+  "SKIN",
+  "HAIRCARE",
+  "HAIR",
+  "BODY",
+  "INJECTABLES",
+  "LASER",
+  "AESTHETICS",
+];
+
 export interface Treatment {
   id: string;
   slug: string;
   title: string;
   category: "Treatments" | "Technology" | "Education" | "Training" | "Career";
+  subcategories: TreatmentSubcategory[];
   excerpt: string;
   fullDescription: string[];
   keyBenefits: string[];
@@ -14,15 +40,13 @@ export interface Treatment {
     anesthesia: string;
   };
   image: string;
+  focusAreas?: string[];
+  faqs?: { question: string; answer: string }[];
 }
 
 export const INSIGHT_CATEGORIES = [
   "All",
-  "Treatments",
-  "Technology",
   "Education",
-  "Training",
-  "Career",
 ] as const;
 
 export const TREATMENTS_DATA: Treatment[] = [
@@ -32,6 +56,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "laser-hair-reduction",
     title: "Laser Hair Reduction",
     category: "Treatments",
+    subcategories: ["ALL", "LASER", "BODY"],
+    focusAreas: ["Face & Chin", "Underarms & Arms", "Full Legs", "Bikini & Body"],
     excerpt:
       "A clinically guided approach to reducing unwanted hair with advanced laser technology, designed for smoother skin and long-term hair reduction.",
     fullDescription: [
@@ -56,13 +82,25 @@ export const TREATMENTS_DATA: Treatment[] = [
       sessionsRecommended: "6 – 8 sessions spaced 4 to 6 weeks apart",
       anesthesia: "None required (integrated sapphire chill tip)"
     },
-    image: "/images/treatments/laser-hair-reduction.jpg"
+    image: "/images/treatments/laser-hair-reduction.jpg",
+    faqs: [
+      {
+        question: "Is laser hair reduction permanent?",
+        answer: "Laser hair reduction results in long-lasting, permanent hair reduction of up to 85-90%. Any occasional fine regrowth is light and easily maintained with annual touch-ups."
+      },
+      {
+        question: "Is the treatment painful?",
+        answer: "Our medical-grade lasers feature active contact cooling, which cools the skin before and during every laser pulse, making the experience virtually painless."
+      }
+    ]
   },
   {
     id: "lipolysis",
     slug: "lipolysis",
     title: "Lipolysis",
     category: "Treatments",
+    subcategories: ["ALL", "BODY", "INJECTABLES"],
+    focusAreas: ["Submental Chin", "Abdomen", "Flanks & Love Handles", "Thighs"],
     excerpt:
       "A non-surgical body-contouring approach designed to target unwanted localized fat deposits and support a more defined appearance.",
     fullDescription: [
@@ -87,13 +125,21 @@ export const TREATMENTS_DATA: Treatment[] = [
       sessionsRecommended: "2 – 4 sessions spaced 4 weeks apart",
       anesthesia: "Topical numbing cream applied prior to procedure"
     },
-    image: "/images/treatments/lipolysis.jpg"
+    image: "/images/treatments/lipolysis.jpg",
+    faqs: [
+      {
+        question: "How long until I see results from lipolysis?",
+        answer: "Initial fat reduction begins within 3 to 4 weeks as your body naturally clears metabolized lipids, with peak results visible around 6 to 8 weeks post-treatment."
+      }
+    ]
   },
   {
     id: "dermal-fillers",
     slug: "dermal-fillers",
     title: "Dermal Fillers",
     category: "Treatments",
+    subcategories: ["ALL", "INJECTABLES", "ANTI-AGEING", "AESTHETICS"],
+    focusAreas: ["Cheeks & Mid-Face", "Nasolabial Folds", "Marionette Lines", "Jawline & Chin"],
     excerpt:
       "Advanced injectable treatments designed to restore volume, soften the appearance of lines and enhance facial contours while maintaining natural-looking results.",
     fullDescription: [
@@ -118,7 +164,13 @@ export const TREATMENTS_DATA: Treatment[] = [
       sessionsRecommended: "1 session (touch-up at 12–18 months)",
       anesthesia: "Topical anesthetic cream & lidocaine-infused gel"
     },
-    image: "/images/treatments/dermal-fillers.jpg"
+    image: "/images/treatments/dermal-fillers.jpg",
+    faqs: [
+      {
+        question: "How long do dermal fillers last?",
+        answer: "Premium Hyaluronic Acid fillers typically last between 12 to 18 months depending on the treatment area and individual metabolism."
+      }
+    ]
   },
 
   // ROW 2
@@ -127,6 +179,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "microdermabrasion",
     title: "Microdermabrasion",
     category: "Treatments",
+    subcategories: ["ALL", "SKIN", "AESTHETICS"],
+    focusAreas: ["Uneven Texture", "Clogged Pores", "Superficial Blackheads", "Dullness"],
     excerpt:
       "A non-invasive exfoliation treatment designed to improve skin texture, tone and overall appearance while supporting skin renewal.",
     fullDescription: [
@@ -158,6 +212,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "co2-laser",
     title: "CO₂ Laser",
     category: "Treatments",
+    subcategories: ["ALL", "LASER", "ACNE & SCARS", "ANTI-AGEING"],
+    focusAreas: ["Deep Acne Scars", "Photo-Aging & Wrinkles", "Skin Laxity", "Enlarged Pores"],
     excerpt:
       "An advanced skin-resurfacing treatment designed to address skin texture, wrinkles, scars and other visible signs of skin damage.",
     fullDescription: [
@@ -189,6 +245,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "acne-and-scars",
     title: "Acne & Scars",
     category: "Treatments",
+    subcategories: ["ALL", "ACNE & SCARS", "SKIN"],
+    focusAreas: ["Active Comedones", "Post-Acne Indentations", "Redness & PIH", "Rough Texture"],
     excerpt:
       "Targeted aesthetic treatments designed to improve active acne, acne scars, uneven texture and visible skin imperfections.",
     fullDescription: [
@@ -222,6 +280,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "chemical-peel",
     title: "Chemical Peel",
     category: "Treatments",
+    subcategories: ["ALL", "SKIN", "ACNE & SCARS", "ANTI-AGEING"],
+    focusAreas: ["Hyperpigmentation", "Melasma", "Acne Marks", "Dull Complexion"],
     excerpt:
       "A controlled skin-renewal treatment designed to improve pigmentation, texture, uneven tone and other visible signs of skin ageing.",
     fullDescription: [
@@ -253,6 +313,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "prp",
     title: "PRP",
     category: "Treatments",
+    subcategories: ["ALL", "HAIR", "SKIN", "INJECTABLES", "ANTI-AGEING"],
+    focusAreas: ["Scalp & Hair Follicles", "Under-Eye Hollows", "Facial Rejuvenation"],
     excerpt:
       "Platelet-rich plasma therapy designed to support natural skin and hair rejuvenation using growth factors derived from the patient's own blood.",
     fullDescription: [
@@ -284,6 +346,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "medi-facial",
     title: "Medi Facial",
     category: "Treatments",
+    subcategories: ["ALL", "SKIN", "AESTHETICS"],
+    focusAreas: ["Deep Cleansing", "Cellular Hydration", "Pre-Event Radiance", "Environmental Detox"],
     excerpt:
       "A clinically guided facial treatment combining advanced skincare techniques to cleanse, hydrate, rejuvenate and improve overall skin appearance.",
     fullDescription: [
@@ -317,6 +381,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "lip-filler",
     title: "Lip Filler",
     category: "Treatments",
+    subcategories: ["ALL", "INJECTABLES", "AESTHETICS"],
+    focusAreas: ["Lip Definition", "Vermilion Border", "Cupid's Bow", "Hydrated Volume"],
     excerpt:
       "Advanced lip enhancement designed to restore or add subtle volume, improve lip definition and create balanced, natural-looking results.",
     fullDescription: [
@@ -348,6 +414,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "hifu",
     title: "HIFU",
     category: "Treatments",
+    subcategories: ["ALL", "ANTI-AGEING", "SKIN", "AESTHETICS"],
+    focusAreas: ["SMAS Layer Lifting", "Jawline Definition", "Double Chin Tightening", "Brow Elevation"],
     excerpt:
       "A non-invasive focused ultrasound treatment designed to support skin tightening, contouring and a firmer, more youthful appearance.",
     fullDescription: [
@@ -379,6 +447,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "microneedling",
     title: "Microneedling",
     category: "Treatments",
+    subcategories: ["ALL", "SKIN", "ACNE & SCARS", "ANTI-AGEING"],
+    focusAreas: ["Collagen Induction", "Acne Scar Smoothing", "Enlarged Pores", "Skin Elasticity"],
     excerpt:
       "A skin-renewal treatment that stimulates natural collagen production to improve texture, pores, scars and overall skin quality.",
     fullDescription: [
@@ -403,8 +473,7 @@ export const TREATMENTS_DATA: Treatment[] = [
       sessionsRecommended: "3 – 5 sessions spaced 4 weeks apart",
       anesthesia: "Topical prescription numbing cream"
     },
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBeuYA1GF05n9uuu-1_BTr9TKdSirqrkGRMAQ8FOSyf4yY4LVuCJpsRgx9_YTPxf7kJ6ytZ_e9UxC4V9iHLyJ5AGPku0PUjJ1MOmkAOIOwQUlySJNhwTSdv6aCdDth2Up7nabq94N24Li5tbOmdrBxCTSmwzQLIYkj7OkB2cRBrbm_4Pjz__Z8cJPNJ-yQ0_ENmSZV5r0zL2yVbQfd9Sr76njbJYzdDIwsNgeNoBfiU1KnZvVHV8_8"
+    image: "/images/treatments/microneedling.jpg"
   },
 
   // ROW 5
@@ -413,6 +482,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "q-switch",
     title: "Q Switch",
     category: "Treatments",
+    subcategories: ["ALL", "LASER", "SKIN", "ACNE & SCARS"],
+    focusAreas: ["Dark Spots & Freckles", "Laser Skin Toning", "Post-Acne PIH", "Melanin Shattering"],
     excerpt:
       "Advanced laser technology designed to target pigmentation, uneven skin tone, spots and selected unwanted pigmentation concerns.",
     fullDescription: [
@@ -444,6 +515,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "permanent-makeup",
     title: "Permanent Makeup",
     category: "Treatments",
+    subcategories: ["ALL", "AESTHETICS"],
+    focusAreas: ["Microblading Eyebrows", "Lip Blushing & Definition", "Sterile Bio-Pigments"],
     excerpt:
       "Precision cosmetic enhancement designed to define and enhance features such as brows and lips with a polished, long-lasting appearance.",
     fullDescription: [
@@ -475,6 +548,8 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "tattoo-removal",
     title: "Tattoo Removal",
     category: "Treatments",
+    subcategories: ["ALL", "LASER", "SKIN"],
+    focusAreas: ["Dark & Colored Tattoo Fading", "Lymphatic Ink Elimination", "Skin Barrier Protection"],
     excerpt:
       "Laser-based treatment designed to progressively break down unwanted tattoo pigment while supporting the skin's natural healing process.",
     fullDescription: [
@@ -500,5 +575,480 @@ export const TREATMENTS_DATA: Treatment[] = [
       anesthesia: "Topical numbing cream & cooling air"
     },
     image: "/images/treatments/tattoo-removal.jpg"
+  },
+
+  // ROW 6: HAIRCARE TREATMENTS
+  {
+    id: "hair-prp",
+    slug: "hair-prp",
+    title: "HAIR PRP",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Scalp Crown", "Hairline", "Thinning Regions"],
+    excerpt:
+      "A targeted hair and scalp treatment using concentrated growth factors derived from autologous plasma to support hair density and follicle vitality.",
+    fullDescription: [
+      "Hair PRP (Platelet-Rich Plasma) therapy is a specialized scalp revitalization treatment that utilizes autologous plasma concentrated with natural growth factors.",
+      "The procedure involves preparing a refined plasma sample from the client's own blood and administering precise micro-applications across target areas of the scalp.",
+      "Designed to nourish the hair root micro-environment, Hair PRP supports scalp health, improves hair strand quality, and complements personalized hair care routines."
+    ],
+    keyBenefits: [
+      "Supports scalp nourishment and follicle environment health",
+      "Utilizes autologous growth factors derived from client's own plasma",
+      "Complements comprehensive, dermatologist-guided hair care plans",
+      "Minimal downtime with a smooth, comfortable procedure experience"
+    ],
+    idealCandidates: [
+      "Individuals experiencing early signs of hair thinning or weakened hair quality",
+      "Clients seeking natural, plasma-derived scalp nourishment",
+      "Anyone looking to maintain scalp wellness as part of routine care"
+    ],
+    procedureOverview: {
+      duration: "45 – 60 minutes",
+      downtime: "Minimal (mild scalp sensitivity for a few hours)",
+      sessionsRecommended: "4 – 6 sessions spaced 4 weeks apart",
+      anesthesia: "Topical anesthetic or cooling spray as needed"
+    },
+    image: "/images/treatments/haircare/hair-prp.webp",
+    faqs: [
+      {
+        question: "What is Hair PRP?",
+        answer: "Hair PRP involves using concentrated platelet-rich plasma to deliver essential nutrients and natural growth factors to the scalp."
+      },
+      {
+        question: "Is there downtime after the session?",
+        answer: "Downtime is minimal. Most clients resume daily activities immediately following their appointment."
+      }
+    ]
+  },
+  {
+    id: "hair-transplant",
+    slug: "hair-transplant",
+    title: "HAIR TRANSPLANT",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Frontal Hairline", "Crown Region", "Temporal Recess"],
+    excerpt:
+      "An advanced hair restoration technique designed to relocate healthy hair follicles to areas requiring increased density and refined coverage.",
+    fullDescription: [
+      "Hair Transplant procedure is a clinical hair restoration solution that redistributes healthy, permanent hair follicles from donor regions to areas experiencing thinning or receded hair lines.",
+      "Using modern Follicular Unit Extraction (FUE) protocols, individual follicular units are carefully harvested and strategically implanted to mirror natural growth angles and hairline aesthetics.",
+      "Each procedure is tailored to individual facial symmetry and personal restoration goals, emphasizing natural-looking density and seamless integration with existing hair."
+    ],
+    keyBenefits: [
+      "Provides long-lasting, structural hair redistribution and hairline framing",
+      "Employs modern micro-harvesting techniques for natural aesthetic results",
+      "Personalized planning aligned with individual hair density goals",
+      "Minimally invasive donor harvesting with structured recovery guidelines"
+    ],
+    idealCandidates: [
+      "Individuals with localized thinning or receded hairlines seeking structural restoration",
+      "Candidates with adequate donor hair density",
+      "Clients looking for a defined, personalized hairline design"
+    ],
+    procedureOverview: {
+      duration: "4 – 8 hours (depending on graft count)",
+      downtime: "5 – 7 days for initial healing",
+      sessionsRecommended: "1 session (or planned stage sessions as evaluated)",
+      anesthesia: "Local anesthesia"
+    },
+    image: "/images/treatments/haircare/hair-transplant.webp",
+    faqs: [
+      {
+        question: "How is a Hair Transplant performed?",
+        answer: "Individual hair follicles are harvested from donor zones and positioned in recipient areas according to your natural hair growth pattern."
+      },
+      {
+        question: "What is the typical recovery period?",
+        answer: "Initial recovery and scab shedding usually occur within 7 to 10 days, after which normal non-strenuous activities can resume."
+      }
+    ]
+  },
+  {
+    id: "hairfall",
+    slug: "hairfall",
+    title: "HAIRFALL",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Diffused Shedding", "Scalp Health", "Hair Root Strength"],
+    excerpt:
+      "A comprehensive, multi-modal diagnostic and therapeutic protocol designed to evaluate and address excessive hair shedding and scalp concerns.",
+    fullDescription: [
+      "Our Hairfall protocol focuses on identifying potential contributing factors to excessive hair shedding through thorough clinical evaluation and personalized scalp assessments.",
+      "Management strategies integrate targeted topical treatments, scalp nutrition, barrier protection, and evidence-guided therapeutic modalities tailored to specific hair loss patterns.",
+      "By addressing underlying scalp health and supporting follicle resilience, the protocol aims to reduce shedding and foster a favorable environment for hair wellness."
+    ],
+    keyBenefits: [
+      "Comprehensive diagnostic assessment of hair shedding triggers",
+      "Tailored multi-disciplinary care plans combining topical and procedural therapies",
+      "Focuses on scalp barrier repair and follicular environment stabilization",
+      "Ongoing monitoring to track progress and adjust supportive care"
+    ],
+    idealCandidates: [
+      "Individuals noticing increased daily hair shedding or reduced hair volume",
+      "Clients seeking professional guidance for acute or chronic hair loss concerns",
+      "Anyone wanting a structured approach to scalp and hair retention"
+    ],
+    procedureOverview: {
+      duration: "30 – 45 minutes",
+      downtime: "Zero downtime",
+      sessionsRecommended: "Customized care plan (typically monthly reviews)",
+      anesthesia: "None required"
+    },
+    image: "/images/treatments/haircare/hairfall.webp",
+    faqs: [
+      {
+        question: "What causes excessive hairfall?",
+        answer: "Hairfall can be influenced by multiple factors including genetics, stress, nutritional changes, and scalp health. A professional assessment helps clarify individual causes."
+      },
+      {
+        question: "How quickly can I expect results?",
+        answer: "Hair growth cycles take time. Most clients begin noticing improvements in scalp condition and shedding reduction over a 3 to 6 month period."
+      }
+    ]
+  },
+  {
+    id: "mesotherapy",
+    slug: "mesotherapy",
+    title: "MESOTHERAPY",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Full Scalp Coverage", "Hair Roots", "Crown Thinning"],
+    excerpt:
+      "A specialized micro-infusion technique delivering vital nutrients, peptides, and amino acids directly to the scalp layer to nourish hair roots.",
+    fullDescription: [
+      "Mesotherapy for hair involves micro-injections of nutrient-rich solutions containing vitamins, minerals, coenzymes, and amino acids into the superficial dermal layer of the scalp.",
+      "This targeted delivery system supplies essential nutrients directly where hair follicles reside, bypassing the digestive system for localized scalp nourishment.",
+      "The micro-stimulations also encourage micro-circulation, supporting healthier-looking, revitalized hair strands."
+    ],
+    keyBenefits: [
+      "Direct micro-delivery of essential vitamins and scalp nutrients",
+      "Enhances scalp micro-circulation and follicular hydration",
+      "Non-surgical treatment with quick in-clinic application",
+      "Can be safely combined with other hair wellness programs"
+    ],
+    idealCandidates: [
+      "Clients with dull, brittle, or thinning hair needing nutritional boost",
+      "Individuals experiencing environmental stress affecting hair quality",
+      "Anyone looking for a gentle, supportive scalp infusion procedure"
+    ],
+    procedureOverview: {
+      duration: "30 – 45 minutes",
+      downtime: "Minimal (slight scalp redness for a few hours)",
+      sessionsRecommended: "6 – 8 sessions spaced 2 to 3 weeks apart",
+      anesthesia: "Topical anesthetic as needed"
+    },
+    image: "/images/treatments/haircare/mesotherapy.webp",
+    faqs: [
+      {
+        question: "What is in a Mesotherapy solution?",
+        answer: "Solutions typically contain a customized blend of vitamins, amino acids, minerals, and hyaluronic acid formulated for scalp care."
+      },
+      {
+        question: "Is Mesotherapy painful?",
+        answer: "Micro-needles are extremely fine, making the procedure well-tolerated. Topical numbing can be applied for comfort."
+      }
+    ]
+  },
+  {
+    id: "gfc-hair",
+    slug: "gfc-hair",
+    title: "GFC HAIR",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Scalp Vertex", "Hairlines", "Diffused Thinning Zones"],
+    excerpt:
+      "An advanced Growth Factor Concentrate therapy utilizing highly purified autologous factors to promote scalp wellness and hair restoration goals.",
+    fullDescription: [
+      "GFC (Growth Factor Concentrate) Hair therapy is a next-generation autologous scalp treatment designed to isolate and concentrate essential growth factors from a client's own blood sample.",
+      "Through a specialized preparation process, a cell-free growth factor solution is obtained and precisely administered into target scalp regions.",
+      "GFC delivers high concentrations of active bio-factors, offering a clean, acellular formulation aimed at nourishing follicles and supporting hair thickness."
+    ],
+    keyBenefits: [
+      "High concentration of purified growth factors in a cell-free solution",
+      "100% autologous preparation minimizing sensitivity risks",
+      "Supports follicle nourishment and hair shaft vigor",
+      "Comfortable administration with zero social downtime"
+    ],
+    idealCandidates: [
+      "Individuals seeking an advanced, highly concentrated growth factor treatment",
+      "Clients experiencing early thinning or hair quality degradation",
+      "Anyone preferring a clean, cell-free autologous therapy"
+    ],
+    procedureOverview: {
+      duration: "45 minutes",
+      downtime: "Zero to minimal",
+      sessionsRecommended: "3 – 4 sessions spaced 4 weeks apart",
+      anesthesia: "Topical cooling or light numbing"
+    },
+    image: "/images/treatments/haircare/gfc-hair.webp",
+    faqs: [
+      {
+        question: "How does GFC differ from standard PRP?",
+        answer: "GFC is an acellular, highly purified concentrate of growth factors extracted from blood, offering high stability and minimal post-procedure inflammation."
+      },
+      {
+        question: "When can I resume hair washing after GFC?",
+        answer: "You can generally wash your hair gently 12 to 24 hours after the procedure."
+      }
+    ]
+  },
+  {
+    id: "derma-roller",
+    slug: "derma-roller",
+    title: "DERMA ROLLER",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Scalp Surface", "Thinning Areas", "Product Absorption Zones"],
+    excerpt:
+      "A controlled scalp microneedling procedure designed to enhance topical product absorption and stimulate natural scalp micro-circulation.",
+    fullDescription: [
+      "Derma Roller treatment for hair utilizes a sterile micro-needling device to create controlled micro-channels across the scalp surface.",
+      "This physical micro-stimulation encourages localized blood circulation while significantly boosting the penetration of specialized scalp serums and active topical solutions.",
+      "When performed under clinical supervision, Derma Roller sessions help optimize the scalp surface environment for enhanced product efficacy."
+    ],
+    keyBenefits: [
+      "Enhances topical scalp serum absorption by up to 80%",
+      "Stimulates natural micro-vascular circulation in scalp tissue",
+      "Complements home care serums and professional hair protocols",
+      "Non-invasive and quick treatment cycle"
+    ],
+    idealCandidates: [
+      "Clients using topical hair growth serums seeking enhanced absorption",
+      "Individuals looking for controlled scalp micro-stimulation",
+      "Anyone maintaining routine preventative hair care"
+    ],
+    procedureOverview: {
+      duration: "30 minutes",
+      downtime: "24 hours (mild scalp redness)",
+      sessionsRecommended: "4 – 6 sessions spaced 2 to 3 weeks apart",
+      anesthesia: "Topical numbing cream"
+    },
+    image: "/images/treatments/haircare/derma-roller.webp",
+    faqs: [
+      {
+        question: "How does a clinical Derma Roller session differ from home rolling?",
+        answer: "In-clinic sessions utilize sterile, medical-grade needles at controlled depths tailored to your scalp thickness under hygienic protocols."
+      },
+      {
+        question: "Is there any special aftercare required?",
+        answer: "Avoid direct sun exposure, heavy sweating, and harsh chemicals for 24-48 hours after treatment."
+      }
+    ]
+  },
+  {
+    id: "hair-laser",
+    slug: "hair-laser",
+    title: "HAIR LASER",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Entire Scalp", "Hair Line", "Crown"],
+    excerpt:
+      "Low-level light therapy designed to stimulate scalp cellular activity, support hair root energy, and promote healthy hair growth conditions.",
+    fullDescription: [
+      "Hair Laser therapy, also known as Low-Level Light Therapy (LLLT), delivers gentle, non-thermal light energy at specific wavelengths to the scalp.",
+      "The photons of light are absorbed by cellular mitochondria within hair follicles, supporting cellular respiration and ATP energy production.",
+      "This non-invasive procedure is completely painless, comfortable, and provides a gentle way to maintain scalp health and support hair follicle activity."
+    ],
+    keyBenefits: [
+      "Painless, non-thermal, and non-invasive light technology",
+      "Supports mitochondrial energy production in scalp cells",
+      "Zero downtime with a relaxing treatment experience",
+      "Suitable as a standalone or supportive therapy alongside other hair treatments"
+    ],
+    idealCandidates: [
+      "Individuals looking for a gentle, non-invasive hair maintenance option",
+      "Clients seeking a comfortable, needle-free scalp therapy",
+      "Anyone wishing to enhance overall hair density and strand vitality"
+    ],
+    procedureOverview: {
+      duration: "20 – 30 minutes",
+      downtime: "Zero downtime",
+      sessionsRecommended: "8 – 12 sessions spaced weekly or bi-weekly",
+      anesthesia: "None required"
+    },
+    image: "/images/treatments/haircare/hair-laser.webp",
+    faqs: [
+      {
+        question: "Does Low-Level Hair Laser produce heat or pain?",
+        answer: "No. LLLT is a cool laser light technology that produces no heat, burning sensation, or discomfort."
+      },
+      {
+        question: "Can I read or relax during the treatment?",
+        answer: "Yes, the session is completely comfortable and allows you to sit back and relax."
+      }
+    ]
+  },
+  {
+    id: "hair-oxigenation",
+    slug: "hair-oxigenation",
+    title: "HAIR OXIGENATION",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Scalp Pores", "Hair Follicle Openings", "Scalp Barrier"],
+    excerpt:
+      "A deeply detoxifying scalp treatment using pressurized oxygen and specialized solutions to cleanse pores, refresh the scalp, and nourish roots.",
+    fullDescription: [
+      "Hair Oxigenation is a specialized scalp rejuvenation protocol that utilizes hyperbaric oxygen delivery to deeply cleanse and detoxify the scalp micro-environment.",
+      "High-pressure oxygen stream gently removes buildup, excess sebum, and impurities from hair follicles while infusing concentrated botanical and peptide solutions.",
+      "This invigorating procedure leaves the scalp feeling thoroughly refreshed, hydrated, and optimized for hair strand growth."
+    ],
+    keyBenefits: [
+      "Purifies scalp pores from sebum buildup, pollution, and product residue",
+      "Delivers pressurized oxygen and nutrient hydration directly to follicles",
+      "Improves scalp micro-circulation and environmental clarity",
+      "Instantly refreshing with zero irritation or recovery time"
+    ],
+    idealCandidates: [
+      "Individuals with flaky, oily, or congested scalp conditions",
+      "Clients looking for a deep scalp detox before active hair therapies",
+      "Anyone experiencing scalp dullness or product buildup"
+    ],
+    procedureOverview: {
+      duration: "30 – 45 minutes",
+      downtime: "Zero downtime",
+      sessionsRecommended: "Monthly maintenance or initial 3-session series",
+      anesthesia: "None required"
+    },
+    image: "/images/treatments/haircare/hair-oxygenation.webp",
+    faqs: [
+      {
+        question: "What does Hair Oxigenation feel like?",
+        answer: "It feels like a cool, refreshing breeze on the scalp as pressurized oxygen and nutrients are applied."
+      },
+      {
+        question: "Is this suitable for sensitive scalps?",
+        answer: "Yes, oxygenation is gentle, non-irritating, and soothing for sensitive scalps."
+      }
+    ]
+  },
+  {
+    id: "cocktail-therapy",
+    slug: "cocktail-therapy",
+    title: "COCKTAIL THERAPY",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Targeted Scalp Zones", "Weakened Strands", "Hair Density Areas"],
+    excerpt:
+      "A customized combination therapy blending vitamins, growth peptides, and hydrating active agents tailored to unique scalp requirements.",
+    fullDescription: [
+      "Cocktail Therapy for hair is a bespoke treatment formulation designed by combining multiple therapeutic agents tailored to your specific scalp diagnostic profile.",
+      "By blending hair growth peptides, essential micronutrients, antioxidant complexes, and moisture-binding molecules, this multi-targeted approach addresses several scalp concerns simultaneously.",
+      "Delivered via gentle micro-infusions, Cocktail Therapy offers a holistic, personalized strategy for comprehensive hair and scalp care."
+    ],
+    keyBenefits: [
+      "Bespoke formulation tailored to individual scalp diagnostics",
+      "Combines multiple bio-active ingredients for synergistic support",
+      "Addresses hair strand strength, scalp hydration, and follicle care",
+      "Flexible therapy adaptable to changing seasonal or scalp needs"
+    ],
+    idealCandidates: [
+      "Clients with complex or multiple scalp concerns requiring customized care",
+      "Individuals seeking a personalized, multi-ingredient hair infusion",
+      "Anyone looking for targeted scalp nourishment"
+    ],
+    procedureOverview: {
+      duration: "45 minutes",
+      downtime: "Minimal (mild sensitivity for a few hours)",
+      sessionsRecommended: "4 – 6 sessions spaced 3 weeks apart",
+      anesthesia: "Topical numbing cream"
+    },
+    image: "/images/treatments/haircare/cocktail-therapy.webp",
+    faqs: [
+      {
+        question: "How is the Cocktail formulation chosen?",
+        answer: "The formulation is customized based on a clinical consultation and scalp assessment."
+      },
+      {
+        question: "Can Cocktail Therapy be combined with PRP or GFC?",
+        answer: "Yes, it can be strategically paired with autologous growth factor treatments for enhanced comprehensive care."
+      }
+    ]
+  },
+  {
+    id: "qr-678",
+    slug: "qr-678",
+    title: "QR 678",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Frontal & Vertex Scalp", "Hairline", "Sparse Regions"],
+    excerpt:
+      "A proprietary bio-engineered factor formulation designed to support hair follicle health and assist hair management plans.",
+    fullDescription: [
+      "QR 678 is a specialized, bio-engineered regulatory factor formulation developed to target hair follicle signaling pathways.",
+      "The mixture consists of bio-identical peptides and growth factors that mimic natural signal molecules involved in the hair growth cycle.",
+      "Administered through precise scalp micro-injections, QR 678 offers a standardized, ready-to-use therapy designed to support hair retention and density goals."
+    ],
+    keyBenefits: [
+      "Bio-engineered formulation containing standardized regulatory peptides",
+      "Designed specifically for targeted scalp application",
+      "Minimal risk of inflammation with structured application protocols",
+      "Quick, comfortable in-office procedure"
+    ],
+    idealCandidates: [
+      "Individuals seeking an advanced bio-engineered peptide treatment",
+      "Clients experiencing pattern hair thinning or shedding",
+      "Anyone looking for a reliable, standardized hair protocol"
+    ],
+    procedureOverview: {
+      duration: "30 minutes",
+      downtime: "Minimal to zero",
+      sessionsRecommended: "6 – 8 sessions spaced 3 weeks apart",
+      anesthesia: "Topical numbing"
+    },
+    image: "/images/treatments/haircare/qr-678.webp",
+    faqs: [
+      {
+        question: "What is QR 678?",
+        answer: "QR 678 is a patented blend of bio-identical growth factors designed to support hair follicle function."
+      },
+      {
+        question: "Are the injections uncomfortable?",
+        answer: "Injections use ultra-fine needles, and topical numbing cream is applied to ensure comfort."
+      }
+    ]
+  },
+  {
+    id: "exosome-therapy",
+    slug: "exosome-therapy",
+    title: "EXOSOME THERAPY",
+    category: "Treatments",
+    subcategories: ["ALL", "HAIRCARE"],
+    focusAreas: ["Crown & Vertex", "Receding Hairline", "Overall Scalp Matrix"],
+    excerpt:
+      "A cutting-edge regenerative scalp procedure utilizing extracellular vesicles to support intercellular communication and follicle renewal.",
+    fullDescription: [
+      "Exosome Therapy for hair represents a modern advancement in regenerative scalp aesthetics. Exosomes are microscopic extracellular vesicles responsible for facilitating intercellular communication and signal transfer.",
+      "Loaded with signaling lipids, mRNA, microRNA, and growth proteins, exosomes deliver potent biological instructions directly to scalp target cells.",
+      "This non-cellular therapy supports cellular renewal, calms scalp inflammation, and creates an optimal biological foundation for healthy-looking hair."
+    ],
+    keyBenefits: [
+      "Advanced extracellular vesicle technology for cellular messaging",
+      "Rich in biological signaling proteins, lipids, and microRNA",
+      "Supports scalp renewal and follicle environment balance",
+      "Acellular formulation providing precise, high-potency scalp support"
+    ],
+    idealCandidates: [
+      "Clients seeking state-of-the-art regenerative hair and scalp care",
+      "Individuals with stubborn thinning or scalp health concerns",
+      "Anyone desiring a high-potency bio-signal scalp infusion"
+    ],
+    procedureOverview: {
+      duration: "45 – 60 minutes",
+      downtime: "Minimal (mild redness for a few hours)",
+      sessionsRecommended: "3 – 5 sessions spaced 4 weeks apart",
+      anesthesia: "Topical numbing cream"
+    },
+    image: "/images/treatments/haircare/exosome-therapy.webp",
+    faqs: [
+      {
+        question: "What are exosomes?",
+        answer: "Exosomes are microscopic bio-vesicles that carry growth signals and peptides between cells to encourage cellular repair and health."
+      },
+      {
+        question: "Is Exosome Therapy safe?",
+        answer: "Yes, when performed in a controlled clinical environment using certified exosome formulations."
+      }
+    ]
   }
 ];

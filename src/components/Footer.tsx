@@ -66,8 +66,23 @@ export default function Footer() {
               </Link>
             </li>
             <li>
-              <Link className="hover:text-[#F5F5DC] transition-colors" href="/insights">
-                Insights Journal
+              <Link className="hover:text-[#F5F5DC] transition-colors" href="/treatments">
+                Treatments Catalogue
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-[#F5F5DC] transition-colors" href="/technology">
+                Technology
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-[#F5F5DC] transition-colors" href="/training">
+                Training
+              </Link>
+            </li>
+            <li>
+              <Link className="hover:text-[#F5F5DC] transition-colors" href="/career">
+                Careers
               </Link>
             </li>
             <li>

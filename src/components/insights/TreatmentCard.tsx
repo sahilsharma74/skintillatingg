@@ -8,7 +8,10 @@ interface TreatmentCardProps {
 export default function TreatmentCard({ treatment }: TreatmentCardProps) {
   return (
     <article className="group bg-[#F7F5DC] text-[#17251E] rounded-md overflow-hidden flex flex-col justify-between border border-[#AEB9A9]/30 hover:border-[#17251E]/30 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
-      <Link href={`/insights/treatments/${treatment.slug}`} className="flex flex-col h-full">
+      <Link
+        href={treatment.category === "Treatments" ? `/treatments/${treatment.slug}` : `/insights`}
+        className="flex flex-col h-full"
+      >
         {/* Top Image Container (Fixed Aspect Ratio 4:3) */}
         <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#1C3329]/10">
           <img
@@ -41,7 +44,7 @@ export default function TreatmentCard({ treatment }: TreatmentCardProps) {
           {/* Thin Divider & CTA Link */}
           <div className="pt-3.5 border-t border-[#17251E]/15 flex items-center justify-between mt-auto">
             <span className="font-button text-[11.5px] sm:text-[12px] text-[#17251E] font-semibold tracking-[0.08em] uppercase flex items-center gap-1.5 group-hover:translate-x-0.5 transition-transform">
-              Read Treatment
+              {treatment.category === "Treatments" ? "Read Treatment" : "Read Article"}
               <span className="material-symbols-outlined text-[15px] transition-transform group-hover:translate-x-1">
                 east
               </span>

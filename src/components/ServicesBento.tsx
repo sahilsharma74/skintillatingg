@@ -39,7 +39,7 @@ export default function ServicesBento() {
             </h2>
           </div>
           <Link
-            href="/insights"
+            href="/treatments"
             className="inline-flex items-center gap-2 text-[#F5F5DC] font-button text-[12px] sm:text-[13px] tracking-[0.15em] uppercase font-semibold group hover:text-[#F5F5DC]/80 transition-colors"
           >
             Explore All Therapies

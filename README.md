@@ -23,7 +23,7 @@ The web application strictly adheres to the luxury medical design system of the 
 ### 1. Homepage (`/`)
 - **Cinematic Hero**: Highlights Dr. Akshaya Jain's clinical expertise with warm cream floating statistics cards.
 - **Smooth Number Counter Animation**:
-  - `12+ Years of Clinical Practice`
+  - `13+ Years of Clinical Practice`
   - `10k+ Transformations` (animating smoothly from `0` to `10k+`)
   - `3 National Excellence Awards`
   - Triggered via `IntersectionObserver` with smooth ease-out cubic animation.

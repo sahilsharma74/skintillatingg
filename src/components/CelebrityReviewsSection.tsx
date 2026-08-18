@@ -14,35 +14,35 @@ export interface CelebrityReview {
 export const CELEBRITY_REVIEWS: CelebrityReview[] = [
   {
     id: "review-01",
-    name: "Celebrity Personality",
-    profession: "Actor & Film Producer",
+    name: "SIDDHARTH JADHAV",
+    profession: "Bollywood Actor",
     quote:
-      "Dr. Akshaya has always made me feel confident and cared for. Her approach is precise, thoughtful and completely focused on natural-looking results.",
-    image: "/images/dr-akshaya-jain.jpg",
+      "They care my skin and hair more than I do! Skintillatingg is unique!",
+    image: "/images/siddharth-jadhav.jpg",
   },
   {
     id: "review-02",
-    name: "Prominent Media Icon",
-    profession: "Fashion & Lifestyle Personality",
+    name: "SOURABH GOKHALE",
+    profession: "Bollywood Actor",
     quote:
-      "In an industry where precision is everything, Dr. Akshaya Jain stands out. The clinical expertise and bespoke treatments at Skintillatingg are unmatched.",
-    image: "/images/treatments/medi-facial.png",
+      "Staying healthy depends on caring yourself better. Skintillatingg cares me best, makes me best on screen.",
+    image: "/images/sourabh-gokhale.jpg",
   },
   {
     id: "review-03",
-    name: "Celebrity Performing Artist",
-    profession: "Performing Artist & Presenter",
+    name: "VEDVIKA SONI",
+    profession: "Bollywood/Tollywood Actress",
     quote:
-      "Skintillatingg is my go-to clinic before major appearances. Dr. Akshaya’s evidence-led procedures deliver incredible skin vitality without any artificial appearance.",
-    image: "/images/treatments/lip-filler.png",
+      "I trust Skintillatingg for their utmost care and expertise. Treatments which make me feel special.",
+    image: "/images/vedvika-soni.jpg",
   },
   {
     id: "review-04",
-    name: "Leading Entrepreneur",
-    profession: "Founder & Creative Director",
+    name: "ANUSHKA PIMPUTKAR",
+    profession: "Bollywood Actor",
     quote:
-      "From skin longevity to therapeutic care, Dr. Akshaya Jain’s approach combines scientific rigor with an artist’s eye for true facial harmony.",
-    image: "/images/treatments/dermal-fillers.png",
+      "It's always perfection and care with Skintillatingg treatments.",
+    image: "/images/anushka-pimputkar.jpg",
   },
   {
     id: "review-05",
@@ -50,7 +50,7 @@ export const CELEBRITY_REVIEWS: CelebrityReview[] = [
     profession: "International Presenter",
     quote:
       "Finding a cosmetologist who understands subtle, bespoke aesthetic enhancement is rare. Dr. Akshaya’s clinical mastery makes Skintillatingg truly world-class.",
-    image: "/images/treatments/permanent-makeup.jpg",
+    image: "/images/dr-akshaya-jain.jpg",
   },
 ];
 

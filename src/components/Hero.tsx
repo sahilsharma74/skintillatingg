@@ -18,7 +18,7 @@ export default function Hero() {
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (prefersReducedMotion) {
-      setYearsVal("12+");
+      setYearsVal("13+");
       setTransformationsVal("10k+");
       hasAnimatedRef.current = true;
       return;
@@ -47,8 +47,8 @@ export default function Hero() {
             const progress = Math.min(elapsed / duration, 1);
             const easedProgress = easeOutCubic(progress);
 
-            // Counter 1: 12+ (0 -> 1 -> 2 -> ... -> 12+)
-            const yearsNum = Math.floor(easedProgress * 12);
+            // Counter 1: 13+ (0 -> 1 -> 2 -> ... -> 13+)
+            const yearsNum = Math.floor(easedProgress * 13);
             setYearsVal(`${yearsNum}+`);
 
             // Counter 2: 10k+ (0 -> 1k -> 2k -> ... -> 10k+)
@@ -63,7 +63,7 @@ export default function Hero() {
               animFrameId = requestAnimationFrame(animate);
             } else {
               // Exact final values
-              setYearsVal("12+");
+              setYearsVal("13+");
               setTransformationsVal("10k+");
             }
           };

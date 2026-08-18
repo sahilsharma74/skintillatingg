@@ -10,7 +10,10 @@ export default function Navbar() {
 
   const isHomeActive = pathname === "/";
   const isJourneyActive = pathname?.startsWith("/journey");
-  const isInsightsActive = pathname?.startsWith("/insights");
+  const isTreatmentsActive = pathname?.startsWith("/treatments");
+  const isTechnologyActive = pathname?.startsWith("/technology");
+  const isTrainingActive = pathname?.startsWith("/training");
+  const isCareerActive = pathname?.startsWith("/career");
   const isContactActive = pathname?.startsWith("/contact");
 
   return (
@@ -33,11 +36,10 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center space-x-9">
+        <nav className="hidden md:flex items-center space-x-7 lg:space-x-8">
           <Link
             href="/"
-            className={`font-label-caps text-[11px] tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
+            className={`font-label-caps text-[11px] tracking-[0.12em] lg:tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
               isHomeActive
                 ? "text-[#F5F5DC] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#AEB9A9]"
                 : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
@@ -47,7 +49,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/journey"
-            className={`font-label-caps text-[11px] tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
+            className={`font-label-caps text-[11px] tracking-[0.12em] lg:tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
               isJourneyActive
                 ? "text-[#F5F5DC] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#AEB9A9]"
                 : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
@@ -56,18 +58,49 @@ export default function Navbar() {
             Our Journey
           </Link>
           <Link
-            href="/insights"
-            className={`font-label-caps text-[11px] tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
-              isInsightsActive
+            href="/treatments"
+            className={`font-label-caps text-[11px] tracking-[0.12em] lg:tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
+              isTreatmentsActive
                 ? "text-[#F5F5DC] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#AEB9A9]"
                 : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
             }`}
           >
-            Insights
+            Treatments
           </Link>
           <Link
+            href="/technology"
+            className={`font-label-caps text-[11px] tracking-[0.12em] lg:tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
+              isTechnologyActive
+                ? "text-[#F5F5DC] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#AEB9A9]"
+                : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
+            }`}
+          >
+            Technology
+          </Link>
+          <Link
+            href="/training"
+            className={`font-label-caps text-[11px] tracking-[0.12em] lg:tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
+              isTrainingActive
+                ? "text-[#F5F5DC] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#AEB9A9]"
+                : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
+            }`}
+          >
+            Training
+          </Link>
+          <Link
+            href="/career"
+            className={`font-label-caps text-[11px] tracking-[0.12em] lg:tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
+              isCareerActive
+                ? "text-[#F5F5DC] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#AEB9A9]"
+                : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
+            }`}
+          >
+            Career
+          </Link>
+
+          <Link
             href="/contact"
-            className={`font-label-caps text-[11px] tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
+            className={`font-label-caps text-[11px] tracking-[0.12em] lg:tracking-[0.15em] uppercase transition-colors relative py-1 font-medium ${
               isContactActive
                 ? "text-[#F5F5DC] font-semibold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#AEB9A9]"
                 : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
@@ -129,14 +162,42 @@ export default function Navbar() {
               Our Journey
             </Link>
             <Link
-              href="/insights"
+              href="/treatments"
               onClick={() => setMobileMenuOpen(false)}
               className={`font-label-caps text-[12px] tracking-[0.15em] uppercase py-2 border-b border-[#AEB9A9]/15 ${
-                isInsightsActive ? "text-[#F5F5DC] font-bold" : "text-[#F5F5DC]/80"
+                isTreatmentsActive ? "text-[#F5F5DC] font-bold" : "text-[#F5F5DC]/80"
               }`}
             >
-              Insights
+              Treatments
             </Link>
+            <Link
+              href="/technology"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`font-label-caps text-[12px] tracking-[0.15em] uppercase py-2 border-b border-[#AEB9A9]/15 ${
+                isTechnologyActive ? "text-[#F5F5DC] font-bold" : "text-[#F5F5DC]/80"
+              }`}
+            >
+              Technology
+            </Link>
+            <Link
+              href="/training"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`font-label-caps text-[12px] tracking-[0.15em] uppercase py-2 border-b border-[#AEB9A9]/15 ${
+                isTrainingActive ? "text-[#F5F5DC] font-bold" : "text-[#F5F5DC]/80"
+              }`}
+            >
+              Training
+            </Link>
+            <Link
+              href="/career"
+              onClick={() => setMobileMenuOpen(false)}
+              className={`font-label-caps text-[12px] tracking-[0.15em] uppercase py-2 border-b border-[#AEB9A9]/15 ${
+                isCareerActive ? "text-[#F5F5DC] font-bold" : "text-[#F5F5DC]/80"
+              }`}
+            >
+              Career
+            </Link>
+
             <Link
               href="/contact"
               onClick={() => setMobileMenuOpen(false)}
