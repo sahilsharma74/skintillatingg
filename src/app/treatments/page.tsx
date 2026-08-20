@@ -261,15 +261,24 @@ export default function TreatmentsPage() {
                   </div>
                 </div>
 
-                {/* Footer Action */}
-                <div className="p-6 pt-0">
+                {/* Footer Action Buttons */}
+                <div className="p-6 pt-0 flex items-center gap-3">
                   <Link
                     href={`/treatments/${treatment.slug}`}
-                    className="w-full bg-[#1C3329] border border-[#657A6A]/40 hover:bg-[#F5F5DC] hover:text-[#17251E] hover:border-[#F5F5DC] text-[#F5F5DC] font-button text-[12px] tracking-[0.12em] uppercase py-3.5 px-4 rounded transition-all duration-300 flex items-center justify-center gap-2 font-semibold group/btn"
+                    className="flex-1 bg-[#1C3329] border border-[#657A6A]/40 hover:bg-[#657A6A]/30 text-[#F5F5DC] font-button text-[11px] tracking-[0.12em] uppercase py-3 px-3 rounded transition-all duration-300 flex items-center justify-center gap-1 font-semibold group/btn"
                   >
-                    <span>Explore Protocol</span>
-                    <span className="material-symbols-outlined text-sm group-hover/btn:translate-x-1 transition-transform">
-                      arrow_forward
+                    <span>Details</span>
+                    <span className="material-symbols-outlined text-xs group-hover/btn:translate-x-0.5 transition-transform">
+                      north_east
+                    </span>
+                  </Link>
+                  <Link
+                    href={`/book-consultation?treatment=${treatment.slug}`}
+                    className="flex-1 bg-[#F5F5DC] text-[#17251E] hover:bg-[#C9A227] hover:text-[#17251E] font-button text-[11px] tracking-[0.12em] uppercase py-3 px-3 rounded transition-all duration-300 flex items-center justify-center gap-1 font-semibold group/inq shadow-sm"
+                  >
+                    <span>INQUIRE</span>
+                    <span className="material-symbols-outlined text-xs group-hover/inq:translate-x-0.5 transition-transform">
+                      east
                     </span>
                   </Link>
                 </div>

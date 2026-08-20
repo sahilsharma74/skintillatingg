@@ -88,12 +88,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #F5F5DC;
+  background: #17251E;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(191, 207, 187, 0.4);
+  background: #657A6A;
   border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #AEB9A9;
 }
 
 /* Premium Gold Shimmer & Emblem Flow Animations (8s Loop) */
@@ -108,23 +112,23 @@ body {
 
 @keyframes emblemFlow {
   0%, 100% {
-    filter: brightness(1) drop-shadow(0 0 2px rgba(212, 175, 55, 0.25));
+    filter: brightness(1) drop-shadow(0 0 2px rgba(201, 162, 39, 0.25));
     transform: scale(1);
   }
   50% {
-    filter: brightness(1.18) drop-shadow(0 0 7px rgba(212, 175, 55, 0.45));
-    transform: scale(1.02);
+    filter: brightness(1.15) drop-shadow(0 0 6px rgba(201, 162, 39, 0.4));
+    transform: scale(1.01);
   }
 }
 
 .animate-gold-shimmer {
   background: linear-gradient(
     90deg,
-    #C5A059 0%,
+    #C9A227 0%,
     #F5F5DC 25%,
     #E5C158 50%,
     #F5F5DC 75%,
-    #C5A059 100%
+    #C9A227 100%
   );
   background-size: 200% auto;
   -webkit-background-clip: text;
@@ -135,4 +139,38 @@ body {
 
 .animate-emblem-flow {
   animation: emblemFlow 8s ease-in-out infinite;
+}
+
+/* Luxury Editorial Border & Hover Utilities */
+.luxury-border {
+  border-color: rgba(101, 122, 106, 0.3);
+}
+
+.luxury-border-gold {
+  border-color: rgba(201, 162, 39, 0.35);
+}
+
+.luxury-card-hover {
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.luxury-card-hover:hover {
+  border-color: rgba(174, 185, 169, 0.45);
+  transform: translateY(-2px);
+}
+
+/* Gold active indicator line */
+.gold-active-line {
+  position: relative;
+}
+
+.gold-active-line::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: #C9A227;
+  border-radius: 1px;
 }

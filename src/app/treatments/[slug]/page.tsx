@@ -233,7 +233,7 @@ export default async function TreatmentDetailPage({ params }: TreatmentDetailPro
               {/* Action Buttons */}
               <div className="pt-4 space-y-3">
                 <Link
-                  href="/book-consultation"
+                  href={`/book-consultation?treatment=${treatment.slug}`}
                   className="w-full bg-[#F5F5DC] hover:bg-[#F5F5DC]/90 text-[#17251E] font-button text-xs tracking-[0.12em] uppercase py-4 px-6 rounded transition-all duration-300 flex items-center justify-center gap-2 font-semibold shadow-md"
                 >
                   <span>Book Consultation</span>
@@ -296,6 +296,36 @@ export default async function TreatmentDetailPage({ params }: TreatmentDetailPro
           ))}
         </div>
       </section>
+
+      {/* Sticky Bottom Floating CTA Bar */}
+      <div className="sticky bottom-0 z-40 bg-[#17251E]/95 backdrop-blur-md border-t border-[#657A6A]/40 py-3.5 px-4 sm:px-8 shadow-2xl">
+        <div className="max-w-[1440px] mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="text-center sm:text-left">
+            <span className="font-label-caps text-[10px] tracking-widest text-[#AEB9A9] uppercase block font-semibold">
+              BESPOKE CLINICAL THERAPY
+            </span>
+            <p className="font-display text-base sm:text-lg text-[#F5F5DC]">
+              Interested in <span className="italic">{treatment.title}</span>?
+            </p>
+          </div>
+          <div className="flex items-center gap-3 w-full sm:w-auto">
+            <a
+              href="tel:8669813636"
+              className="hidden md:flex border border-[#657A6A]/40 hover:border-[#F5F5DC] hover:bg-[#1C3329] text-[#F5F5DC] font-button text-xs tracking-wider uppercase py-2.5 px-4 rounded transition-all items-center gap-1.5 font-semibold"
+            >
+              <span className="material-symbols-outlined text-xs">call</span>
+              <span>Call Clinic</span>
+            </a>
+            <Link
+              href={`/book-consultation?treatment=${treatment.slug}`}
+              className="w-full sm:w-auto bg-[#F5F5DC] hover:bg-[#C9A227] text-[#17251E] font-button text-xs tracking-[0.12em] uppercase py-2.5 px-6 rounded transition-all duration-300 flex items-center justify-center gap-2 font-semibold shadow-md shrink-0"
+            >
+              <span>Book Consultation</span>
+              <span className="material-symbols-outlined text-sm">arrow_forward</span>
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <Footer />
     </main>

@@ -1,33 +1,39 @@
+"use client";
+
 import Link from "next/link";
 
 export default function Footer() {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <footer className="w-full pt-24 md:pt-32 pb-12 bg-[#1C3329] text-[#F5F5DC] border-t border-[#AEB9A9]/20">
+    <footer className="w-full pt-20 md:pt-28 pb-12 bg-[#17251E] text-[#F5F5DC] border-t border-[#657A6A]/30">
       {/* Footer Main Content Grid */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto mb-16">
         {/* Brand Column */}
         <div className="md:col-span-1 space-y-4">
-          <Link href="/" className="inline-block">
+          <Link href="/" className="inline-block group">
             <img
               alt="Skintillatingg Logo Emblem"
-              className="w-16 h-16 object-contain mb-3 brightness-105"
+              className="w-16 h-16 object-contain mb-3 brightness-105 group-hover:opacity-90 transition-opacity"
               src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5IT4xEX-nvIObGYulKr08O8x4bOuSASpr56qk65b6U9022MEjcZvRcqb0CKERo1tP4B1J9WA4oRGLCSjAg6KALbhwDgcSsdZNiusRA7HDmBijlJYhhGL8Cr5lPLR85NIlzPf0Hxhh1ssPAdrnx91V4oj2xI8hOWHia1uHuIifMt92W7Q--2makgCx7JZOKjEJ6G95GfbUQ0DxZWIRX_rH7hP00kA1M-teY_CBlB1U6HqgR6kRS-HIBz8h1nOdhilV"
             />
           </Link>
           <h3 className="font-display text-[26px] sm:text-[30px] text-[#F5F5DC] font-normal leading-tight">
             Skintillatingg
           </h3>
-          <p className="font-label-caps text-[#AEB9A9] tracking-[0.2em] uppercase text-[10px] font-semibold">
+          <p className="font-label-caps text-[#C9A227] tracking-[0.2em] uppercase text-[10px] font-semibold">
             Dr. Akshaya Jain
           </p>
           <p className="font-body-md text-[#F5F5DC]/75 text-[13px] leading-relaxed font-light">
-            Cosmo - Tricho - Therapeutic Practice in Koregaon Park, Pune.
+            Cosmo • Tricho • Therapeutic Sanctuary in Koregaon Park, Pune.
           </p>
         </div>
 
         {/* Practice Locations Column */}
         <div className="md:col-span-1 md:col-start-3 space-y-4">
-          <h4 className="font-label-caps text-[#AEB9A9] uppercase tracking-[0.2em] text-[11px] font-semibold">
+          <h4 className="font-label-caps text-[#AEB9A9] uppercase tracking-[0.2em] text-[11px] font-semibold border-b border-[#657A6A]/20 pb-2">
             Practice Info
           </h4>
           <ul className="space-y-3 font-body-md text-[#F5F5DC]/80 text-[13px] font-light">
@@ -38,7 +44,7 @@ export default function Footer() {
                 className="hover:text-[#F5F5DC] transition-colors inline-flex items-center gap-2 text-[#F5F5DC]/90 font-medium"
                 href="tel:8669813636"
               >
-                <span className="material-symbols-outlined text-[15px]">call</span>
+                <span className="material-symbols-outlined text-[15px] text-[#AEB9A9]">call</span>
                 8669813636
               </a>
             </li>
@@ -47,7 +53,7 @@ export default function Footer() {
                 className="hover:text-[#F5F5DC] transition-colors inline-flex items-center gap-2 text-[#F5F5DC]/90 font-medium"
                 href="mailto:skintillatingg123@gmail.com"
               >
-                <span className="material-symbols-outlined text-[15px]">mail</span>
+                <span className="material-symbols-outlined text-[15px] text-[#AEB9A9]">mail</span>
                 skintillatingg123@gmail.com
               </a>
             </li>
@@ -56,10 +62,10 @@ export default function Footer() {
 
         {/* Navigation Column */}
         <div className="md:col-span-1 space-y-4">
-          <h4 className="font-label-caps text-[#AEB9A9] uppercase tracking-[0.2em] text-[11px] font-semibold">
+          <h4 className="font-label-caps text-[#AEB9A9] uppercase tracking-[0.2em] text-[11px] font-semibold border-b border-[#657A6A]/20 pb-2">
             Navigation
           </h4>
-          <ul className="space-y-3 font-body-md text-[#F5F5DC]/80 text-[13px] font-light">
+          <ul className="space-y-2.5 font-body-md text-[#F5F5DC]/80 text-[13px] font-light">
             <li>
               <Link className="hover:text-[#F5F5DC] transition-colors" href="/journey">
                 Our Journey
@@ -87,12 +93,12 @@ export default function Footer() {
             </li>
             <li>
               <Link className="hover:text-[#F5F5DC] transition-colors" href="/contact">
-                Contact &amp; Locations
+                Contact &amp; Sanctuary
               </Link>
             </li>
             <li>
-              <Link className="hover:text-[#F5F5DC] transition-colors" href="/book-consultation">
-                Book Consultation
+              <Link className="hover:text-[#C9A227] transition-colors font-medium" href="/book-consultation">
+                Book Consultation →
               </Link>
             </li>
           </ul>
@@ -100,13 +106,24 @@ export default function Footer() {
       </div>
 
       {/* Copyright Sub-footer */}
-      <div className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto pt-8 border-t border-[#AEB9A9]/15 flex flex-col sm:flex-row items-center justify-between gap-4 text-[#F5F5DC]/60 font-body-md text-[12px] font-light">
+      <div className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto pt-8 border-t border-[#657A6A]/20 flex flex-col sm:flex-row items-center justify-between gap-4 text-[#F5F5DC]/60 font-body-md text-[12px] font-light">
         <span>© 2024 Dr. Akshaya Jain. Excellence in Aesthetic Cosmetology.</span>
-        <span className="font-label-caps text-[10px] tracking-[0.18em] uppercase text-[#AEB9A9]/80">
-          Luxury Medical Editorial Practice
-        </span>
+        <div className="flex items-center gap-6">
+          <span className="font-label-caps text-[10px] tracking-[0.18em] uppercase text-[#AEB9A9]/80">
+            Luxury Medical Editorial Practice
+          </span>
+          <button
+            onClick={scrollToTop}
+            className="flex items-center gap-1 text-[#F5F5DC]/80 hover:text-[#F5F5DC] transition-colors font-label-caps text-[10px] tracking-widest uppercase"
+            aria-label="Back to top"
+          >
+            <span>Top</span>
+            <span className="material-symbols-outlined text-[14px]">arrow_upward</span>
+          </button>
+        </div>
       </div>
     </footer>
   );
 }
+
 

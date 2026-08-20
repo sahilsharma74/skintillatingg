@@ -10,7 +10,6 @@ export interface ReelItem {
   aspectRatio: "9:16";
 }
 
-// Centralized Reel Configuration for Future Video Sources
 export const REELS_DATA: ReelItem[] = [
   {
     id: "reel-01",
@@ -53,6 +52,7 @@ export default function EditorialReelsSection() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeReel, setActiveReel] = useState<ReelItem | null>(null);
 
   const checkScroll = () => {
     const el = scrollContainerRef.current;
@@ -76,7 +76,7 @@ export default function EditorialReelsSection() {
   const handleScroll = (direction: "left" | "right") => {
     const el = scrollContainerRef.current;
     if (!el) return;
-    const cardWidth = 320; // Average card width + gap
+    const cardWidth = 320;
     el.scrollBy({
       left: direction === "right" ? cardWidth * 1.5 : -cardWidth * 1.5,
       behavior: "smooth",
@@ -84,116 +84,144 @@ export default function EditorialReelsSection() {
   };
 
   return (
-    <section className="py-24 sm:py-32 md:py-36 bg-[#657A6A] text-[#F5F5DC] border-b border-[#AEB9A9]/20 overflow-hidden relative">
+    <section className="py-20 sm:py-28 bg-[#657A6A] text-[#F5F5DC] border-b border-[#AEB9A9]/20 overflow-hidden relative">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20">
-        {/* Top Header / Navigation Bar inside Section */}
-        <div className="flex items-center justify-between mb-12 sm:mb-16">
-          <span className="font-label-caps text-[11px] sm:text-[12px] tracking-[0.22em] uppercase text-[#F5F5DC]/80 font-semibold">
-            INSIDE SKINTILLATINGG
-          </span>
+        {/* Top Navigation Control Bar */}
+        <div className="flex items-center justify-between mb-12 border-b border-[#F5F5DC]/15 pb-6">
+          <div>
+            <span className="font-label-caps text-[11px] sm:text-[12px] tracking-[0.25em] uppercase text-[#F5F5DC]/90 font-semibold block mb-1">
+              INSIDE SKINTILLATINGG
+            </span>
+            <h2 className="font-display text-[28px] sm:text-[36px] text-[#F5F5DC] font-normal">
+              Editorial Video Reels
+            </h2>
+          </div>
 
-          {/* Minimal Arrow Navigation Controls */}
-          <div className="flex items-center gap-4">
-            {/* Left Arrow (only active after scrolling right) */}
+          <div className="flex items-center gap-3">
             <button
               type="button"
               onClick={() => handleScroll("left")}
               disabled={!canScrollLeft}
               aria-label="Previous reels"
-              className={`p-2 text-[#F5F5DC] hover:text-white transition-all duration-300 ${
-                canScrollLeft ? "opacity-90 cursor-pointer hover:scale-110" : "opacity-25 cursor-default"
+              className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${
+                canScrollLeft ? "opacity-100 hover:bg-[#F5F5DC]/10 cursor-pointer" : "opacity-30 cursor-default"
               }`}
             >
-              <svg
-                className="w-6 h-6 sm:w-7 sm:h-7 stroke-current"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.2"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-              </svg>
+              <span className="material-symbols-outlined text-sm">chevron_left</span>
             </button>
 
-            {/* Right Arrow Navigation Control (SWIPE / SEE MORE) */}
             <button
               type="button"
               onClick={() => handleScroll("right")}
               disabled={!canScrollRight}
               aria-label="Scroll more reels"
-              className={`p-2 text-[#F5F5DC] hover:text-white transition-all duration-300 ${
-                canScrollRight ? "opacity-90 cursor-pointer hover:scale-110" : "opacity-25 cursor-default"
+              className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${
+                canScrollRight ? "opacity-100 hover:bg-[#F5F5DC]/10 cursor-pointer" : "opacity-30 cursor-default"
               }`}
             >
-              <svg
-                className="w-6 h-6 sm:w-7 sm:h-7 stroke-current"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.2"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-              </svg>
+              <span className="material-symbols-outlined text-sm">chevron_right</span>
             </button>
           </div>
         </div>
 
-        {/* Horizontal Editorial Gallery: [ INTRO PANEL ] [ REEL 01 ] [ REEL 02 ] [ REEL 03 ] [ REEL 04 PARTIAL ] */}
+        {/* Horizontal Editorial Gallery */}
         <div
           ref={scrollContainerRef}
           className="flex gap-6 sm:gap-8 overflow-x-auto scrollbar-none snap-x snap-mandatory py-4 px-1 scroll-smooth items-stretch"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {/* 1. INTRO PANEL */}
-          <div className="shrink-0 w-[300px] sm:w-[360px] md:w-[420px] lg:w-[460px] bg-[#1C3329]/40 border border-[#F5F5DC]/20 rounded-2xl p-8 sm:p-10 md:p-12 flex flex-col justify-between snap-start">
-            <div className="space-y-6">
-              <span className="font-label-caps text-[11px] tracking-[0.2em] uppercase text-[#F5F5DC]/70 font-semibold block">
-                EDITORIAL REELS
+          {/* INTRO PANEL */}
+          <div className="shrink-0 w-[280px] sm:w-[340px] md:w-[380px] bg-[#1C3329]/60 border border-[#F5F5DC]/20 rounded-xl p-8 flex flex-col justify-between snap-start">
+            <div className="space-y-4">
+              <span className="font-label-caps text-[11px] tracking-[0.2em] uppercase text-[#C9A227] font-semibold block">
+                PRACTICE HIGHLIGHTS
               </span>
-              <h2 className="font-display text-[32px] sm:text-[40px] lg:text-[48px] leading-[1.15] text-[#F5F5DC] font-normal">
+              <h3 className="font-display text-[28px] sm:text-[36px] leading-[1.15] text-[#F5F5DC] font-normal">
                 Precision in Practice. <br />
                 <span className="italic text-[#F5F5DC]">Excellence in Every Detail.</span>
-              </h2>
+              </h3>
             </div>
             
-            <p className="font-body-md text-[15px] sm:text-[16px] text-[#F5F5DC]/90 leading-relaxed font-normal pt-8">
-              A closer look at the expertise, technology and care behind every Skintillatingg transformation.
+            <p className="font-body-md text-[14px] text-[#F5F5DC]/85 leading-relaxed font-light pt-6">
+              A closer look at the expertise, clinical technology and bespoke care behind every Skintillatingg treatment.
             </p>
           </div>
 
-          {/* 2. REEL CARDS (9:16 Ratio) */}
+          {/* REEL CARDS (9:16 Ratio) */}
           {REELS_DATA.map((reel) => (
-            <div
+            <button
               key={reel.id}
-              className="shrink-0 w-[240px] sm:w-[280px] md:w-[300px] lg:w-[320px] aspect-[9/16] bg-[#1C3329]/30 border border-[#F5F5DC]/20 rounded-2xl p-6 sm:p-8 flex flex-col justify-between snap-start relative group/card hover:border-[#F5F5DC]/40 transition-all duration-500 overflow-hidden"
+              onClick={() => setActiveReel(reel)}
+              className="shrink-0 w-[220px] sm:w-[260px] md:w-[280px] aspect-[9/16] bg-[#1C3329] border border-[#F5F5DC]/20 rounded-xl p-6 flex flex-col justify-between snap-start relative group/card hover:border-[#C9A227] transition-all duration-500 overflow-hidden text-left shadow-lg cursor-pointer"
             >
-              {/* Subtle Ambient Background Gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329]/90 via-[#1C3329]/20 to-transparent z-0 pointer-events-none" />
+              {/* Background Video preview if available */}
+              {reel.videoUrl && (
+                <video
+                  src={reel.videoUrl}
+                  muted
+                  loop
+                  playsInline
+                  autoPlay
+                  className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/card:scale-105 group-hover/card:opacity-80 transition-all duration-700 pointer-events-none"
+                />
+              )}
 
-              {/* Top Card Badge */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329] via-[#1C3329]/30 to-transparent z-0 pointer-events-none" />
+
+              {/* Top Badge */}
               <div className="relative z-10">
-                <span className="inline-block font-label-caps text-[10px] sm:text-[11px] tracking-[0.2em] uppercase text-[#F5F5DC]/80 font-semibold px-3 py-1 bg-[#1C3329]/60 border border-[#F5F5DC]/15 rounded-md backdrop-blur-sm">
+                <span className="inline-block font-label-caps text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#F5F5DC] font-semibold px-2.5 py-1 bg-[#17251E]/80 border border-[#F5F5DC]/20 rounded-xs backdrop-blur-sm">
                   {reel.category}
                 </span>
               </div>
 
-              {/* Minimal Centered Play Symbol Placeholder */}
+              {/* Centered Play Indicator */}
               <div className="relative z-10 my-auto flex items-center justify-center">
-                <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border border-[#F5F5DC]/30 bg-[#1C3329]/40 backdrop-blur-md flex items-center justify-center text-[#F5F5DC]/50 group-hover/card:scale-105 group-hover/card:text-[#F5F5DC] group-hover/card:border-[#F5F5DC]/60 transition-all duration-300">
-                  <svg className="w-6 h-6 fill-current translate-x-0.5" viewBox="0 0 24 24">
-                    <path d="M8 5v14l11-7z" />
-                  </svg>
+                <div className="w-12 h-12 rounded-full border border-[#F5F5DC]/40 bg-[#17251E]/60 backdrop-blur-md flex items-center justify-center text-[#F5F5DC] group-hover/card:scale-110 group-hover/card:bg-[#C9A227] group-hover/card:text-[#17251E] group-hover/card:border-[#C9A227] transition-all duration-300 shadow-md">
+                  <span className="material-symbols-outlined text-xl translate-x-0.5">play_arrow</span>
                 </div>
               </div>
 
-              {/* Bottom Card Title */}
+              {/* Bottom Title */}
               <div className="relative z-10 space-y-1">
-                <h3 className="font-display text-[20px] sm:text-[22px] leading-snug text-[#F5F5DC] font-normal">
+                <h4 className="font-display text-[18px] sm:text-[20px] leading-snug text-[#F5F5DC] font-normal">
                   {reel.title}
-                </h3>
+                </h4>
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>
+
+      {/* Video Modal Player */}
+      {activeReel && (
+        <div className="fixed inset-0 z-50 bg-[#17251E]/90 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="relative w-full max-w-[420px] aspect-[9/16] bg-[#17251E] rounded-xl border border-[#657A6A]/40 overflow-hidden shadow-2xl flex flex-col">
+            <button
+              onClick={() => setActiveReel(null)}
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#17251E]/80 text-[#F5F5DC] flex items-center justify-center border border-[#F5F5DC]/20 hover:bg-[#C9A227] hover:text-[#17251E] transition-colors"
+              aria-label="Close video"
+            >
+              <span className="material-symbols-outlined">close</span>
+            </button>
+            {activeReel.videoUrl ? (
+              <video
+                src={activeReel.videoUrl}
+                controls
+                autoPlay
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full flex flex-col items-center justify-center p-8 text-center bg-[#1C3329]">
+                <span className="material-symbols-outlined text-4xl text-[#C9A227] mb-2">videocam</span>
+                <p className="font-display text-xl text-[#F5F5DC]">{activeReel.title}</p>
+                <p className="font-body-md text-xs text-[#AEB9A9] mt-2">Clinical Video Reel</p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </section>
   );
 }
+

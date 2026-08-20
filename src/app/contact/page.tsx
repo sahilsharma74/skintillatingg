@@ -229,7 +229,7 @@ export default function ContactPage() {
                       type="tel"
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="e.g. 8669813636"
+                      placeholder="e.g. 0000000000"
                       className="w-full bg-[#1C3329]/[0.05] border border-[#17251E]/30 rounded p-3 text-sm text-[#17251E] placeholder-[#1C3329]/60 focus:outline-none focus:border-[#17251E] transition-colors"
                     />
                     {errors.phone && <p className="text-red-700 text-xs mt-1 font-medium">{errors.phone}</p>}

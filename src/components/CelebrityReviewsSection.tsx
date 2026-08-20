@@ -10,7 +10,6 @@ export interface CelebrityReview {
   image: string;
 }
 
-// Centralized Data Structure for Celebrity Reviews (Easy to update)
 export const CELEBRITY_REVIEWS: CelebrityReview[] = [
   {
     id: "review-01",
@@ -79,106 +78,69 @@ export default function CelebrityReviewsSection() {
     setCurrentIndex(index);
   };
 
-  // Reset transition state after animation finishes
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsTransitioning(false);
-    }, 400);
+    }, 600);
     return () => clearTimeout(timer);
   }, [currentIndex]);
 
-  // Auto Rotation every 6 seconds
   useEffect(() => {
     autoPlayRef.current = setInterval(() => {
+      setIsTransitioning(true);
       setCurrentIndex((prev) => (prev + 1) % CELEBRITY_REVIEWS.length);
-    }, 6000);
+    }, 7000);
 
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
   }, [currentIndex]);
 
-  // Pause auto-rotation when user manually interacts
   const handleUserInteract = (action: () => void) => {
     if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     action();
   };
 
   return (
-    <section className="py-24 sm:py-32 md:py-36 bg-[#1C3329] text-[#F5F5DC] border-b border-[#AEB9A9]/20 overflow-hidden relative">
-      {/* Subtle Background Glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[500px] h-[500px] bg-[#657A6A]/10 blur-[140px] rounded-full pointer-events-none z-0"></div>
-
+    <section className="py-16 sm:py-20 bg-[#1C3329] text-[#F5F5DC] border-b border-[#657A6A]/30 overflow-hidden relative">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20 relative z-10">
-        {/* Section Header */}
-        <div className="max-w-2xl mb-12 sm:mb-16">
-          <span className="font-label-caps text-[11px] sm:text-[12px] tracking-[0.22em] uppercase text-[#AEB9A9] font-semibold block mb-3">
-            CELEBRITY REVIEWS
+        {/* Section Label */}
+        <div className="mb-8 border-b border-[#657A6A]/20 pb-4 flex items-center justify-between">
+          <span className="font-label-caps text-xs tracking-[0.25em] uppercase text-[#AEB9A9] font-semibold">
+            CELEBRITY REVIEW
           </span>
-          <h2 className="font-display text-[34px] sm:text-[44px] lg:text-[52px] leading-[1.15] text-[#F5F5DC] font-normal mb-4">
-            Trusted by Those <br />
-            <span className="italic text-[#F5F5DC]">Who Lead &amp; Inspire.</span>
-          </h2>
-          <p className="font-body-md text-[15px] sm:text-[17px] text-[#F5F5DC]/80 leading-relaxed font-normal">
-            A trusted name in aesthetic medicine, chosen by personalities who value precision, expertise and natural-looking results.
-          </p>
+          <span className="font-label-caps text-[10px] tracking-widest uppercase text-[#C9A227] font-medium">
+            LUXURY TESTIMONIALS
+          </span>
         </div>
 
-        {/* Editorial Feature Container: Desktop 60 / 40 Split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Mobile Order 1 / Desktop Order 2: Right Portrait Image */}
-          <div className="lg:col-span-5 order-1 lg:order-2">
-            <div className="relative mx-auto max-w-[420px] lg:max-w-none">
-              {/* Outer Subtle Frame */}
-              <div className="absolute -inset-2 rounded-2xl border border-[#AEB9A9]/30 z-0 pointer-events-none"></div>
-
-              {/* Portrait Container with 4:5 Aspect Ratio */}
-              <div className="relative aspect-[4/5] rounded-xl overflow-hidden bg-[#657A6A]/20 border border-[#F5F5DC]/20 shadow-2xl z-10">
-                <img
-                  src={current.image}
-                  alt={current.name}
-                  className={`w-full h-full object-cover object-center transition-all duration-700 ease-out ${
-                    isTransitioning ? "opacity-40 scale-105" : "opacity-100 scale-100"
-                  }`}
-                />
-
-                {/* Subtle Bottom Gradient for Depth */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329]/60 via-transparent to-transparent pointer-events-none z-10" />
-              </div>
-            </div>
-          </div>
-
-          {/* Mobile Order 2 / Desktop Order 1: Left Content & Testimonial */}
-          <div className="lg:col-span-7 order-2 lg:order-1 flex flex-col justify-between space-y-8 lg:pr-6">
+        {/* Compact Editorial Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[320px]">
+          {/* Left Content / Quote & Details */}
+          <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
             <div
-              className={`space-y-6 transition-all duration-500 ease-out ${
-                isTransitioning ? "opacity-0 translate-y-3" : "opacity-100 translate-y-0"
+              className={`space-y-4 transition-all duration-700 ease-out ${
+                isTransitioning ? "opacity-30 translate-x-2" : "opacity-100 translate-x-0"
               }`}
             >
-              {/* Celebrity Name & Profession */}
               <div>
-                <h3 className="font-display text-[28px] sm:text-[36px] lg:text-[40px] text-[#F5F5DC] leading-tight font-normal">
+                <h3 className="font-display text-[26px] sm:text-[34px] text-[#F5F5DC] font-normal leading-tight">
                   {current.name}
                 </h3>
-                <p className="font-label-caps text-xs sm:text-sm tracking-[0.18em] uppercase text-[#AEB9A9] font-medium pt-1">
+                <p className="font-label-caps text-xs tracking-[0.18em] uppercase text-[#C9A227] font-medium mt-1">
                   {current.profession}
                 </p>
               </div>
 
-              {/* Large Quotation Testimonial */}
-              <blockquote className="relative pt-2">
-                <span className="font-display text-[60px] leading-none text-[#AEB9A9]/30 absolute -top-4 -left-2 select-none">
-                  &ldquo;
-                </span>
-                <p className="font-display italic text-[20px] sm:text-[24px] lg:text-[27px] text-[#F5F5DC] leading-relaxed relative z-10 font-normal">
-                  {current.quote}
+              <blockquote className="pt-2">
+                <p className="font-display italic text-[18px] sm:text-[22px] lg:text-[24px] text-[#F5F5DC]/95 leading-relaxed font-light">
+                  &ldquo;{current.quote}&rdquo;
                 </p>
               </blockquote>
             </div>
 
-            {/* Minimalist Editorial Navigation: ←  01  02  03  04  05  → */}
-            <div className="pt-8 border-t border-[#AEB9A9]/20 flex flex-wrap items-center justify-between gap-6">
-              {/* Numeric Slide Indicators */}
+            {/* Bottom Controls: 01 02 03 04 05  |  <  > */}
+            <div className="pt-6 border-t border-[#657A6A]/20 flex items-center justify-between">
               <div className="flex items-center gap-4">
                 {CELEBRITY_REVIEWS.map((_, idx) => {
                   const numStr = String(idx + 1).padStart(2, "0");
@@ -188,10 +150,10 @@ export default function CelebrityReviewsSection() {
                       key={idx}
                       type="button"
                       onClick={() => handleUserInteract(() => goToIndex(idx))}
-                      className={`font-label-caps text-xs sm:text-sm tracking-wider transition-all duration-300 ${
+                      className={`font-label-caps text-xs tracking-wider transition-all duration-300 ${
                         isActive
-                          ? "text-[#F5F5DC] font-bold border-b border-[#F5F5DC] pb-0.5"
-                          : "text-[#F5F5DC]/40 hover:text-[#F5F5DC]/80 font-normal"
+                          ? "text-[#F5F5DC] font-bold border-b-2 border-[#C9A227] pb-0.5"
+                          : "text-[#AEB9A9]/50 hover:text-[#F5F5DC] font-normal"
                       }`}
                       aria-label={`Go to slide ${numStr}`}
                     >
@@ -201,40 +163,38 @@ export default function CelebrityReviewsSection() {
                 })}
               </div>
 
-              {/* Left & Right Arrow Buttons */}
               <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={() => handleUserInteract(goToPrev)}
                   aria-label="Previous testimonial"
-                  className="p-2 text-[#F5F5DC]/70 hover:text-[#F5F5DC] transition-all duration-300 hover:scale-110"
+                  className="w-9 h-9 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#F5F5DC] transition-all duration-200"
                 >
-                  <svg
-                    className="w-6 h-6 stroke-current"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.2"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-                  </svg>
+                  <span className="material-symbols-outlined text-sm">chevron_left</span>
                 </button>
-
                 <button
                   type="button"
                   onClick={() => handleUserInteract(goToNext)}
                   aria-label="Next testimonial"
-                  className="p-2 text-[#F5F5DC]/70 hover:text-[#F5F5DC] transition-all duration-300 hover:scale-110"
+                  className="w-9 h-9 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#F5F5DC] transition-all duration-200"
                 >
-                  <svg
-                    className="w-6 h-6 stroke-current"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="1.2"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                  </svg>
+                  <span className="material-symbols-outlined text-sm">chevron_right</span>
                 </button>
               </div>
+            </div>
+          </div>
+
+          {/* Right Celebrity Image Frame */}
+          <div className="lg:col-span-5 flex justify-center lg:justify-end">
+            <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-xl overflow-hidden bg-[#17251E] border border-[#657A6A]/40 shadow-xl">
+              <img
+                src={current.image}
+                alt={current.name}
+                className={`w-full h-full object-cover object-center transition-all duration-700 ease-out ${
+                  isTransitioning ? "opacity-40 scale-105" : "opacity-100 scale-100"
+                }`}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/70 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
         </div>
@@ -242,3 +202,4 @@ export default function CelebrityReviewsSection() {
     </section>
   );
 }
+
