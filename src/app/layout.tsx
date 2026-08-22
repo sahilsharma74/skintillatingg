@@ -17,14 +17,57 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Dr. Akshaya Jain - Luxury Aesthetic Clinic",
-  description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune.",
+  metadataBase: new URL("https://skintillatingg.vercel.app"),
+  title: {
+    default: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
+    template: "%s | Skintillatingg",
+  },
+  description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune. Specialized in HIFU, Hair GFC, Dermal Fillers, and Clinical Aesthetics.",
+  keywords: [
+    "Dr Akshaya Jain",
+    "Skintillatingg Clinic",
+    "Luxury Aesthetic Clinic Pune",
+    "Koregaon Park Dermatologist",
+    "Hair GFC Treatment",
+    "HIFU Facial Lifting",
+    "Celebrity Hair Specialist Pune",
+    "Aesthetic Cosmetologist",
+  ],
+  authors: [{ name: "Dr. Akshaya Jain" }],
+  creator: "Skintillatingg Clinic",
+  publisher: "Skintillatingg",
   icons: {
     icon: [
       { url: "/skintillatingg-favicon.svg", type: "image/svg+xml" },
     ],
     shortcut: "/skintillatingg-favicon.svg",
     apple: "/skintillatingg-favicon.svg",
+  },
+  openGraph: {
+    title: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
+    description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune. Specialized in HIFU, Hair GFC, Dermal Fillers, and Clinical Aesthetics.",
+    url: "https://skintillatingg.vercel.app",
+    siteName: "Skintillatingg Clinic Sanctuary",
+    images: [
+      {
+        url: "/skintillatingg-gold-logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Skintillatingg - Dr. Akshaya Jain Luxury Aesthetic Clinic",
+      },
+    ],
+    locale: "en_IN",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
+    description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune.",
+    images: ["/skintillatingg-gold-logo.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
