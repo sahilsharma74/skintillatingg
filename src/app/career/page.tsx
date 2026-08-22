@@ -1,279 +1,458 @@
-"use client";
-
 import React from "react";
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import ScrollReveal from "@/components/effects/ScrollReveal";
 
-interface JobPosition {
-  id: string;
-  title: string;
-  department: string;
-  location: string;
-  type: string;
-  description: string;
-}
+export const metadata: Metadata = {
+  title: "Aesthetic Medicine Careers & Professional Training | CIATN | Skintillatingg",
+  description: "Discover career pathways, professional skills development, continuous doctor mentorship, global exposure, and clinical practice setups with CIATN.",
+};
 
-const OPEN_POSITIONS: JobPosition[] = [
+const CAREER_PATHWAYS = [
   {
-    id: "aesthetic-dermatologist",
-    title: "Clinical Aesthetic Dermatologist",
-    department: "Dermatological & Clinical Care",
-    location: "Koregaon Park, Pune",
-    type: "Full-Time",
-    description: "Seeking a medical dermatologist (MD/DNB/DDVL) with 2+ years of experience in aesthetic medical treatments. Must have expertise in laser safety protocols, micro-dosing neurotoxins, and clinical diagnostic skin profiling."
+    title: "Clinical Cosmetology",
+    role: "Aesthetic Doctors & Clinical Practitioners",
+    desc: "Diagnose cutaneous pathologies, formulate chemical resurfacing protocols, and manage clinical skin rejuvenation.",
+    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg"
   },
   {
-    id: "aesthetic-nurse",
-    title: "Senior Clinical Aesthetic Therapist / Nurse",
-    department: "Clinical Therapy & Operations",
-    location: "Koregaon Park, Pune",
-    type: "Full-Time",
-    description: "Looking for a registered nurse (B.Sc or GNM) with hands-on experience in aesthetic procedures. Responsibilities include GFC separation, mesotherapy assisting, chemical peel operations, and pre/post-op counseling."
+    title: "Laser & Aesthetic Technology",
+    role: "Clinical Laser Specialists",
+    desc: "Operate medical-grade Q-Switched, Diode, and Fractional laser systems with strict wavelength safety and fluence calibration.",
+    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-12-13 at 7.38.55 PM (1).jpeg"
   },
   {
-    id: "front-desk-host",
-    title: "Front Desk Host & Clinic Coordinator",
-    department: "Guest Experience & Operations",
-    location: "Koregaon Park, Pune",
-    type: "Full-Time",
-    description: "Act as the primary host of our wellness sanctuary. Responsible for premium guest management, appointment scheduling, billing operations, and coordinating with clinical staff for optimal diagnostic timings."
+    title: "Trichology",
+    role: "Hair & Scalp Specialists",
+    desc: "Perform digital trichoscopic mapping, autologous growth factor concentrate (GFC) therapy, and scalp microbiome management.",
+    image: "/images/TECHNOLOGY TRAINING CAREER/imagerfffvsvg.png"
+  },
+  {
+    title: "Facial Aesthetics",
+    role: "Facial Aesthetic Injectors",
+    desc: "Perform 3D facial vector assessment, micro-dosing injectables, and tissue vectoring under strict anatomical safety protocols.",
+    image: "/images/TECHNOLOGY TRAINING CAREER/image.png"
+  },
+  {
+    title: "Aesthetic Clinics",
+    role: "Clinic Managers & Operations Leads",
+    desc: "Oversee multi-disciplinary clinical operations, patient care standards, safety compliance, and treatment scheduling.",
+    image: "/images/TECHNOLOGY TRAINING CAREER/IMG-20251129-WA0013.jpg"
+  },
+  {
+    title: "Wellness & Beauty",
+    role: "Aesthetic Therapists & Wellness Leads",
+    desc: "Deliver high-end non-invasive skin therapies, advanced medi-facials, and holistic wellness procedures.",
+    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.00.49_739ab8e2.jpg"
+  },
+  {
+    title: "Private Practice / Entrepreneurship",
+    role: "Clinic Founders & Practice Owners",
+    desc: "Establish independent aesthetic clinic facilities with comprehensive understanding of machine acquisition, legal compliance, and branding.",
+    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.22_26d4540b.jpg"
   }
 ];
 
-const WHY_JOIN_US = [
-  {
-    title: "Clinical Excellence",
-    description: "Experience advanced medical-grade aesthetic protocols using FDA-approved technologies and evidence-based science under physician guidance."
-  },
-  {
-    title: "Continuous Learning",
-    description: "Participate in clinical training workshops, medical journal clubs, and professional development programs to stay at the cutting-edge of dermatology."
-  },
-  {
-    title: "Collaborative Culture",
-    description: "Work in a supportive, multidisciplinary team environment built on respect, shared knowledge, clinical integrity, and continuous refinement."
-  },
-  {
-    title: "Professional Growth",
-    description: "Advance your career pathway through structured promotions, leadership opportunities in clinical training, and operational specialties."
-  },
-  {
-    title: "Patient-Centred Care",
-    description: "Build deep patient trust through honest candidate selection, individualized diagnostic mapping, and ultimate clinical discretion."
-  }
+const PROFESSIONAL_SKILLS = [
+  { title: "Clinical Understanding", desc: "Solid foundation in cutaneous pathology, scalp biology, and treatment mechanisms." },
+  { title: "Practical Skills", desc: "Supervised tactile mastery over machine operation, handpieces, and procedural execution." },
+  { title: "Technology Awareness", desc: "Clear understanding of laser wavelengths, ultrasound focal depths, and diagnostic software." },
+  { title: "Patient Communication", desc: "Ethical consultation, transparent expectation management, and post-care guidance." },
+  { title: "Treatment Planning", desc: "Formulating multi-modality treatment roadmaps tailored to individual patient profiles." },
+  { title: "Professional Confidence", desc: "Decisive clinical decision-making built on structured mentorship and real-world observation." },
+  { title: "Business Understanding", desc: "Grasping clinical operations, machine setup economics, and patient retention workflows." },
+  { title: "Industry Awareness", desc: "Staying updated with global regulatory standards, safety protocols, and aesthetic developments." },
+  { title: "Continuous Learning", desc: "Commitment to ongoing professional development, workshops, and advanced skill upgrades." }
 ];
 
 export default function CareerPage() {
   return (
-    <main className="min-h-screen bg-[#1C3329] text-[#F7F5DC] overflow-x-hidden pt-20">
+    <main className="min-h-screen bg-[#1C3329] text-[#F5F5DC] overflow-x-hidden pt-20">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto pt-16 md:pt-24 pb-16 border-b border-[#AEB9A9]/20 overflow-hidden">
-        {/* Botanical SVG Background Decoration */}
-        <div className="absolute top-0 right-0 w-[90%] sm:w-[70%] md:w-[50%] lg:w-[45%] h-full pointer-events-none z-0 select-none flex items-center justify-end opacity-25">
-          <svg
-            viewBox="0 0 800 480"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-auto max-h-[90%]"
-          >
-            <path
-              d="M780,450 Q660,340 480,240 Q360,180 200,210"
-              stroke="rgba(174, 185, 169, 0.85)"
-              strokeWidth="2.0"
-              strokeLinecap="round"
-            />
-            <path
-              d="M580,290 Q650,210 680,80"
-              stroke="rgba(174, 185, 169, 0.75)"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M500,250 Q430,300 320,330"
-              stroke="rgba(174, 185, 169, 0.75)"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M200,210 C160,200 130,215 145,230 C170,245 195,225 200,210 Z"
-              stroke="rgba(174, 185, 169, 0.8)"
-              strokeWidth="1.2"
-            />
-            <path d="M200,210 L145,230" stroke="rgba(174, 185, 169, 0.5)" strokeWidth="0.8" />
-          </svg>
-        </div>
-
-        <div className="relative z-10 max-w-3xl space-y-4">
-          <span className="font-label-caps text-xs tracking-[0.25em] text-[#AEB9A9] uppercase font-semibold">
-            CAREER
-          </span>
-          <h1 className="font-display text-[38px] sm:text-[48px] md:text-[56px] leading-[1.1] font-normal">
-            Build Your Career.<br />
-            <span className="italic">Grow With Skintillatingg.</span>
-          </h1>
-          <p className="font-body-md text-[#F7F5DC]/85 text-base sm:text-lg leading-relaxed max-w-2xl pt-2">
-            Join a culture built around clinical excellence, continuous learning, thoughtful care and meaningful growth.
-          </p>
-          <div className="pt-4 flex flex-wrap gap-4">
-            <a
-              href="#positions"
-              className="bg-[#F7F5DC] text-[#17251E] font-button text-[12px] tracking-[0.1em] px-6 py-3 rounded uppercase font-semibold shadow-md active:scale-95 transition-transform"
-            >
-              VIEW OPEN POSITIONS →
-            </a>
-            <a
-              href="#apply"
-              className="border border-[#AEB9A9]/40 text-[#F7F5DC] font-button text-[12px] tracking-[0.1em] px-6 py-3 rounded uppercase font-semibold hover:border-[#F7F5DC] transition-colors"
-            >
-              SEND YOUR CV →
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* Why Join Us Section */}
-      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-16 md:py-24">
-        <div className="space-y-12">
-          <div className="text-center md:text-left space-y-2">
-            <span className="font-label-caps text-xs tracking-[0.2em] text-[#AEB9A9] uppercase font-semibold">
-              OUR CULTURE & VALUES
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl text-[#F7F5DC] font-normal">
-              Why Professionals Choose Skintillatingg
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
-            {WHY_JOIN_US.map((pillar, i) => (
-              <div
-                key={i}
-                className="bg-[#17251E]/60 border border-[#AEB9A9]/20 rounded-md p-6 space-y-4 hover:border-[#AEB9A9]/40 transition-colors"
-              >
-                <div className="w-8 h-8 rounded-full bg-[#234237] text-[#AEB9A9] flex items-center justify-center font-display text-sm font-semibold border border-[#AEB9A9]/30">
-                  {i + 1}
-                </div>
-                <h3 className="font-display text-lg sm:text-xl font-normal text-[#F7F5DC] leading-snug">
-                  {pillar.title}
-                </h3>
-                <p className="font-body-md text-xs sm:text-[13px] text-[#F7F5DC]/80 leading-relaxed font-light">
-                  {pillar.description}
-                </p>
+      {/* SECTION 01 — CAREER HERO */}
+      <section className="relative px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto pt-16 md:pt-24 pb-20 border-b border-[#657A6A]/30">
+        <ScrollReveal showGoldLine>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-block px-3 py-1 bg-[#657A6A]/30 border border-[#AEB9A9]/40 rounded text-[#F5F5DC] font-label-caps text-xs tracking-[0.2em] uppercase font-semibold">
+                CAREER & PROFESSIONAL GROWTH
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
+              <h1 className="font-display text-[38px] sm:text-[48px] lg:text-[56px] leading-[1.1] font-normal text-[#F5F5DC]">
+                Turn Your Skills <br />
+                <span className="italic">Into a Career</span>
+              </h1>
+              <p className="font-body-md text-[#F5F5DC]/90 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
+                Build a rewarding professional path in aesthetic medicine, clinical cosmetology, and trichology with structured education, clinical confidence, and ongoing mentorship from CIATN.
+              </p>
+              <div className="pt-4 flex flex-wrap gap-4">
+                <a
+                  href="#paths"
+                  className="bg-[#F5F5DC] text-[#17251E] hover:bg-[#F5F5DC]/90 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 shadow-md inline-flex items-center gap-2"
+                >
+                  <span>EXPLORE CAREER PATHS</span>
+                  <span className="material-symbols-outlined text-sm font-bold">arrow_downward</span>
+                </a>
+                <Link
+                  href="/contact"
+                  className="border border-[#AEB9A9]/40 text-[#F5F5DC] hover:border-[#F5F5DC] hover:bg-[#F5F5DC]/10 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 inline-flex items-center gap-2"
+                >
+                  <span>START YOUR JOURNEY</span>
+                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                </Link>
+              </div>
+            </div>
 
-      {/* Career Reflection Article block */}
-      <section className="bg-[#17251E]/30 border-t border-b border-[#AEB9A9]/10 py-20 px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto">
-        <div className="max-w-4xl mx-auto space-y-10">
-          <div className="text-center space-y-3">
-            <span className="font-label-caps text-xs tracking-wider text-[#AEB9A9] uppercase font-semibold">
-              PRACTICE REFLECTION
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-[#F7F5DC]">
-              Ethics, Patient Trust, and Editorial Excellence in Aesthetic Medicine
-            </h2>
-            <p className="font-body-md text-xs sm:text-sm text-[#AEB9A9]/80 tracking-wider uppercase pt-1">
-              Reflections on over 12 years of building Skintillatingg
-            </p>
-          </div>
-
-          <div className="font-body-md text-sm sm:text-base text-[#F7F5DC]/80 leading-relaxed font-light space-y-6">
-            <p>
-              Building a respected aesthetic practice requires unwavering dedication to clinical ethics, honest communication, and patient confidentiality. In an industry often dominated by commercial targets, we focus on safe, conservative, and natural enhancements.
-            </p>
-            <p>
-              A luxury medical sanctuary balances state-of-the-art technological capabilities with a warm, human-centered approach to care. We believe clinical spaces should inspire calm, reassurance, and thorough consultations.
-            </p>
-            <p>
-              Patient trust is earned through honest candidate selection—recommending only treatments that yield tangible, safe benefits. We do not compromise on protocols, active ingredients, or machinery.
-            </p>
-            <p>
-              As Skintillatingg continues to serve Pune and beyond, clinical integrity and artistic subtlety remain our core guiding principles. We welcome passionate clinical professionals and coordinators to grow with us.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Open Positions Section */}
-      <section id="positions" className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-16 md:py-24">
-        <div className="space-y-10">
-          <div className="border-b border-[#AEB9A9]/20 pb-5">
-            <h2 className="font-display text-2xl sm:text-3xl text-[#F7F5DC] font-normal">
-              Open Positions
-            </h2>
-          </div>
-
-          <div className="space-y-6">
-            {OPEN_POSITIONS.map((job) => (
-              <article
-                key={job.id}
-                className="bg-[#17251E]/95 border border-[#AEB9A9]/20 rounded-md p-6 sm:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 hover:border-[#AEB9A9]/40 transition-colors shadow-sm"
-              >
-                <div className="space-y-3 max-w-3xl">
-                  {/* Meta tag pills */}
-                  <div className="flex flex-wrap gap-2.5">
-                    <span className="bg-[#234237] text-[#AEB9A9] font-label-caps text-[9px] tracking-wider uppercase px-2.5 py-1 rounded">
-                      {job.department}
-                    </span>
-                    <span className="bg-[#1C3329] text-[#F7F5DC] font-label-caps text-[9px] tracking-wider uppercase px-2.5 py-1 rounded border border-[#AEB9A9]/10">
-                      {job.location}
-                    </span>
-                    <span className="bg-[#AEB9A9] text-[#17251E] font-label-caps text-[9px] tracking-wider uppercase px-2.5 py-1 rounded font-semibold">
-                      {job.type}
-                    </span>
-                  </div>
-                  <h3 className="font-display text-xl sm:text-2xl font-normal text-[#F7F5DC]">
-                    {job.title}
-                  </h3>
-                  <p className="font-body-md text-sm text-[#F7F5DC]/80 leading-relaxed font-light">
-                    {job.description}
+            <div className="lg:col-span-5">
+              <div className="relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 shadow-2xl aspect-[4/3] bg-[#17251E]/80 group cinematic-img-container" data-cursor="VIEW">
+                <img
+                  src="/images/TECHNOLOGY TRAINING CAREER/Gemini_Generated_Image_uvgndnuvgndnuvgn.png"
+                  alt="Professional Aesthetic Practice Career Pathway"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329]/90 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 p-4 bg-[#17251E]/90 border border-[#AEB9A9]/20 rounded-lg backdrop-blur-sm">
+                  <span className="font-label-caps text-[10px] tracking-widest text-[#C9A227] uppercase font-semibold block mb-1">
+                    PROFESSIONAL DEVELOPMENT
+                  </span>
+                  <p className="font-body-md text-xs text-[#F5F5DC]/90 font-light">
+                    Empowering Medical & Aesthetic Practitioners for Career Growth
                   </p>
                 </div>
-
-                <a
-                  href="#apply"
-                  className="bg-[#F7F5DC] text-[#17251E] font-button text-xs tracking-wider uppercase px-5 py-3 rounded font-semibold whitespace-nowrap active:scale-95 transition-transform"
-                >
-                  VIEW POSITION →
-                </a>
-              </article>
-            ))}
+              </div>
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
       </section>
 
-      {/* Application / Apply Section */}
-      <section id="apply" className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto pb-24">
-        <div className="bg-[#657A6A] rounded-2xl p-8 sm:p-12 md:p-16 border border-[#AEB9A9]/20 text-center relative overflow-hidden shadow-2xl">
-          <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-            <span className="font-label-caps text-xs tracking-widest uppercase text-[#F5F5DC] font-semibold block">
-              APPLY NOW
-            </span>
-            <h2 className="font-display text-[30px] sm:text-[40px] text-[#F5F5DC] leading-tight">
-              Begin Your Journey with Us
-            </h2>
-            <p className="font-body-md text-[#F5F5DC]/90 text-sm sm:text-base leading-relaxed font-light">
-              Are you passionate about aesthetic dermatology, customer hospitality, or clinical management? Send your cover letter and curriculum vitae to our clinical HR desk. We evaluate applicants on a rolling basis.
-            </p>
-            <div className="pt-2">
-              <a
-                href="mailto:careers@skintillatingg.com"
-                className="bg-[#F7F5DC] text-[#17251E] font-button text-[13px] px-8 py-3.5 rounded hover:bg-[#F7F5DC]/95 transition-colors duration-300 font-semibold shadow-md inline-flex items-center gap-2"
-              >
-                <span>SEND YOUR CV →</span>
-                <span className="material-symbols-outlined text-sm">mail</span>
-              </a>
+      {/* SECTION 02 — CAREER JOURNEY */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="space-y-12 text-center max-w-4xl mx-auto">
+            <div className="space-y-3">
+              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+                CAREER TRAJECTORY
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+                From Learning to Professional Growth
+              </h2>
+              <p className="font-body-md text-sm text-[#F5F5DC]/80 font-light max-w-2xl mx-auto">
+                A continuous path of professional evolution from academic learning to independent clinical practice.
+              </p>
             </div>
-            <p className="font-body-md text-xs text-[#F7F5DC]/70 font-light italic">
-              HR Desk: careers@skintillatingg.com or reach out via our Pune Clinic line: 8669813636.
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 text-left">
+              <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 cinematic-card-lift">
+                <span className="font-display text-2xl text-[#C9A227]">01 — Learn</span>
+                <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Master scientific theory, cutaneous pathology, and machinery.</p>
+              </div>
+              <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 cinematic-card-lift">
+                <span className="font-display text-2xl text-[#C9A227]">02 — Practice</span>
+                <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Supervised hands-on training and clinical observation.</p>
+              </div>
+              <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 cinematic-card-lift">
+                <span className="font-display text-2xl text-[#C9A227]">03 — Certify</span>
+                <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Receive structured credentials and accreditation reference.</p>
+              </div>
+              <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 cinematic-card-lift">
+                <span className="font-display text-2xl text-[#C9A227]">04 — Confidence</span>
+                <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Build decisive clinical judgment and patient care roadmaps.</p>
+              </div>
+              <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 cinematic-card-lift">
+                <span className="font-display text-2xl text-[#C9A227]">05 — Grow</span>
+                <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Advance into specialized clinical roles or clinic leadership.</p>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 03 — CAREER PATHWAYS */}
+      <section id="paths" className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal showGoldLine>
+          <div className="space-y-12">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#657A6A]/30 pb-6">
+              <div>
+                <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold block mb-2">
+                  INDUSTRY PATHWAYS
+                </span>
+                <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+                  Where Can Your Skills Take You?
+                </h2>
+              </div>
+              <span className="font-label-caps text-xs tracking-wider text-[#AEB9A9] uppercase font-semibold">
+                7 Professional Directions
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {CAREER_PATHWAYS.map((path, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[#17251E]/90 border border-[#657A6A]/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-[#C9A227]/50 transition-all duration-300 group shadow-lg cinematic-card-lift"
+                  data-cursor="VIEW"
+                >
+                  <div>
+                    <div className="relative aspect-[16/10] overflow-hidden bg-[#1C3329] cinematic-img-container">
+                      <img
+                        src={path.image}
+                        alt={path.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-3 left-3 bg-[#1C3329]/95 text-[#C9A227] font-label-caps text-[9px] tracking-wider uppercase px-2.5 py-1 rounded border border-[#C9A227]/30 font-semibold">
+                        {path.role}
+                      </div>
+                    </div>
+
+                    <div className="p-6 space-y-3">
+                      <h3 className="font-display text-2xl font-normal text-[#F5F5DC] group-hover:text-[#C9A227] transition-colors">
+                        {path.title}
+                      </h3>
+                      <p className="font-body-md text-xs sm:text-sm text-[#F5F5DC]/80 leading-relaxed font-light">
+                        {path.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-6 pt-0">
+                    <Link
+                      href="/training"
+                      className="w-full border border-[#AEB9A9]/30 text-[#F5F5DC] hover:border-[#F5F5DC] hover:bg-[#F5F5DC] hover:text-[#17251E] font-button text-[11px] tracking-[0.12em] uppercase py-2.5 rounded transition-all duration-300 flex items-center justify-center gap-2 font-semibold"
+                    >
+                      <span>EXPLORE RELATED TRAINING</span>
+                      <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 04 — PROFESSIONAL SKILLS */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="space-y-12">
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+                COMPETENCY FRAMEWORK
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+                More Than a Certificate
+              </h2>
+              <p className="font-body-md text-sm text-[#F5F5DC]/80 font-light">
+                Essential professional capabilities developed through structured CIATN clinical education.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {PROFESSIONAL_SKILLS.map((sk, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[#17251E]/80 border border-[#657A6A]/30 p-6 rounded-xl space-y-2 hover:border-[#C9A227]/40 transition-colors shadow-md cinematic-card-lift"
+                >
+                  <span className="font-display text-lg text-[#C9A227] block font-normal">{sk.title}</span>
+                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light leading-relaxed">
+                    {sk.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 05 — CAREER GUIDANCE & MENTORSHIP */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6 space-y-6">
+              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+                CONTINUOUS SUPPORT
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC] font-normal leading-tight">
+                Guidance That Goes Beyond the Classroom
+              </h2>
+              <div className="font-body-md text-sm sm:text-base text-[#F5F5DC]/85 leading-relaxed font-light space-y-4">
+                <p>
+                  Professional development in aesthetic medicine does not stop when training completes. At CIATN, we provide ongoing clinical mentorship, advice on clinic setup protocols, and access to advanced refresher workshops.
+                </p>
+                <p>
+                  Whether you are integrating new laser technology into your existing practice or establishing an independent clinical facility, our team offers evidence-based guidance every step of the way.
+                </p>
+              </div>
+            </div>
+
+            <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
+              <img
+                src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.22_26d4540b.jpg"
+                alt="Faculty Mentorship Session"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 06 — GLOBAL EXPOSURE */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+              GLOBAL STANDARDS
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+              Think Beyond Borders
+            </h2>
+            <p className="font-body-md text-sm sm:text-base text-[#F5F5DC]/85 font-light leading-relaxed">
+              CIATN curriculum is benchmarked against international aesthetic treatment standards, safety regulations, and cutting-edge global energy-based protocols.
             </p>
           </div>
-        </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 07 — PROFESSIONAL NETWORK */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="space-y-12 text-center max-w-4xl mx-auto">
+            <div className="space-y-3">
+              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+                COMMUNITY ALIGNMENT
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+                Become Part of a Growing Professional Community
+              </h2>
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-label-caps tracking-wider text-[#F5F5DC]/90">
+              <span className="px-4 py-3 bg-[#17251E] border border-[#657A6A]/40 rounded-lg">STUDENT</span>
+              <span className="text-[#C9A227] font-bold">→</span>
+              <span className="px-4 py-3 bg-[#17251E] border border-[#657A6A]/40 rounded-lg">FACULTY</span>
+              <span className="text-[#C9A227] font-bold">→</span>
+              <span className="px-4 py-3 bg-[#17251E] border border-[#657A6A]/40 rounded-lg">INDUSTRY</span>
+              <span className="text-[#C9A227] font-bold">→</span>
+              <span className="px-4 py-3 bg-[#17251E] border border-[#657A6A]/40 rounded-lg">PROFESSIONAL COMMUNITY</span>
+              <span className="text-[#C9A227] font-bold">→</span>
+              <span className="px-4 py-3 bg-[#17251E] border border-[#C9A227]/60 rounded-lg text-[#C9A227] font-semibold">CAREER GROWTH</span>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 08 — BUSINESS & ENTREPRENEURSHIP */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
+              <img
+                src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.22_26d4540b.jpg"
+                alt="Clinical Practice Setup Guidance"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+
+            <div className="lg:col-span-6 space-y-6">
+              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+                PRACTICE MANAGEMENT
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC] font-normal leading-tight">
+                Build Skills. Build Confidence. Build Your Future.
+              </h2>
+              <p className="font-body-md text-sm sm:text-base text-[#F5F5DC]/85 leading-relaxed font-light">
+                For practitioners aspiring to establish their own clinical facilities, CIATN offers insights into machine selection economics, clinic layout planning, treatment pricing models, and patient consent compliance.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 09 — CERTIFICATION AS A CAREER FOUNDATION */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="text-center max-w-3xl mx-auto space-y-4">
+            <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+              CREDENTIAL FOUNDATION
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+              A Structured Path to Professional Growth
+            </h2>
+            <p className="font-body-md text-sm text-[#F5F5DC]/85 font-light leading-relaxed">
+              Formal training and verified credentials provide a recognized foundation when building patient trust and professional credibility in the aesthetic industry.
+            </p>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 10 — ALUMNI / CAREER STORIES */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="space-y-8 text-center max-w-3xl mx-auto">
+            <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+              PRACTITIONER SPOTLIGHT
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+              Where Our Students Go
+            </h2>
+            <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-8 rounded-xl text-left space-y-3 cinematic-card-lift">
+              <p className="font-body-md text-sm text-[#F5F5DC]/85 font-light leading-relaxed">
+                CIATN graduates successfully operate as clinical cosmetologists, laser specialists, trichology practitioners, and clinic founders across reputed medical centers and private practices.
+              </p>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 11 — CAREER STATISTICS */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal showGoldLine>
+          <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-8 sm:p-12 rounded-2xl text-center max-w-2xl mx-auto space-y-3 cinematic-card-lift">
+            <span className="font-display text-5xl sm:text-6xl text-[#C9A227] block font-normal">
+              98%
+            </span>
+            <h3 className="font-display text-2xl text-[#F5F5DC]">Placement Success</h3>
+            <p className="font-body-md text-xs sm:text-sm text-[#F5F5DC]/80 font-light leading-relaxed">
+              Reflecting high career transition rates and professional satisfaction among CIATN certified graduates in clinical settings.
+            </p>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 12 — FINAL CAREER CTA */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20">
+        <ScrollReveal>
+          <div className="bg-[#657A6A] text-[#F5F5DC] rounded-2xl p-8 sm:p-12 md:p-16 text-center shadow-2xl relative overflow-hidden">
+            <div className="relative z-10 max-w-2xl mx-auto space-y-6">
+              <span className="font-label-caps text-xs tracking-widest uppercase font-semibold block text-[#F5F5DC]">
+                CAREER ADMISSIONS & ADVISORY
+              </span>
+              <h2 className="font-display text-[32px] sm:text-[42px] leading-tight font-normal text-[#F5F5DC]">
+                Your Future in Aesthetic Medicine Starts Here
+              </h2>
+              <p className="font-body-md text-sm sm:text-base leading-relaxed font-light text-[#F5F5DC]/90">
+                Speak with our academic counselors to map out the ideal clinical training pathway for your professional background.
+              </p>
+              <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
+                <Link
+                  href="/training"
+                  className="bg-[#F5F5DC] text-[#17251E] font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] hover:bg-[#F5F5DC]/90 transition-colors duration-200 font-semibold shadow-md inline-flex items-center gap-2"
+                >
+                  <span>EXPLORE TRAINING</span>
+                  <span className="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+                </Link>
+                <Link
+                  href="/contact"
+                  className="border border-[#F5F5DC]/40 text-[#F5F5DC] hover:border-[#F5F5DC] hover:bg-[#F5F5DC]/10 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 inline-flex items-center gap-2"
+                >
+                  <span>CONTACT CIATN</span>
+                  <span className="material-symbols-outlined text-sm">mail</span>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </section>
 
       <Footer />

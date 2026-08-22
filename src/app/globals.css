@@ -105,16 +105,20 @@ body {
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
 }
 
 @keyframes emblemFlow {
-  0%, 100% {
+
+  0%,
+  100% {
     filter: brightness(1) drop-shadow(0 0 2px rgba(201, 162, 39, 0.25));
     transform: scale(1);
   }
+
   50% {
     filter: brightness(1.15) drop-shadow(0 0 6px rgba(201, 162, 39, 0.4));
     transform: scale(1.01);
@@ -122,14 +126,12 @@ body {
 }
 
 .animate-gold-shimmer {
-  background: linear-gradient(
-    90deg,
-    #C9A227 0%,
-    #F5F5DC 25%,
-    #E5C158 50%,
-    #F5F5DC 75%,
-    #C9A227 100%
-  );
+  background: linear-gradient(90deg,
+      #C9A227 0%,
+      #F5F5DC 25%,
+      #E5C158 50%,
+      #F5F5DC 75%,
+      #C9A227 100%);
   background-size: 200% auto;
   -webkit-background-clip: text;
   background-clip: text;
@@ -173,4 +175,63 @@ body {
   height: 1.5px;
   background: #C9A227;
   border-radius: 1px;
+}
+
+/* Luxury Cinematic Image Zoom Container */
+.cinematic-img-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.cinematic-img-container img,
+.cinematic-img-container video {
+  transition: transform 800ms cubic-bezier(0.16, 1, 0.3, 1), filter 800ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.cinematic-img-container:hover img,
+.cinematic-img-container:hover video {
+  transform: scale(1.04);
+}
+
+/* Luxury Card Elevation Lift */
+.cinematic-card-lift {
+  transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1), border-color 600ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 600ms cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.cinematic-card-lift:hover {
+  transform: translateY(-6px);
+  border-color: rgba(201, 162, 39, 0.4);
+  box-shadow: 0 16px 32px -8px rgba(23, 37, 30, 0.4);
+}
+
+/* Expanding Gold Line Reveal */
+@keyframes expandGoldLine {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+.animate-gold-line {
+  animation: expandGoldLine 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Reduced Motion Fallback */
+@media (prefers-reduced-motion: reduce) {
+  .cinematic-img-container img,
+  .cinematic-img-container video,
+  .cinematic-card-lift,
+  .animate-gold-line,
+  .animate-gold-shimmer,
+  .animate-emblem-flow {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }

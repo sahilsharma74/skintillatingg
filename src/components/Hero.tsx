@@ -6,12 +6,16 @@ import { useEffect, useRef, useState } from "react";
 export default function Hero() {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const hasAnimatedRef = useRef(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   // Animated values for hero floating statistics card
   const [yearsVal, setYearsVal] = useState("0+");
   const [transformationsVal, setTransformationsVal] = useState("0");
 
   useEffect(() => {
+    // Trigger hero staggered entrance animation after initial render
+    setIsMounted(true);
+
     // Check prefers-reduced-motion
     const prefersReducedMotion =
       typeof window !== "undefined" &&
@@ -87,40 +91,36 @@ export default function Hero() {
       {/* LEFT SIDE PANEL (approx 38% desktop width - Sage Green #657A6A) */}
       <div className="w-full md:w-[38%] bg-[#657A6A] p-8 sm:p-10 md:p-12 lg:p-16 flex flex-col justify-between z-10 border-r border-[#AEB9A9]/20">
         <div className="space-y-8 my-auto pt-2 pb-6">
-          {/* Full Animated Gold Skintillatingg Logo (Placed in upper-left area) */}
-          <div className="mb-6">
-            <div className="inline-flex items-center gap-4">
-              <img
-                alt="Skintillatingg DNA Emblem"
-                className="h-14 sm:h-16 md:h-18 w-auto object-contain animate-emblem-flow"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5IT4xEX-nvIObGYulKr08O8x4bOuSASpr56qk65b6U9022MEjcZvRcqb0CKERo1tP4B1J9WA4oRGLCSjAg6KALbhwDgcSsdZNiusRA7HDmBijlJYhhGL8Cr5lPLR85NIlzPf0Hxhh1ssPAdrnx91V4oj2xI8hOWHia1uHuIifMt92W7Q--2makgCx7JZOKjEJ6G95GfbUQ0DxZWIRX_rH7hP00kA1M-teY_CBlB1U6HqgR6kRS-HIBz8h1nOdhilV"
-              />
-              <div className="flex flex-col">
-                <span className="font-display text-[26px] sm:text-[32px] md:text-[36px] tracking-[0.06em] leading-none uppercase animate-gold-shimmer font-medium">
-                  Skintillatingg
-                </span>
-                <span className="font-label-caps text-[9px] sm:text-[10px] tracking-[0.24em] uppercase mt-1.5 animate-gold-shimmer font-semibold">
-                  Cosmo • Tricho • Therapeutic Clinic
-                </span>
-              </div>
-            </div>
-          </div>
-
           {/* Small Uppercase Editorial Label & Headline */}
           <div className="space-y-4">
-            <p className="font-label-caps text-[10px] sm:text-[11px] text-[#F5F5DC]/90 tracking-[0.25em] uppercase font-semibold">
+            <p
+              className={`font-label-caps text-[10px] sm:text-[11px] text-[#F5F5DC]/90 tracking-[0.25em] uppercase font-semibold transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              }`}
+              style={{ transitionDelay: "200ms" }}
+            >
               Aesthetic Cosmetology • Trichology
             </p>
 
             {/* Main Editorial Serif Headline */}
-            <h1 className="font-display text-[38px] sm:text-[48px] md:text-[44px] lg:text-[56px] xl:text-[62px] leading-[1.1] text-[#F5F5DC] font-normal tracking-tight">
+            <h1
+              className={`font-display text-[38px] sm:text-[48px] md:text-[44px] lg:text-[56px] xl:text-[62px] leading-[1.1] text-[#F5F5DC] font-normal tracking-tight transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+                isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+              }`}
+              style={{ transitionDelay: "400ms" }}
+            >
               Science of Beauty.<br />
               <span className="italic font-light text-[#F5F5DC]">Art of Precision.</span>
             </h1>
           </div>
 
           {/* Doctor Name Subheading & Editorial Copy */}
-          <div className="space-y-3 pt-2">
+          <div
+            className={`space-y-3 pt-2 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+            }`}
+            style={{ transitionDelay: "600ms" }}
+          >
             <h2 className="font-label-caps text-[13px] sm:text-[14px] text-[#F5F5DC] tracking-[0.2em] uppercase font-medium">
               Dr. Akshaya Jain
             </h2>
@@ -130,13 +130,18 @@ export default function Hero() {
           </div>
 
           {/* CTA Action Button */}
-          <div className="pt-2">
+          <div
+            className={`pt-2 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+            }`}
+            style={{ transitionDelay: "800ms" }}
+          >
             <Link
               href="/book-consultation"
-              className="inline-flex items-center gap-3 bg-[#F5F5DC] text-[#17251E] font-button text-[12px] sm:text-[13px] tracking-[0.15em] uppercase px-7 py-3.5 rounded-sm hover:bg-[#F5F5DC]/90 transition-colors duration-200 font-semibold group shadow-sm"
+              className="inline-flex items-center gap-3 bg-[#F5F5DC] text-[#17251E] font-button text-[12px] sm:text-[13px] tracking-[0.15em] uppercase px-7 py-3.5 rounded-sm hover:bg-[#F5F5DC] hover:shadow-[0_4px_20px_rgba(201,162,39,0.3)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 font-semibold group shadow-sm"
             >
               Book Consultation
-              <span className="material-symbols-outlined text-[16px] transition-transform group-hover:translate-x-1">
+              <span className="material-symbols-outlined text-[16px] transition-transform duration-300 group-hover:translate-x-1.5">
                 east
               </span>
             </Link>
@@ -144,7 +149,12 @@ export default function Hero() {
         </div>
 
         {/* Location Marker at Bottom */}
-        <div className="pt-6 border-t border-[#AEB9A9]/30 flex items-center justify-between">
+        <div
+          className={`pt-6 border-t border-[#AEB9A9]/30 flex items-center justify-between transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-3"
+          }`}
+          style={{ transitionDelay: "1000ms" }}
+        >
           <span className="font-label-caps text-[10px] tracking-[0.25em] text-[#F5F5DC]/90 uppercase font-medium">
             Pune • India
           </span>
@@ -155,18 +165,41 @@ export default function Hero() {
       </div>
 
       {/* RIGHT SIDE PANEL (approx 62% desktop width) */}
-      <div className="relative w-full md:w-[62%] min-h-[450px] md:min-h-[calc(100vh-80px)] bg-[#1C3329]">
-        {/* Untouched Hero Image (Natural photo, NO tint, gradient, overlay, or blur) */}
+      <div
+        data-cursor="EXPLORE"
+        className="relative w-full md:w-[62%] min-h-[450px] md:min-h-[calc(100vh-80px)] bg-[#1C3329] cinematic-img-container"
+      >
+        {/* Subtle Editorial Brand Mark (Upper Right of Hero Image) */}
+        <div
+          className={`absolute top-6 right-6 md:top-8 md:right-10 z-20 flex items-center gap-3 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] select-none pointer-events-none ${
+            isMounted ? "opacity-90 translate-y-0" : "opacity-0 translate-y-4"
+          }`}
+          style={{ transitionDelay: "1100ms" }}
+        >
+          <div className="w-6 sm:w-10 md:w-12 h-[1px] bg-gradient-to-r from-transparent via-[#C9A227]/50 to-[#C9A227]/80" />
+          <img
+            src="/skintillatingg-favicon.svg"
+            alt="Skintillatingg Brand Mark"
+            className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 object-contain drop-shadow-[0_0_4px_rgba(201,162,39,0.3)]"
+          />
+        </div>
+
+        {/* Hero Image with Slow Fade + Scale Reveal */}
         <img
-          src="/images/hero-new.jpg"
+          src="/images/akshaya.jpg"
           alt="Dr. Akshaya Jain Clinical Practice"
-          className="w-full h-full object-cover object-center min-h-[450px] md:min-h-full"
+          className={`w-full h-full object-cover object-center min-h-[450px] md:min-h-full transition-all duration-1200 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isMounted ? "opacity-100 scale-100" : "opacity-0 scale-105"
+          }`}
         />
 
         {/* Floating Warm Cream Statistics Card (Bottom Left of Photo) */}
         <div
           ref={cardRef}
-          className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20 bg-[#F5F5DC] text-[#17251E] p-5 sm:p-6 rounded-sm shadow-xl border border-[#AEB9A9]/40 max-w-[280px] sm:max-w-[320px]"
+          className={`absolute bottom-6 left-6 md:bottom-10 md:left-10 z-20 bg-[#F5F5DC] text-[#17251E] p-5 sm:p-6 rounded-sm shadow-xl border border-[#AEB9A9]/40 max-w-[280px] sm:max-w-[320px] transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+            isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
+          }`}
+          style={{ transitionDelay: "900ms" }}
         >
           <div className="grid grid-cols-2 gap-4 divide-x divide-[#17251E]/15">
             <div className="pr-2">
@@ -189,7 +222,12 @@ export default function Hero() {
         </div>
 
         {/* Vertical Editorial Magazine Detail (Far Right Edge) */}
-        <div className="hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 z-20 select-none pointer-events-none">
+        <div
+          className={`hidden lg:block absolute right-6 top-1/2 -translate-y-1/2 z-20 select-none pointer-events-none transition-opacity duration-1000 ${
+            isMounted ? "opacity-100" : "opacity-0"
+          }`}
+          style={{ transitionDelay: "1200ms" }}
+        >
           <p className="font-label-caps text-[10px] tracking-[0.35em] text-[#F5F5DC]/70 uppercase font-medium [writing-mode:vertical-rl]">
             SKINTILLATINGG • PUNE
           </p>

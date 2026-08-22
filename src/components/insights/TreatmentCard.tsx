@@ -7,17 +7,20 @@ interface TreatmentCardProps {
 
 export default function TreatmentCard({ treatment }: TreatmentCardProps) {
   return (
-    <article className="group bg-[#F7F5DC] text-[#17251E] rounded-md overflow-hidden flex flex-col justify-between border border-[#AEB9A9]/30 hover:border-[#17251E]/30 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
+    <article
+      data-cursor="VIEW"
+      className="group bg-[#F7F5DC] text-[#17251E] rounded-md overflow-hidden flex flex-col justify-between border border-[#AEB9A9]/30 hover:border-[#17251E]/30 shadow-md hover:shadow-xl transition-all duration-500 h-full cinematic-card-lift cursor-pointer"
+    >
       <Link
         href={treatment.category === "Treatments" ? `/treatments/${treatment.slug}` : `/insights`}
         className="flex flex-col h-full"
       >
         {/* Top Image Container (Fixed Aspect Ratio 4:3) */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#1C3329]/10">
+        <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#1C3329]/10 cinematic-img-container">
           <img
             src={treatment.image}
             alt={treatment.title}
-            className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-300 ease-out"
+            className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500 ease-out"
           />
           {/* Category Badge Top-Left */}
           <div className="absolute top-3 left-3 z-10">

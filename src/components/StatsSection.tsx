@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import ScrollReveal from "@/components/effects/ScrollReveal";
 
 export default function StatsSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -95,49 +96,51 @@ export default function StatsSection() {
     >
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20">
         {/* Large Warm Cream Editorial Panel */}
-        <div className="bg-[#F5F5DC] text-[#17251E] p-10 sm:p-14 md:p-20 rounded-sm border border-[#AEB9A9]/40 shadow-sm">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 items-start text-center md:text-left">
-            {/* Stat 1 */}
-            <div className="space-y-2 border-b sm:border-b-0 pb-6 sm:pb-0 border-[#17251E]/15">
-              <p className="font-display text-[52px] sm:text-[64px] lg:text-[72px] text-[#17251E] leading-none font-normal">
-                {yearsVal}
-              </p>
-              <p className="font-label-caps text-[11px] sm:text-[12px] text-[#1C3329] uppercase tracking-[0.18em] font-semibold">
-                Years of Clinical Practice
-              </p>
-            </div>
+        <ScrollReveal direction="up" delay={100} showGoldLine goldLinePosition="bottom">
+          <div className="bg-[#F5F5DC] text-[#17251E] p-10 sm:p-14 md:p-20 rounded-sm border border-[#AEB9A9]/40 shadow-sm cinematic-card-lift">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-8 items-start text-center md:text-left">
+              {/* Stat 1 */}
+              <div className="space-y-2 border-b sm:border-b-0 pb-6 sm:pb-0 border-[#17251E]/15">
+                <p className="font-display text-[52px] sm:text-[64px] lg:text-[72px] text-[#17251E] leading-none font-normal">
+                  {yearsVal}
+                </p>
+                <p className="font-label-caps text-[11px] sm:text-[12px] text-[#1C3329] uppercase tracking-[0.18em] font-semibold">
+                  Years of Clinical Practice
+                </p>
+              </div>
 
-            {/* Stat 2 */}
-            <div className="space-y-2 border-b sm:border-b-0 pb-6 sm:pb-0 border-[#17251E]/15">
-              <p className="font-display text-[52px] sm:text-[64px] lg:text-[72px] text-[#17251E] leading-none font-normal">
-                {transformationsVal}
-              </p>
-              <p className="font-label-caps text-[11px] sm:text-[12px] text-[#1C3329] uppercase tracking-[0.18em] font-semibold">
-                Transformations
-              </p>
-            </div>
+              {/* Stat 2 */}
+              <div className="space-y-2 border-b sm:border-b-0 pb-6 sm:pb-0 border-[#17251E]/15">
+                <p className="font-display text-[52px] sm:text-[64px] lg:text-[72px] text-[#17251E] leading-none font-normal">
+                  {transformationsVal}
+                </p>
+                <p className="font-label-caps text-[11px] sm:text-[12px] text-[#1C3329] uppercase tracking-[0.18em] font-semibold">
+                  Transformations
+                </p>
+              </div>
 
-            {/* Stat 3 */}
-            <div className="space-y-2 border-b sm:border-b-0 pb-6 sm:pb-0 border-[#17251E]/15">
-              <p className="font-display text-[52px] sm:text-[64px] lg:text-[72px] text-[#17251E] leading-none font-normal">
-                {awardsVal}
-              </p>
-              <p className="font-label-caps text-[11px] sm:text-[12px] text-[#1C3329] uppercase tracking-[0.18em] font-semibold">
-                National Excellence Awards
-              </p>
-            </div>
+              {/* Stat 3 */}
+              <div className="space-y-2 border-b sm:border-b-0 pb-6 sm:pb-0 border-[#17251E]/15">
+                <p className="font-display text-[52px] sm:text-[64px] lg:text-[72px] text-[#17251E] leading-none font-normal">
+                  {awardsVal}
+                </p>
+                <p className="font-label-caps text-[11px] sm:text-[12px] text-[#1C3329] uppercase tracking-[0.18em] font-semibold">
+                  National Excellence Awards
+                </p>
+              </div>
 
-            {/* Stat 4 */}
-            <div className="space-y-3 flex flex-col justify-center items-center md:items-start pt-2">
-              <p className="font-display text-[26px] sm:text-[30px] lg:text-[32px] text-[#17251E] italic font-normal leading-tight">
-                &ldquo;Celebrity Trusted&rdquo;
-              </p>
-              <p className="font-label-caps text-[10px] sm:text-[11px] text-[#1C3329] uppercase tracking-[0.18em] font-semibold">
-                Cosmo - Tricho - Therapeutics
-              </p>
+              {/* Stat 4 */}
+              <div className="space-y-3 flex flex-col justify-center items-center md:items-start pt-2">
+                <p className="font-display text-[26px] sm:text-[30px] lg:text-[32px] text-[#17251E] italic font-normal leading-tight">
+                  &ldquo;Celebrity Trusted&rdquo;
+                </p>
+                <p className="font-label-caps text-[10px] sm:text-[11px] text-[#1C3329] uppercase tracking-[0.18em] font-semibold">
+                  Cosmo - Tricho - Therapeutics
+                </p>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

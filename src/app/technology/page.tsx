@@ -1,285 +1,465 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import CiatnModalitiesSection from "@/components/technology/CiatnModalitiesSection";
+import ScrollReveal from "@/components/effects/ScrollReveal";
 
-interface ClinicalTech {
-  id: string;
-  name: string;
-  image: string;
-  purpose: string;
-  description: string;
-  specification: string;
-}
+export const metadata: Metadata = {
+  title: "Advanced Aesthetic Technology | CIATN | Skintillatingg",
+  description: "Explore the advanced clinical technology, equipment laboratories, laser modalities, and diagnostic infrastructure used for hands-on aesthetic training at CIATN.",
+};
 
-const TECH_SHOWCASE: ClinicalTech[] = [
+const TECH_CATEGORIES = [
   {
-    id: "q-switch-ndyag",
-    name: "Q-Switched Nd:YAG Laser System",
-    image: "https://backgroundimages.withfloats.com/actual/697754475977317ff0b334a9.png",
-    purpose: "Pigment Target & Shattering",
-    description: "Delivers rapid, nanosecond pulses of light energy to shatter deep dermal pigments. Excellent for treating melasma, birthmarks, freckles, and tattoo removal with zero thermal damage. Uses photo-acoustic therapy to stimulate internal repair mechanisms.",
-    specification: "Dual Wavelength: 1064nm / 532nm | Pulse Duration: Nanosecond | Epidermal Cooling: Contact Sapphire"
+    title: "Laser Technology",
+    desc: "Q-Switched Nd:YAG, Picosecond, and Fractional CO₂ laser workstations for pigmentary correction, scar remodeling, and skin resurfacing.",
+    tag: "OPTICAL ENERGY",
+    image: "/images/treatments/co2-laser.jpg"
   },
   {
-    id: "fractional-co2",
-    name: "Fractional CO₂ Resurfacing Laser",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAkJDX9X5bZVA8ZmPLI3SnPjp851CyD-0_3__XkwIlmN8uMDWNNnRFRJ15k0SznH7kYrHiIISufsi_Yj3iMXFz7RLuRdU6C9OVUswolyZx2-VmwQXdKb3P8JpTGxvaFlqAl04XQjoK2h2YQiCjFlYj5DS9bDPaa1ucrQsBNELJgcGkfFjPVVdjzme4RFRsS_NSJ5jdzoUH_aPKXL5nU9uXPW9h5yc6FMCHHooEDbMUz7B5EMSxoJ5c",
-    purpose: "Deep Structural Cellular Resurfacing",
-    description: "A precision-guided micro-ablative laser that creates grid-pattern micro-thermal zones in the dermis, leaving adjacent skin intact. Triggers accelerated wound healing, smoothing acne scars, reducing deep wrinkles, and tightening lax skin layers.",
-    specification: "Wavelength: 10600nm | Type: Carbon Dioxide Gas Laser | Scanner Mode: Fractional Grid Matrix"
+    title: "Facial Aesthetics",
+    desc: "High-Intensity Focused Ultrasound (HIFU), radiofrequency micro-needling, and non-invasive structural rejuvenation devices.",
+    tag: "ENERGY REJUVENATION",
+    image: "/images/treatments/hifu.jpg"
   },
   {
-    id: "hifu-smas",
-    name: "High-Intensity Focused Ultrasound (HIFU)",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBeuYA1GF05n9uuu-1_BTr9TKdSirqrkGRMAQ8FOSyf4yY4LVuCJpsRgx9_YTPxf7kJ6ytZ_e9UxC4V9iHLyJ5AGPku0PUjJ1MOmkAOIOwQUlySJNhwTSdv6aCdDth2Up7nabq94N24Li5tbOmdrBxCTSmwzQLIYkj7OkB2cRBrbm_4Pjz__Z8cJPNJ-yQ0_ENmSZV5r0zL2yVbQfd9Sr76njbJYzdDIwsNgeNoBfiU1KnZvVHV8_8",
-    purpose: "Non-Surgical SMAS Face Lift",
-    description: "Utilizes medical-grade ultrasound crystals focusing mechanical energy deep into the cutaneous SMAS layer (superficial muscular aponeurotic system). Reorganizes deep structural tissues, producing dynamic lifting and tightening without surface incisions.",
-    specification: "Focal Depth: 1.5mm - 4.5mm | Temperature: 60°C - 70°C at Target Dermal Layers | Energy: Focused Acoustic"
+    title: "Trichology Diagnostics",
+    desc: "Digital trichoscopic scalp mapping, scalp microbiome evaluation, and autologous growth factor infusion systems.",
+    tag: "HAIR & SCALP",
+    image: "/images/TECHNOLOGY TRAINING CAREER/imagerfffvsvg.png"
   },
   {
-    id: "diode-cool-tip",
-    name: "Diode Cool-Tip Laser System",
-    image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBv6qOF36vdYr91s-acTvRA-Xnl1VWKUHmqw0Uvjzo5veRTHi3l11H3oFdqhANrj7RFLvoz3abG9lDfKQu342RefmYNaK5QJrD7hOMWkm4o78sedD9DSiQlCiDdOnaecCZr45JSVleTMBazp00yqWTYsoJnluBcZofSIhouqJ6JkqTRPWK4uMwFk7caA-mv1YJ2R_ha57wyzqMLwNBhrsHbIBqUdkQTe_r_756Bb3Uw1XdKG6ClFwQ",
-    purpose: "Permanent Hair Follicle Reduction",
-    description: "Highly targeted diode energy penetrates deep to selectively destroy hair follicle melanin. Equipped with advanced dynamic sapphire window cooling which maintains the epidermis at a stable 4°C, neutralizing pain and protecting sensitive outer layers.",
-    specification: "Wavelength: 808nm / 810nm | Cooling: Integrated Sapphire Contact Cooling | Application: All Skin Types"
+    title: "Skin & Cosmetology",
+    desc: "Medical-grade hydro-dermabrasion, electro-desiccation, controlled chemical peeling, and needle-free electroporation.",
+    tag: "CUTANEOUS RESURFACING",
+    image: "/images/treatments/chemical-peel.jpg"
+  },
+  {
+    title: "Injectable Aesthetics",
+    desc: "Micro-dosing delivery systems, 3D facial vector assessment tools, and sterile procedural preparation stations.",
+    tag: "STRUCTURAL INJECTABLES",
+    image: "/images/treatments/dermal-fillers.jpg"
+  },
+  {
+    title: "Clinical Diagnostics",
+    desc: "Multispectral UV skin analysis, vascular imaging, and quantitative dermal hydration measurement technology.",
+    tag: "CUTANEOUS MAPPING",
+    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.00.49_739ab8e2.jpg"
   }
 ];
 
-export default function TechnologyPage() {
-  const [selectedTech, setSelectedTech] = useState<ClinicalTech>(TECH_SHOWCASE[0]);
+const GALLERY_IMAGES = [
+  { url: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-12-13 at 7.38.55 PM (1).jpeg", title: "Laser Workstation Calibration", caption: "Precision Energy Fluence Tuning" },
+  { url: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg", title: "Clinical Demonstration", caption: "Supervised Practitioner Learning" },
+  { url: "/images/TECHNOLOGY TRAINING CAREER/imagegsdgbeagv.png", title: "Trichoscopic Scalp Analysis", caption: "Follicular Vitality Mapping" },
+  { url: "/images/TECHNOLOGY TRAINING CAREER/image.png", title: "Facial Vectoring Assessment", caption: "3D Structural Planning" },
+  { url: "/images/TECHNOLOGY TRAINING CAREER/IMG-20251129-WA0013.jpg", title: "Clinical Equipment Suite", caption: "Multi-Modality Operating Suite" }
+];
 
+export default function TechnologyPage() {
   return (
-    <main className="min-h-screen bg-[#1C3329] text-[#F7F5DC] overflow-x-hidden pt-20">
+    <main className="min-h-screen bg-[#1C3329] text-[#F5F5DC] overflow-x-hidden pt-20">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto pt-16 md:pt-24 pb-16 border-b border-[#AEB9A9]/20 overflow-hidden">
-        {/* Botanical SVG Background Decoration */}
-        <div className="absolute top-0 right-0 w-[90%] sm:w-[70%] md:w-[50%] lg:w-[45%] h-full pointer-events-none z-0 select-none flex items-center justify-end opacity-25">
-          <svg
-            viewBox="0 0 800 480"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-full h-auto max-h-[90%]"
-          >
-            <path
-              d="M780,450 Q660,340 480,240 Q360,180 200,210"
-              stroke="rgba(174, 185, 169, 0.85)"
-              strokeWidth="2.0"
-              strokeLinecap="round"
-            />
-            <path
-              d="M580,290 Q650,210 680,80"
-              stroke="rgba(174, 185, 169, 0.75)"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M500,250 Q430,300 320,330"
-              stroke="rgba(174, 185, 169, 0.75)"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-            />
-            <path
-              d="M200,210 C160,200 130,215 145,230 C170,245 195,225 200,210 Z"
-              stroke="rgba(174, 185, 169, 0.8)"
-              strokeWidth="1.2"
-            />
-            <path d="M200,210 L145,230" stroke="rgba(174, 185, 169, 0.5)" strokeWidth="0.8" />
-            <path
-              d="M310,195 C280,150 250,155 270,185 C295,200 310,195 310,195 Z"
-              stroke="rgba(174, 185, 169, 0.8)"
-              strokeWidth="1.2"
-            />
-            <path d="M310,195 L270,185" stroke="rgba(174, 185, 169, 0.5)" strokeWidth="0.8" />
-          </svg>
-        </div>
-
-        <div className="relative z-10 max-w-3xl space-y-4">
-          <span className="font-label-caps text-xs tracking-[0.25em] text-[#AEB9A9] uppercase font-semibold">
-            TECHNOLOGY
-          </span>
-          <h1 className="font-display text-[38px] sm:text-[48px] md:text-[56px] leading-[1.1] font-normal">
-            Advanced Technology.<br />
-            <span className="italic">Precision in Every Treatment.</span>
-          </h1>
-          <p className="font-body-md text-[#F7F5DC]/85 text-base sm:text-lg leading-relaxed max-w-2xl pt-2">
-            Discover the advanced technology and modern aesthetic systems that support precise, safe and natural-looking treatments at Skintillatingg.
-          </p>
-        </div>
-      </section>
-
-      {/* Interactive Showcase Grid */}
-      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-16 md:py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          
-          {/* Left: Interactive Tab Buttons */}
-          <div className="lg:col-span-4 space-y-4">
-            <h2 className="font-label-caps text-[11px] tracking-[0.2em] text-[#AEB9A9] uppercase font-bold mb-6">
-              Clinical Systems
-            </h2>
-            <div className="space-y-3">
-              {TECH_SHOWCASE.map((tech) => {
-                const isSelected = selectedTech.id === tech.id;
-                return (
-                  <button
-                    key={tech.id}
-                    onClick={() => setSelectedTech(tech)}
-                    className={`w-full text-left p-5 rounded-md border transition-all duration-300 ${
-                      isSelected
-                        ? "bg-[#234237]/80 border-[#AEB9A9] text-[#F7F5DC] shadow-lg translate-x-2"
-                        : "bg-[#17251E]/40 border-[#AEB9A9]/20 text-[#F7F5DC]/70 hover:border-[#AEB9A9]/40 hover:text-[#F7F5DC]"
-                    }`}
-                  >
-                    <span className="font-label-caps text-[9px] tracking-widest text-[#AEB9A9] block mb-1 uppercase font-semibold">
-                      {tech.purpose}
-                    </span>
-                    <span className="font-display text-lg sm:text-xl font-normal block leading-tight">
-                      {tech.name}
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Right: Selected Technology Details Card */}
-          <div className="lg:col-span-8 bg-[#17251E]/90 border border-[#AEB9A9]/20 rounded-md p-6 sm:p-8 space-y-6 shadow-2xl">
-            {/* Image Box */}
-            <div className="relative aspect-[16/9] w-full overflow-hidden rounded bg-[#1C3329]/10">
-              <img
-                src={selectedTech.image}
-                alt={selectedTech.name}
-                className="w-full h-full object-cover object-center transform hover:scale-[1.02] transition-transform duration-500"
-              />
-              <div className="absolute top-4 left-4">
-                <span className="bg-[#1C3329]/95 text-[#F7F5DC] font-label-caps text-[10px] tracking-wider uppercase px-3 py-1 rounded border border-[#AEB9A9]/20">
-                  {selectedTech.purpose}
-                </span>
+      {/* SECTION 01 — CINEMATIC HERO */}
+      <section className="relative px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto pt-16 md:pt-24 pb-20 border-b border-[#657A6A]/30">
+        <ScrollReveal showGoldLine>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <div className="inline-block px-3 py-1 bg-[#657A6A]/30 border border-[#AEB9A9]/40 rounded text-[#F5F5DC] font-label-caps text-xs tracking-[0.2em] uppercase font-semibold">
+                ADVANCED CLINICAL TECHNOLOGY
+              </div>
+              <h1 className="font-display text-[38px] sm:text-[48px] lg:text-[56px] leading-[1.1] font-normal text-[#F5F5DC]">
+                Where Technology Meets <br />
+                <span className="italic">Clinical Excellence</span>
+              </h1>
+              <p className="font-body-md text-[#F5F5DC]/90 text-base sm:text-lg leading-relaxed max-w-2xl font-light">
+                At CIATN, modern aesthetic education is rooted in hands-on technology exposure. Learn with state-of-the-art clinical devices, understand treatment modalities, and master real-world patient application.
+              </p>
+              <div className="pt-4 flex flex-wrap gap-4">
+                <a
+                  href="#modalities"
+                  className="bg-[#F5F5DC] text-[#17251E] hover:bg-[#F5F5DC]/90 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 shadow-md inline-flex items-center gap-2"
+                >
+                  <span>EXPLORE OUR TECHNOLOGY</span>
+                  <span className="material-symbols-outlined text-sm font-bold">arrow_downward</span>
+                </a>
+                <Link
+                  href="/training"
+                  className="border border-[#AEB9A9]/40 text-[#F5F5DC] hover:border-[#F5F5DC] hover:bg-[#F5F5DC]/10 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 inline-flex items-center gap-2"
+                >
+                  <span>EXPLORE TRAINING</span>
+                  <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                </Link>
               </div>
             </div>
 
-            {/* Description */}
-            <div className="space-y-4">
-              <h3 className="font-display text-2xl sm:text-3xl font-normal text-[#F7F5DC]">
-                {selectedTech.name}
-              </h3>
-              <p className="font-body-md text-sm sm:text-base text-[#F7F5DC]/90 leading-relaxed font-light">
-                {selectedTech.description}
-              </p>
+            <div className="lg:col-span-5">
+              <div className="relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 shadow-2xl aspect-[4/3] bg-[#17251E]/80 group cinematic-img-container" data-cursor="VIEW">
+                <img
+                  src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-12-13 at 7.38.55 PM (1).jpeg"
+                  alt="CIATN Clinical Technology & Equipment Suite"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329]/90 via-transparent to-transparent" />
+                <div className="absolute bottom-6 left-6 right-6 p-4 bg-[#17251E]/90 border border-[#AEB9A9]/20 rounded-lg backdrop-blur-sm">
+                  <span className="font-label-caps text-[10px] tracking-widest text-[#C9A227] uppercase font-semibold block mb-1">
+                    CLINICAL LEARNING ENVIRONMENT
+                  </span>
+                  <p className="font-body-md text-xs text-[#F5F5DC]/90 font-light">
+                    Medical-Grade Workstations & Hands-On Training Equipment
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 02 — TECHNOLOGY INTRODUCTION */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
+              <img
+                src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg"
+                alt="Practical Equipment Demonstration at CIATN"
+                className="w-full h-full object-cover object-center"
+              />
             </div>
 
-            {/* Technical Specifications */}
-            <div className="p-4 bg-[#234237]/45 border-l-2 border-[#AEB9A9] rounded-sm space-y-1">
-              <h4 className="font-label-caps text-[10px] tracking-wider text-[#AEB9A9] uppercase font-semibold">
-                Clinical Parameters & Output
-              </h4>
-              <p className="font-body-md text-[12.5px] text-[#F7F5DC]/80 font-light">
-                {selectedTech.specification}
-              </p>
-            </div>
-
-            {/* Action CTA */}
-            <div className="pt-2 border-t border-[#AEB9A9]/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <span className="font-body-md text-[13px] text-[#AEB9A9]/80 font-light">
-                Available for custom diagnostic treatment planning at KP Clinic.
+            <div className="lg:col-span-6 space-y-6">
+              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+                EDUCATIONAL PHILOSOPHY
               </span>
-              <a
-                href="#clinical-articles"
-                className="font-button text-[12px] text-[#F7F5DC] border-b border-[#AEB9A9] pb-0.5 tracking-wider uppercase hover:text-[#AEB9A9] transition-colors font-semibold"
-              >
-                EXPLORE TECHNOLOGY →
-              </a>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC] font-normal leading-tight">
+                Learn With the Technology Used in Modern Aesthetics
+              </h2>
+              <div className="font-body-md text-sm sm:text-base text-[#F5F5DC]/85 leading-relaxed font-light space-y-4">
+                <p>
+                  Aesthetic education cannot remain purely theoretical. At CIATN, we believe true clinical confidence stems from understanding the precise engineering, physical mechanisms, and safety protocols of modern aesthetic machinery.
+                </p>
+                <p>
+                  Students are trained to evaluate skin profiles, select appropriate laser wavelengths, calibrate energy fluences, and perform multi-modality treatment protocols under strict doctor supervision.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 pt-4 border-t border-[#657A6A]/30">
+                <div>
+                  <span className="font-display text-2xl text-[#C9A227] block font-normal">Precision</span>
+                  <span className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Calibrated wavelength & pulse dynamics</span>
+                </div>
+                <div>
+                  <span className="font-display text-2xl text-[#C9A227] block font-normal">Safety</span>
+                  <span className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Fitzpatrick skin typing & cooling protocols</span>
+                </div>
+              </div>
             </div>
           </div>
-
-        </div>
+        </ScrollReveal>
       </section>
 
-      {/* Editorial Tech Innovations Article Pane */}
-      <section id="clinical-articles" className="bg-[#17251E]/30 border-t border-b border-[#AEB9A9]/10 py-20 px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="text-center space-y-3">
-            <span className="font-label-caps text-xs tracking-wider text-[#AEB9A9] uppercase font-semibold">
-              JOURNAL ARTICLE
+      {/* SECTION 03 — ADVANCED EQUIPMENT LABS */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal showGoldLine>
+          <div className="space-y-12">
+            <div className="text-center max-w-3xl mx-auto space-y-3">
+              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+                PRACTICAL INFRASTRUCTURE
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+                Advanced Equipment. Real Clinical Learning.
+              </h2>
+              <p className="font-body-md text-sm text-[#F5F5DC]/80 font-light">
+                Step into clinical laboratories equipped with industry-leading diagnostic and therapeutic workstations.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-8 rounded-xl space-y-4 hover:border-[#C9A227]/40 transition-colors shadow-md cinematic-card-lift">
+                <div className="w-12 h-12 rounded-full bg-[#1C3329] border border-[#C9A227]/40 flex items-center justify-center text-[#C9A227]">
+                  <span className="material-symbols-outlined">precision_manufacturing</span>
+                </div>
+                <h3 className="font-display text-xl text-[#F5F5DC]">Modality Calibration</h3>
+                <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light leading-relaxed">
+                  Hands-on training in adjusting spot sizes, energy densities, and pulse duration timings according to clinical indications.
+                </p>
+              </div>
+
+              <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-8 rounded-xl space-y-4 hover:border-[#C9A227]/40 transition-colors shadow-md cinematic-card-lift">
+                <div className="w-12 h-12 rounded-full bg-[#1C3329] border border-[#C9A227]/40 flex items-center justify-center text-[#C9A227]">
+                  <span className="material-symbols-outlined">health_and_safety</span>
+                </div>
+                <h3 className="font-display text-xl text-[#F5F5DC]">Clinical Safety Protocols</h3>
+                <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light leading-relaxed">
+                  Rigorous instruction on eye protection, sterile handpiece handling, skin thermal relaxation times, and post-procedure care.
+                </p>
+              </div>
+
+              <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-8 rounded-xl space-y-4 hover:border-[#C9A227]/40 transition-colors shadow-md cinematic-card-lift">
+                <div className="w-12 h-12 rounded-full bg-[#1C3329] border border-[#C9A227]/40 flex items-center justify-center text-[#C9A227]">
+                  <span className="material-symbols-outlined">analytics</span>
+                </div>
+                <h3 className="font-display text-xl text-[#F5F5DC]">Diagnostic Assessment</h3>
+                <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light leading-relaxed">
+                  Utilizing high-magnification trichoscopy and UV dermoscopy to quantitatively evaluate baseline patient conditions.
+                </p>
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 04 — TECHNOLOGY / MODALITIES SHOWCASE CATEGORIES */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <ScrollReveal>
+          <div className="space-y-12">
+            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#657A6A]/30 pb-6">
+              <div>
+                <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold block mb-2">
+                  CLINICAL CATEGORIES
+                </span>
+                <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+                  Technology & Modalities Showcase
+                </h2>
+              </div>
+              <span className="font-label-caps text-xs tracking-wider text-[#AEB9A9] uppercase font-semibold">
+                6 Core Training Domains
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {TECH_CATEGORIES.map((cat, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[#17251E]/90 border border-[#657A6A]/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-[#C9A227]/50 transition-all duration-300 group shadow-md cinematic-card-lift"
+                  data-cursor="VIEW"
+                >
+                  <div>
+                    <div className="relative aspect-[16/10] overflow-hidden bg-[#1C3329] cinematic-img-container">
+                      <img
+                        src={cat.image}
+                        alt={cat.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute top-3 left-3 bg-[#1C3329]/95 text-[#C9A227] font-label-caps text-[9px] tracking-wider uppercase px-2.5 py-1 rounded border border-[#C9A227]/30 font-semibold">
+                        {cat.tag}
+                      </div>
+                    </div>
+
+                    <div className="p-6 space-y-3">
+                      <h3 className="font-display text-2xl font-normal text-[#F5F5DC] group-hover:text-[#C9A227] transition-colors">
+                        {cat.title}
+                      </h3>
+                      <p className="font-body-md text-xs sm:text-sm text-[#F5F5DC]/80 leading-relaxed font-light">
+                        {cat.desc}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="p-6 pt-0">
+                    <Link
+                      href="/training"
+                      className="w-full border border-[#AEB9A9]/30 text-[#F5F5DC] hover:border-[#F5F5DC] hover:bg-[#F5F5DC] hover:text-[#17251E] font-button text-[11px] tracking-[0.12em] uppercase py-2.5 rounded transition-all duration-300 flex items-center justify-center gap-2 font-semibold"
+                    >
+                      <span>EXPLORE RELATED TRAINING</span>
+                      <span className="material-symbols-outlined text-xs">arrow_forward</span>
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </ScrollReveal>
+      </section>
+
+      {/* SECTION 05 — CIATN MODALITIES VIDEO SHOWCASE (RETAINED untouched) */}
+      <div id="modalities">
+        <CiatnModalitiesSection />
+      </div>
+
+      {/* SECTION 06 — TECHNOLOGY + CLINICAL THINKING */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <div className="space-y-12 text-center max-w-4xl mx-auto">
+          <div className="space-y-3">
+            <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+              CLINICAL METHODOLOGY
             </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-[#F7F5DC]">
-              FDA-Approved Laser Systems in Modern Dermatological Care
+            <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+              Technology Is Only Powerful When You Know How to Use It.
             </h2>
-            <div className="flex items-center justify-center gap-4 text-xs font-label-caps text-[#AEB9A9]/75 pt-2">
-              <span>By Dr. Akshaya Jain</span>
-              <span>•</span>
-              <span>6 Min Read</span>
+            <p className="font-body-md text-sm text-[#F5F5DC]/80 font-light max-w-2xl mx-auto">
+              Our 4-stage practical decision framework ensures students bridge the gap between machine operations and clinical patient care.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+            <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 hover:border-[#C9A227]/40 transition-colors shadow-md">
+              <span className="font-display text-2xl text-[#C9A227] block font-normal">01 — Understand</span>
+              <h4 className="font-display text-lg text-[#F5F5DC]">Biophysical Principles</h4>
+              <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light leading-relaxed">
+                Master chromatic absorption, tissue chromophores, and thermal relaxation times.
+              </p>
             </div>
-          </div>
 
-          <div className="prose prose-invert max-w-none font-body-md text-sm sm:text-base text-[#F7F5DC]/80 leading-relaxed font-light space-y-6">
-            <p>
-              Dermatological laser technology has undergone revolutionary advancements in energy delivery, wavelength specificity, and skin safety profiles. In our Koregaon Park practice, we strictly select and configure medical-grade systems that maintain cellular integrity while producing targeted tissue correction.
-            </p>
-            <p>
-              Fractional non-ablative lasers create microscopic thermal zones that trigger natural collagen remodeling without compromising epidermal integrity, significantly reducing post-procedure downtime. Rather than stripping the absolute skin surface, this modern grid approach heals tissues from within.
-            </p>
-            <p>
-              Picosecond lasers use ultra-short pulse durations to break down melasma and stubborn hyperpigmentation through photomechanical pressure rather than thermal heat. This drastically minimizes the risk of post-inflammatory hyperpigmentation (PIH), a critical safety enhancement for deep Asian skin tones.
-            </p>
-            <p>
-              Furthermore, integrated contact cooling systems (like sapphire and liquid nitrogen flow) actively protect delicate cutaneous sensors, ensuring high efficacy with optimal patient comfort during the pulse duration.
-            </p>
-          </div>
+            <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 hover:border-[#C9A227]/40 transition-colors shadow-md">
+              <span className="font-display text-2xl text-[#C9A227] block font-normal">02 — Assess</span>
+              <h4 className="font-display text-lg text-[#F5F5DC]">Patient Diagnostics</h4>
+              <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light leading-relaxed">
+                Conduct skin typing, evaluate pathology, and rule out contraindications before treatment.
+              </p>
+            </div>
 
-          {/* Key Takeaways Card */}
-          <div className="bg-[#17251E]/60 border border-[#AEB9A9]/20 rounded p-6 sm:p-8 space-y-4">
-            <h4 className="font-label-caps text-xs tracking-widest text-[#AEB9A9] uppercase font-semibold">
-              Key Safety & Clinical takeaways
-            </h4>
-            <ul className="space-y-3 font-body-md text-sm text-[#F7F5DC]/90 font-light">
-              <li className="flex items-start gap-3">
-                <span className="text-[#AEB9A9] font-bold">•</span>
-                <span>Wavelength precision protects surrounding healthy dermal tissue.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#AEB9A9] font-bold">•</span>
-                <span>Photo-acoustic technology treats hyperpigmentation without excessive dynamic heat.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-[#AEB9A9] font-bold">•</span>
-                <span>Integrated cooling maximizes patient comfort during energy delivery.</span>
-              </li>
-            </ul>
+            <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 hover:border-[#C9A227]/40 transition-colors shadow-md">
+              <span className="font-display text-2xl text-[#C9A227] block font-normal">03 — Apply</span>
+              <h4 className="font-display text-lg text-[#F5F5DC]">Precision Delivery</h4>
+              <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light leading-relaxed">
+                Deliver energy parameters with controlled handpiece motion, cooling, and anatomical accuracy.
+              </p>
+            </div>
+
+            <div className="bg-[#17251E]/90 border border-[#657A6A]/30 p-6 rounded-xl space-y-3 hover:border-[#C9A227]/40 transition-colors shadow-md">
+              <span className="font-display text-2xl text-[#C9A227] block font-normal">04 — Evaluate</span>
+              <h4 className="font-display text-lg text-[#F5F5DC]">Clinical Endpoints</h4>
+              <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light leading-relaxed">
+                Identify erythema, frosting, or follicular edema to verify treatment efficacy and post-care safety.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Booking Consultation CTA */}
+      {/* SECTION 07 — TECHNOLOGY IN TRAINING */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-6 space-y-6">
+            <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+              TRAINING PROGRESSION
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC] font-normal leading-tight">
+              From Demonstration to Hands-On Experience
+            </h2>
+            <p className="font-body-md text-sm sm:text-base text-[#F5F5DC]/85 leading-relaxed font-light">
+              Students progress step-by-step from observing senior doctors to operating clinical equipment under direct supervision.
+            </p>
+
+            <div className="space-y-4 pt-2">
+              <div className="flex items-start gap-4 p-4 bg-[#17251E]/90 border border-[#657A6A]/30 rounded-lg">
+                <span className="w-8 h-8 rounded-full bg-[#1C3329] border border-[#C9A227]/50 text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0">1</span>
+                <div>
+                  <h4 className="font-display text-base text-[#F5F5DC]">Expert Demonstration</h4>
+                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Senior clinical faculty showcase machine setup and procedure protocols.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-[#17251E]/90 border border-[#657A6A]/30 rounded-lg">
+                <span className="w-8 h-8 rounded-full bg-[#1C3329] border border-[#C9A227]/50 text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0">2</span>
+                <div>
+                  <h4 className="font-display text-base text-[#F5F5DC]">Student Observation</h4>
+                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Close-up observation of real patient consultation, mapping, and treatment execution.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-[#17251E]/90 border border-[#657A6A]/30 rounded-lg">
+                <span className="w-8 h-8 rounded-full bg-[#1C3329] border border-[#C9A227]/50 text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0">3</span>
+                <div>
+                  <h4 className="font-display text-base text-[#F5F5DC]">Guided Practice</h4>
+                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Supervised equipment handling and tactile technique practice on mannequins and models.</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-4 p-4 bg-[#17251E]/90 border border-[#657A6A]/30 rounded-lg">
+                <span className="w-8 h-8 rounded-full bg-[#1C3329] border border-[#C9A227]/50 text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0">4</span>
+                <div>
+                  <h4 className="font-display text-base text-[#F5F5DC]">Clinical Understanding</h4>
+                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Independent understanding of machine settings, troubleshooting, and post-procedure protocols.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 shadow-2xl aspect-[4/3] bg-[#17251E]">
+            <img
+              src="/images/TECHNOLOGY TRAINING CAREER/image.png"
+              alt="Hands-On Technology Practice at CIATN"
+              className="w-full h-full object-cover object-center"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 08 — EDITORIAL PHOTO GALLERY */}
+      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
+        <div className="space-y-10">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#657A6A]/30 pb-6">
+            <div>
+              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold block mb-1">
+                CLINICAL ENVIRONMENT
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
+                Equipment & Environment Gallery
+              </h2>
+            </div>
+            <span className="font-label-caps text-xs text-[#AEB9A9]">
+              CIATN Training Facilities
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {GALLERY_IMAGES.map((img, idx) => (
+              <div
+                key={idx}
+                className="group relative overflow-hidden rounded-xl border border-[#657A6A]/30 bg-[#17251E] aspect-[4/3] shadow-lg"
+              >
+                <img
+                  src={img.url}
+                  alt={img.title}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/90 via-[#17251E]/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity" />
+                <div className="absolute bottom-4 left-4 right-4 space-y-1">
+                  <span className="font-label-caps text-[9px] tracking-widest text-[#C9A227] uppercase font-semibold block">
+                    {img.caption}
+                  </span>
+                  <h4 className="font-display text-lg text-[#F5F5DC] font-normal">
+                    {img.title}
+                  </h4>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* SECTION 09 — TECHNOLOGY CTA */}
       <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20">
-        <div className="bg-[#657A6A] rounded-2xl p-8 sm:p-12 md:p-16 border border-[#AEB9A9]/20 text-center relative overflow-hidden shadow-2xl">
+        <div className="bg-[#657A6A] text-[#F5F5DC] rounded-2xl p-8 sm:p-12 md:p-16 text-center shadow-2xl relative overflow-hidden">
           <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-            <span className="font-label-caps text-xs tracking-widest uppercase text-[#F5F5DC] font-semibold block">
-              DIAGNOSTIC CONSULTATION
+            <span className="font-label-caps text-xs tracking-widest uppercase font-semibold block text-[#F5F5DC]">
+              MODERN AESTHETICS TRAINING
             </span>
-            <h2 className="font-display text-[30px] sm:text-[40px] text-[#F5F5DC] leading-tight">
-              Curate Your Custom Care Plan
+            <h2 className="font-display text-[32px] sm:text-[42px] leading-tight font-normal text-[#F5F5DC]">
+              See What Modern Aesthetic Education Looks Like
             </h2>
-            <p className="font-body-md text-[#F5F5DC]/90 text-base sm:text-lg leading-relaxed">
-              Every skin and hair type is unique. Book a comprehensive diagnostic mapping session to see how our clinical technology can help you.
+            <p className="font-body-md text-sm sm:text-base leading-relaxed font-light text-[#F5F5DC]/90">
+              Discover our comprehensive training programs and masterclasses designed around modern clinical technology.
             </p>
-            <div className="flex flex-wrap justify-center gap-4 pt-2">
+            <div className="pt-2 flex flex-wrap items-center justify-center gap-4">
               <Link
-                href="/book-consultation"
-                className="bg-[#F5F5DC] text-[#17251E] font-button text-[13px] px-8 py-3.5 rounded hover:bg-[#F5F5DC]/95 transition-colors duration-300 font-semibold shadow-md inline-block"
+                href="/training"
+                className="bg-[#F5F5DC] text-[#17251E] font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] hover:bg-[#F5F5DC]/90 transition-colors duration-200 font-semibold shadow-md inline-flex items-center gap-2"
               >
-                Book Consultation Online
+                <span>EXPLORE TRAINING</span>
+                <span className="material-symbols-outlined text-sm font-bold">arrow_forward</span>
               </Link>
               <Link
                 href="/contact"
-                className="border border-[#F5F5DC]/45 text-[#F5F5DC] font-button text-[13px] px-8 py-3.5 rounded hover:border-[#F5F5DC] hover:bg-[#17251E]/20 transition-all duration-300 font-semibold inline-block"
+                className="border border-[#F5F5DC]/40 text-[#F5F5DC] hover:border-[#F5F5DC] hover:bg-[#F5F5DC]/10 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 inline-flex items-center gap-2"
               >
-                Explore Locations
+                <span>CONTACT CIATN</span>
+                <span className="material-symbols-outlined text-sm">mail</span>
               </Link>
             </div>
           </div>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
+import MagazineCursor from "@/components/effects/MagazineCursor";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -44,6 +45,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${playfair.variable} ${inter.variable} antialiased overflow-x-hidden bg-[#1C3329] text-[#F5F5DC]`}>
+        <MagazineCursor />
         {children}
       </body>
     </html>

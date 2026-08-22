@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
+import ScrollReveal from "@/components/effects/ScrollReveal";
 
 export interface CelebrityReview {
   id: string;
@@ -89,7 +90,7 @@ export default function CelebrityReviewsSection() {
     autoPlayRef.current = setInterval(() => {
       setIsTransitioning(true);
       setCurrentIndex((prev) => (prev + 1) % CELEBRITY_REVIEWS.length);
-    }, 7000);
+    }, 7500);
 
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
@@ -104,26 +105,31 @@ export default function CelebrityReviewsSection() {
   return (
     <section className="py-16 sm:py-20 bg-[#1C3329] text-[#F5F5DC] border-b border-[#657A6A]/30 overflow-hidden relative">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20 relative z-10">
-        {/* Section Label */}
-        <div className="mb-8 border-b border-[#657A6A]/20 pb-4 flex items-center justify-between">
-          <span className="font-label-caps text-xs tracking-[0.25em] uppercase text-[#AEB9A9] font-semibold">
-            CELEBRITY REVIEW
-          </span>
-          <span className="font-label-caps text-[10px] tracking-widest uppercase text-[#C9A227] font-medium">
-            LUXURY TESTIMONIALS
-          </span>
-        </div>
+        {/* Section Label with ScrollReveal */}
+        <ScrollReveal showGoldLine goldLinePosition="bottom" className="mb-10">
+          <div className="flex items-center justify-between pb-3">
+            <span className="font-label-caps text-xs tracking-[0.25em] uppercase text-[#AEB9A9] font-semibold">
+              CELEBRITY REVIEWS
+            </span>
+            <span className="font-label-caps text-[10px] tracking-widest uppercase text-[#C9A227] font-medium">
+              LUXURY TESTIMONIALS
+            </span>
+          </div>
+        </ScrollReveal>
 
         {/* Compact Editorial Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[320px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center min-h-[340px]">
           {/* Left Content / Quote & Details */}
           <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
             <div
               className={`space-y-4 transition-all duration-700 ease-out ${
-                isTransitioning ? "opacity-30 translate-x-2" : "opacity-100 translate-x-0"
+                isTransitioning ? "opacity-20 translate-x-3" : "opacity-100 translate-x-0"
               }`}
             >
               <div>
+                <span className="font-display text-5xl text-[#C9A227]/40 leading-none select-none font-serif block -mb-4">
+                  &ldquo;
+                </span>
                 <h3 className="font-display text-[26px] sm:text-[34px] text-[#F5F5DC] font-normal leading-tight">
                   {current.name}
                 </h3>
@@ -134,13 +140,13 @@ export default function CelebrityReviewsSection() {
 
               <blockquote className="pt-2">
                 <p className="font-display italic text-[18px] sm:text-[22px] lg:text-[24px] text-[#F5F5DC]/95 leading-relaxed font-light">
-                  &ldquo;{current.quote}&rdquo;
+                  {current.quote}
                 </p>
               </blockquote>
             </div>
 
-            {/* Bottom Controls: 01 02 03 04 05  |  <  > */}
-            <div className="pt-6 border-t border-[#657A6A]/20 flex items-center justify-between">
+            {/* Bottom Controls with Animated Timer Progress Line */}
+            <div className="pt-6 border-t border-[#657A6A]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center gap-4">
                 {CELEBRITY_REVIEWS.map((_, idx) => {
                   const numStr = String(idx + 1).padStart(2, "0");
@@ -150,14 +156,17 @@ export default function CelebrityReviewsSection() {
                       key={idx}
                       type="button"
                       onClick={() => handleUserInteract(() => goToIndex(idx))}
-                      className={`font-label-caps text-xs tracking-wider transition-all duration-300 ${
+                      className={`font-label-caps text-xs tracking-wider transition-all duration-300 relative py-1 ${
                         isActive
-                          ? "text-[#F5F5DC] font-bold border-b-2 border-[#C9A227] pb-0.5"
+                          ? "text-[#F5F5DC] font-bold"
                           : "text-[#AEB9A9]/50 hover:text-[#F5F5DC] font-normal"
                       }`}
                       aria-label={`Go to slide ${numStr}`}
                     >
-                      {numStr}
+                      <span>{numStr}</span>
+                      {isActive && (
+                        <span className="absolute bottom-0 left-0 w-full h-[1.5px] bg-[#C9A227] rounded-full animate-gold-line" />
+                      )}
                     </button>
                   );
                 })}
@@ -168,7 +177,7 @@ export default function CelebrityReviewsSection() {
                   type="button"
                   onClick={() => handleUserInteract(goToPrev)}
                   aria-label="Previous testimonial"
-                  className="w-9 h-9 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#F5F5DC] transition-all duration-200"
+                  className="w-9 h-9 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#C9A227] hover:bg-[#C9A227]/10 transition-all duration-200"
                 >
                   <span className="material-symbols-outlined text-sm">chevron_left</span>
                 </button>
@@ -176,7 +185,7 @@ export default function CelebrityReviewsSection() {
                   type="button"
                   onClick={() => handleUserInteract(goToNext)}
                   aria-label="Next testimonial"
-                  className="w-9 h-9 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#F5F5DC] transition-all duration-200"
+                  className="w-9 h-9 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#C9A227] hover:bg-[#C9A227]/10 transition-all duration-200"
                 >
                   <span className="material-symbols-outlined text-sm">chevron_right</span>
                 </button>
@@ -186,7 +195,10 @@ export default function CelebrityReviewsSection() {
 
           {/* Right Celebrity Image Frame */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-xl overflow-hidden bg-[#17251E] border border-[#657A6A]/40 shadow-xl">
+            <div
+              data-cursor="VIEW"
+              className="relative w-full max-w-[340px] aspect-[4/5] rounded-sm overflow-hidden bg-[#17251E] border border-[#657A6A]/40 shadow-xl cinematic-img-container cursor-pointer"
+            >
               <img
                 src={current.image}
                 alt={current.name}

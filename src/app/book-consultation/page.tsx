@@ -5,6 +5,7 @@ import { useSearchParams } from "next/navigation";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import ScrollReveal from "@/components/effects/ScrollReveal";
 import { TREATMENTS_DATA, Treatment } from "@/data/treatments";
 
 // Grouping 26 treatments into 4 clean categories as requested
@@ -208,17 +209,19 @@ function BookConsultationForm() {
 
       {/* Header */}
       <section className="relative px-[20px] md:px-[80px] max-w-[1440px] mx-auto pt-12 md:pt-16 pb-8 border-b border-[#657A6A]/30">
-        <div className="max-w-3xl">
-          <div className="inline-block px-3 py-1 bg-[#657A6A]/30 border border-[#AEB9A9]/40 rounded text-[#F5F5DC] font-label-caps text-xs tracking-widest uppercase mb-4 font-semibold">
-            BESPOKE APPOINTMENT REQUEST
+        <ScrollReveal direction="up" delay={100} showGoldLine goldLinePosition="bottom" className="max-w-3xl pb-4">
+          <div>
+            <div className="inline-block px-3 py-1 bg-[#657A6A]/30 border border-[#AEB9A9]/40 rounded text-[#F5F5DC] font-label-caps text-xs tracking-widest uppercase mb-4 font-semibold">
+              BESPOKE APPOINTMENT REQUEST
+            </div>
+            <h1 className="font-display text-[38px] md:text-[54px] leading-tight text-[#F5F5DC] font-normal mb-4">
+              Book a <span className="italic text-[#F5F5DC]">Consultation</span>
+            </h1>
+            <p className="font-body-md text-[#F5F5DC]/90 text-base md:text-lg">
+              Request your diagnostic appointment with Dr. Akshaya Jain at our Koregaon Park sanctuary. Select all therapies you would like to explore.
+            </p>
           </div>
-          <h1 className="font-display text-[38px] md:text-[54px] leading-tight text-[#F5F5DC] font-normal mb-4">
-            Book a <span className="italic text-[#F5F5DC]">Consultation</span>
-          </h1>
-          <p className="font-body-md text-[#F5F5DC]/90 text-base md:text-lg">
-            Request your diagnostic appointment with Dr. Akshaya Jain at our Koregaon Park sanctuary. Select all therapies you would like to explore.
-          </p>
-        </div>
+        </ScrollReveal>
       </section>
 
       {/* Main Wizard Container */}
