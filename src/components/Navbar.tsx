@@ -28,6 +28,7 @@ export default function Navbar() {
   const isTechnologyActive = pathname?.startsWith("/technology");
   const isTrainingActive = pathname?.startsWith("/training");
   const isCareerActive = pathname?.startsWith("/career");
+  const isTeamActive = pathname?.startsWith("/team");
   const isContactActive = pathname?.startsWith("/contact");
 
   const navLinks = [
@@ -37,6 +38,7 @@ export default function Navbar() {
     { name: "TECHNOLOGY", href: "/technology", active: isTechnologyActive },
     { name: "TRAINING", href: "/training", active: isTrainingActive },
     { name: "CAREER", href: "/career", active: isCareerActive },
+    { name: "TEAM", href: "/team", active: isTeamActive },
     { name: "CONTACT", href: "/contact", active: isContactActive },
   ];
 
@@ -71,12 +73,12 @@ export default function Navbar() {
         </Link>
 
         {/* 2. NAVIGATION — CENTER (DESKTOP / LARGE TABLET) */}
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-6 2xl:gap-7">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-5 2xl:gap-6">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
-              className={`font-label-caps text-[11px] xl:text-[11.5px] tracking-[0.14em] xl:tracking-[0.16em] uppercase transition-all duration-300 relative py-2 font-medium shrink-0 group ${
+              className={`font-label-caps text-[10.5px] xl:text-[11px] tracking-[0.12em] xl:tracking-[0.14em] uppercase transition-all duration-300 relative py-2 font-medium shrink-0 group ${
                 link.active
                   ? "text-[#F5F5DC] font-semibold"
                   : "text-[#F5F5DC]/75 hover:text-[#F5F5DC]"
@@ -94,10 +96,10 @@ export default function Navbar() {
         </nav>
 
         {/* 3. CONTACT + CTA — RIGHT */}
-        <div className="hidden lg:flex items-center gap-7 xl:gap-8 shrink-0">
+        <div className="hidden lg:flex items-center gap-5 xl:gap-6 shrink-0">
           <a
             href="tel:8669813636"
-            className="font-label-caps text-[11px] xl:text-[11.5px] tracking-[0.14em] text-[#F5F5DC] hover:text-[#C9A227] transition-colors flex items-center gap-2 font-medium"
+            className="font-label-caps text-[10.5px] xl:text-[11px] tracking-[0.12em] text-[#F5F5DC] hover:text-[#C9A227] transition-colors flex items-center gap-1.5 font-medium"
           >
             <span className="material-symbols-outlined text-[15px] text-[#AEB9A9]">call</span>
             <span>8669813636</span>
@@ -105,7 +107,7 @@ export default function Navbar() {
 
           <Link
             href="/book-consultation"
-            className="bg-[#F5F5DC] text-[#17251E] hover:bg-[#F5F5DC] hover:shadow-[0_4px_16px_rgba(201,162,39,0.25)] hover:scale-[1.02] active:scale-[0.98] font-label-caps text-[11px] xl:text-[11.5px] tracking-[0.14em] uppercase px-5 xl:px-6 py-2.5 rounded-[3px] font-semibold transition-all duration-300 text-center shadow-sm shrink-0"
+            className="bg-[#F5F5DC] text-[#17251E] hover:bg-[#F5F5DC] hover:shadow-[0_4px_16px_rgba(201,162,39,0.25)] hover:scale-[1.02] active:scale-[0.98] font-label-caps text-[10.5px] xl:text-[11px] tracking-[0.12em] uppercase px-4 xl:px-5 py-2.5 rounded-[3px] font-semibold transition-all duration-300 text-center shadow-sm shrink-0"
           >
             BOOK CONSULTATION
           </Link>
@@ -166,5 +168,3 @@ export default function Navbar() {
     </header>
   );
 }
-
-
