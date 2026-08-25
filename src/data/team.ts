@@ -7,10 +7,12 @@ export interface TeamMember {
   credentials: string[];
   bio: string;
   category: "MEDICAL EXPERTISE" | "CLINICAL TEAM" | "PATIENT EXPERIENCE";
+  displayOrder: number;
+  objectPosition?: string;
   isFeatured?: boolean;
 }
 
-export const TEAM_MEMBERS: TeamMember[] = [
+export const INITIAL_TEAM_MEMBERS: TeamMember[] = [
   {
     id: "dr-akshaya-jain",
     name: "Dr. Akshaya Jain",
@@ -25,6 +27,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     ],
     bio: "Dr. Akshaya Jain founded Skintillatingg Cosmo • Tricho • Therapeutic Clinic with a singular vision: uniting clinical dermatological rigour with bespoke aesthetic care. With over 13 years of dedicated clinical practice and 3 national awards, she leads the clinic in advanced non-surgical facial rejuvenation, laser dermatology, and specialized trichology.",
     category: "MEDICAL EXPERTISE",
+    displayOrder: 1,
+    objectPosition: "center top",
     isFeatured: true,
   },
   {
@@ -39,6 +43,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     ],
     bio: "Specializing in precision laser skin treatments, customized therapeutic chemical peels, and clinical facial aesthetics under strict dermatological protocols.",
     category: "MEDICAL EXPERTISE",
+    displayOrder: 2,
+    objectPosition: "center center",
   },
   {
     id: "lead-clinical-therapist",
@@ -52,6 +58,8 @@ export const TEAM_MEMBERS: TeamMember[] = [
     ],
     bio: "Dedicated to non-invasive dermal therapies, barrier repair medi-facials, and providing customized skin health regimens for pre and post-procedure care.",
     category: "CLINICAL TEAM",
+    displayOrder: 3,
+    objectPosition: "center top",
   },
   {
     id: "patient-experience-lead",
@@ -65,5 +73,9 @@ export const TEAM_MEMBERS: TeamMember[] = [
     ],
     bio: "Ensuring every client journey from initial consultation to post-treatment follow-up is seamless, comfortable, and tailored to individual expectations.",
     category: "PATIENT EXPERIENCE",
+    displayOrder: 4,
+    objectPosition: "center center",
   },
 ];
+
+export const TEAM_MEMBERS = INITIAL_TEAM_MEMBERS;
