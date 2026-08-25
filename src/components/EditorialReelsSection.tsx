@@ -16,35 +16,35 @@ export const REELS_DATA: ReelItem[] = [
     id: "reel-01",
     category: "CLINIC",
     title: "Inside the Skintillatingg Clinic",
-    videoUrl: "/videos/reel-01.mp4",
+    videoUrl: "/videos/inside the skintillatingg clinic.mp4",
     aspectRatio: "9:16",
   },
   {
     id: "reel-02",
     category: "TREATMENTS",
     title: "Precision Behind Every Treatment",
-    videoUrl: "/videos/reel-02.mp4",
+    videoUrl: "/videos/ciatn/facial-aesthetics.mp4",
     aspectRatio: "9:16",
   },
   {
     id: "reel-03",
     category: "EXPERTISE",
     title: "Meet Dr. Akshaya Jain",
-    videoUrl: "/videos/reel-03.mp4",
+    videoUrl: "/videos/booster shots.mp4",
     aspectRatio: "9:16",
   },
   {
     id: "reel-04",
     category: "TECHNOLOGY",
     title: "Advanced Aesthetic Technology",
-    videoUrl: "/videos/reel-04.mp4",
+    videoUrl: "/videos/ciatn/laser-technology.mp4",
     aspectRatio: "9:16",
   },
   {
     id: "reel-05",
     category: "TRANSFORMATIONS",
     title: "Natural-Looking Results",
-    videoUrl: "/videos/reel-05.mp4",
+    videoUrl: "/videos/ciatn/botox-fillers.mp4",
     aspectRatio: "9:16",
   },
 ];
@@ -158,10 +158,10 @@ export default function EditorialReelsSection() {
               <button
                 type="button"
                 onClick={() => setActiveReel(reel)}
-                data-cursor="PLAY"
+                data-cursor="VIEW"
                 className="w-full aspect-[9/16] bg-[#1C3329] border border-[#F5F5DC]/20 rounded-xl p-6 flex flex-col justify-between relative group/card hover:border-[#C9A227] transition-all duration-500 overflow-hidden text-left shadow-lg cursor-pointer cinematic-card-lift cinematic-img-container"
               >
-                {/* Background Video preview if available */}
+                {/* Background Live Autoplay Video */}
                 {reel.videoUrl && (
                   <video
                     src={reel.videoUrl}
@@ -169,28 +169,23 @@ export default function EditorialReelsSection() {
                     loop
                     playsInline
                     autoPlay
-                    className="absolute inset-0 w-full h-full object-cover opacity-60 group-hover/card:scale-105 group-hover/card:opacity-80 transition-all duration-700 pointer-events-none"
+                    aria-hidden="true"
+                    className="absolute inset-0 w-full h-full object-cover object-center opacity-90 transition-transform duration-700 pointer-events-none md:group-hover/card:scale-[1.02]"
                   />
                 )}
 
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329] via-[#1C3329]/30 to-transparent z-0 pointer-events-none" />
+                {/* Soft Gradient Overlay for Text Contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329]/90 via-[#1C3329]/30 to-transparent z-10 pointer-events-none" />
 
                 {/* Top Badge */}
-                <div className="relative z-10">
+                <div className="relative z-20">
                   <span className="inline-block font-label-caps text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#F5F5DC] font-semibold px-2.5 py-1 bg-[#17251E]/80 border border-[#F5F5DC]/20 rounded-xs backdrop-blur-sm">
                     {reel.category}
                   </span>
                 </div>
 
-                {/* Centered Play Indicator */}
-                <div className="relative z-10 my-auto flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full border border-[#F5F5DC]/40 bg-[#17251E]/60 backdrop-blur-md flex items-center justify-center text-[#F5F5DC] group-hover/card:scale-110 group-hover/card:bg-[#C9A227] group-hover/card:text-[#17251E] group-hover/card:border-[#C9A227] transition-all duration-300 shadow-md">
-                    <span className="material-symbols-outlined text-xl translate-x-0.5">play_arrow</span>
-                  </div>
-                </div>
-
                 {/* Bottom Title */}
-                <div className="relative z-10 space-y-1">
+                <div className="relative z-20 space-y-1 mt-auto">
                   <h4 className="font-display text-[18px] sm:text-[20px] leading-snug text-[#F5F5DC] font-normal">
                     {reel.title}
                   </h4>
@@ -232,4 +227,3 @@ export default function EditorialReelsSection() {
     </section>
   );
 }
-
