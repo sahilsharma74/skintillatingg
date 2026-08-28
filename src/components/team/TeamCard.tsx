@@ -61,17 +61,17 @@ export default function TeamCard({
       <div className="p-6 flex flex-col flex-grow justify-between space-y-4">
         <div>
           <span className="font-label-caps text-[10px] tracking-[0.16em] uppercase text-[#1C3329]/75 block mb-1 font-semibold">
-            {member.role}
+            {member.role || `POSITION ${member.displayOrder || ""}`}
           </span>
           <h4 className="font-display text-2xl text-[#17251E] font-normal leading-snug">
-            {member.name}
+            {member.name || `Team Member ${member.displayOrder || 3} (Draft)`}
           </h4>
           <p className="font-body-md text-xs text-[#1C3329]/80 font-medium mt-1">
-            {member.specialization}
+            {member.specialization || "Unpublished / Ready to Edit"}
           </p>
         </div>
 
-        <p className="font-body-md text-xs sm:text-sm text-[#1C3329]/90 leading-relaxed font-light">
+        <p className="font-body-md text-xs sm:text-sm text-[#1C3329]/90 leading-relaxed font-light whitespace-pre-line">
           {member.bio}
         </p>
 

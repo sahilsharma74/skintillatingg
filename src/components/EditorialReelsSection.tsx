@@ -23,7 +23,7 @@ export const REELS_DATA: ReelItem[] = [
     id: "reel-02",
     category: "TREATMENTS",
     title: "Precision Behind Every Treatment",
-    videoUrl: "/videos/ciatn/facial-aesthetics.mp4",
+    videoUrl: "/videos/Precision Behind Every TREATMENTS.mp4",
     aspectRatio: "9:16",
   },
   {
@@ -37,7 +37,7 @@ export const REELS_DATA: ReelItem[] = [
     id: "reel-04",
     category: "TECHNOLOGY",
     title: "Advanced Aesthetic Technology",
-    videoUrl: "/videos/ciatn/laser-technology.mp4",
+    videoUrl: "/videos/Advanced Aesthetic Technology.mp4",
     aspectRatio: "9:16",
   },
   {
@@ -105,9 +105,8 @@ export default function EditorialReelsSection() {
                 onClick={() => handleScroll("left")}
                 disabled={!canScrollLeft}
                 aria-label="Previous reels"
-                className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${
-                  canScrollLeft ? "opacity-100 hover:bg-[#F5F5DC]/10 hover:border-[#C9A227] cursor-pointer" : "opacity-30 cursor-default"
-                }`}
+                className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${canScrollLeft ? "opacity-100 hover:bg-[#F5F5DC]/10 hover:border-[#C9A227] cursor-pointer" : "opacity-30 cursor-default"
+                  }`}
               >
                 <span className="material-symbols-outlined text-sm">chevron_left</span>
               </button>
@@ -117,9 +116,8 @@ export default function EditorialReelsSection() {
                 onClick={() => handleScroll("right")}
                 disabled={!canScrollRight}
                 aria-label="Scroll more reels"
-                className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${
-                  canScrollRight ? "opacity-100 hover:bg-[#F5F5DC]/10 hover:border-[#C9A227] cursor-pointer" : "opacity-30 cursor-default"
-                }`}
+                className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${canScrollRight ? "opacity-100 hover:bg-[#F5F5DC]/10 hover:border-[#C9A227] cursor-pointer" : "opacity-30 cursor-default"
+                  }`}
               >
                 <span className="material-symbols-outlined text-sm">chevron_right</span>
               </button>
@@ -145,7 +143,7 @@ export default function EditorialReelsSection() {
                   <span className="italic text-[#F5F5DC]">Excellence in Every Detail.</span>
                 </h3>
               </div>
-              
+
               <p className="font-body-md text-[14px] text-[#F5F5DC]/85 leading-relaxed font-light pt-6">
                 A closer look at the expertise, clinical technology and bespoke care behind every Skintillatingg treatment.
               </p>
@@ -161,7 +159,7 @@ export default function EditorialReelsSection() {
                 data-cursor="VIEW"
                 className="w-full aspect-[9/16] bg-[#1C3329] border border-[#F5F5DC]/20 rounded-xl p-6 flex flex-col justify-between relative group/card hover:border-[#C9A227] transition-all duration-500 overflow-hidden text-left shadow-lg cursor-pointer cinematic-card-lift cinematic-img-container"
               >
-                {/* Background Live Autoplay Video */}
+                {/* Background Live Autoplay Video (Full Opacity, Natural Colors) */}
                 {reel.videoUrl && (
                   <video
                     src={reel.videoUrl}
@@ -170,12 +168,12 @@ export default function EditorialReelsSection() {
                     playsInline
                     autoPlay
                     aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover object-center opacity-90 transition-transform duration-700 pointer-events-none md:group-hover/card:scale-[1.02]"
+                    className="absolute inset-0 w-full h-full object-cover object-center opacity-100 transition-transform duration-700 pointer-events-none md:group-hover/card:scale-[1.02]"
                   />
                 )}
 
-                {/* Soft Gradient Overlay for Text Contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329]/90 via-[#1C3329]/30 to-transparent z-10 pointer-events-none" />
+                {/* Neutral Gradient Overlay for Text Contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 pointer-events-none" />
 
                 {/* Top Badge */}
                 <div className="relative z-20">

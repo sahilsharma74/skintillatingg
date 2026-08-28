@@ -61,7 +61,7 @@ const PROGRAM_CATALOGUE: ProgramItem[] = [
     eligibility: "Medical Doctors & Trichologists",
     certification: "Advanced Diploma in Clinical Trichology",
     keyLearning: ["Digital Trichoscopy", "GFC & PRP Protocol", "Scalp Microbiome Assessment", "Alopecia Subtype Profiling"],
-    image: "/images/TECHNOLOGY TRAINING CAREER/imagerfffvsvg.png"
+    image: "/images/TECHNOLOGY TRAINING CAREER/image copy.png"
   },
   {
     id: "botox-fillers",
@@ -154,7 +154,7 @@ export default function TrainingPage() {
             />
             {/* Subtle Gradient Overlay for Readability */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
-            
+
             {/* Direct Text Positioned near Lower-Left (No Black Rectangle Card) */}
             <div className="absolute bottom-6 left-6 sm:bottom-10 sm:left-10 md:bottom-12 md:left-12 right-6 sm:right-10 max-w-2xl space-y-2 pointer-events-none">
               <span className="font-label-caps text-xs sm:text-sm tracking-[0.2em] text-[#C9A227] uppercase font-semibold block drop-shadow-sm">
@@ -174,7 +174,7 @@ export default function TrainingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
               <img
-                src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.00.49_739ab8e2.jpg"
+                src="/images/TECHNOLOGY TRAINING CAREER/rg2.avif"
                 alt="CIATN Clinical Classroom and Consultation Training"
                 className="w-full h-full object-cover object-center"
               />
@@ -357,7 +357,7 @@ export default function TrainingPage() {
 
           <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E]">
             <img
-              src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.22_26d4540b.jpg"
+              src="/images/TECHNOLOGY TRAINING CAREER/rg3.avif"
               alt="CIATN Interactive Classroom Session"
               className="w-full h-full object-cover object-center"
             />

@@ -17,9 +17,9 @@ const MODALITIES_DATA: ModalityVideo[] = [
     id: "laser-tech",
     number: "01",
     categoryLabel: "LASER TECHNOLOGY",
-    title: "Laser Technology",
+    title: "Advanced Aesthetic Technology",
     description: "Hands-on calibration and operational training on Q-Switched, Picosecond, and Fractional laser systems for dermal remodeling.",
-    videoUrl: "/videos/ciatn/laser-technology.mp4"
+    videoUrl: "/videos/Advanced Aesthetic Technology.mp4"
   },
   {
     id: "trichology",
@@ -178,8 +178,8 @@ const ModalityCard: React.FC<ModalityCardProps> = ({ item }) => {
             className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover/video:scale-[1.03]"
           />
 
-          {/* Subtle Gradient Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/70 via-transparent to-transparent pointer-events-none" />
+          {/* Subtle Neutral Gradient Overlay for Contrast */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none" />
 
           {/* Category Tag */}
           <div className="absolute top-3 left-3 bg-[#1C3329]/90 text-[#C9A227] font-label-caps text-[9px] tracking-widest uppercase px-2.5 py-1 rounded border border-[#C9A227]/30 backdrop-blur-xs">

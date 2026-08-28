@@ -1,0 +1,224 @@
+{
+  "home": {
+    "id": "home",
+    "name": "Home",
+    "slug": "/",
+    "status": "Published",
+    "lastPublished": "2026-08-26T07:12:48.072Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Hero Section",
+        "label": "DR. AKSHAYA JAIN",
+        "title": "Medical Rejuvenation & Cosmetic Aesthetics",
+        "description": "Uniting dermatological rigour with bespoke non-surgical aesthetics.",
+        "image": "/images/hero-bg.jpg",
+        "buttonText": "BOOK CONSULTATION",
+        "buttonUrl": "/book-consultation",
+        "isVisible": true,
+        "order": 1
+      },
+      {
+        "id": "stats",
+        "name": "Clinical Statistics",
+        "title": "Excellence in Numbers",
+        "description": "13+ Years Practice • 10,000+ Patient Transformations • 3 National Awards",
+        "isVisible": true,
+        "order": 2
+      },
+      {
+        "id": "practice_highlights",
+        "name": "Inside the Clinic Video Reel",
+        "label": "CLINIC",
+        "title": "Inside the Skintillatingg Clinic",
+        "videoUrl": "/videos/inside the skintillatingg clinic.mp4",
+        "isVisible": true,
+        "order": 3
+      },
+      {
+        "id": "editorial_intro",
+        "name": "Editorial Introduction",
+        "label": "THE SKINTILLATINGG PHILOSOPHY",
+        "title": "Precision in Practice. Excellence in Every Detail.",
+        "description": "A sanctuary dedicated to skin health, hair restoration, and non-surgical facial sculpting.",
+        "isVisible": true,
+        "order": 4
+      },
+      {
+        "id": "celebrity_reviews",
+        "name": "Celebrity Reviews & Endorsements",
+        "title": "Client Testimonials & Press",
+        "isVisible": true,
+        "order": 5
+      },
+      {
+        "id": "sanctuary",
+        "name": "Koregaon Park Sanctuary",
+        "title": "Flagship Clinic",
+        "description": "State-of-the-art Pune sanctuary with FDA-approved technology.",
+        "image": "/images/sanctuary-exterior.jpg",
+        "isVisible": true,
+        "order": 6
+      },
+      {
+        "id": "services_bento",
+        "name": "Specialized Therapies Bento",
+        "title": "Clinical Services",
+        "isVisible": true,
+        "order": 7
+      }
+    ]
+  },
+  "journey": {
+    "id": "journey",
+    "name": "Our Journey",
+    "slug": "/journey",
+    "status": "Published",
+    "lastPublished": "2026-08-26T07:12:48.075Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Journey Hero",
+        "label": "OUR STORY",
+        "title": "The Skintillatingg Vision",
+        "description": "Building Pune's premier medical-aesthetic clinic.",
+        "isVisible": true,
+        "order": 1
+      },
+      {
+        "id": "philosophy",
+        "name": "Clinical Philosophy",
+        "title": "Dermatological Rigour & Natural Results",
+        "isVisible": true,
+        "order": 2
+      }
+    ]
+  },
+  "treatments": {
+    "id": "treatments",
+    "name": "Treatments Catalogue",
+    "slug": "/treatments",
+    "status": "Published",
+    "lastPublished": "2026-08-26T07:12:48.075Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Catalogue Hero",
+        "label": "CLINICAL SERVICES",
+        "title": "Treatment Catalogue",
+        "description": "Explore evidence-based cosmetic dermatology and specialized hair treatments.",
+        "isVisible": true,
+        "order": 1
+      }
+    ]
+  },
+  "technology": {
+    "id": "technology",
+    "name": "Technology & Equipment",
+    "slug": "/technology",
+    "status": "Published",
+    "lastPublished": "2026-08-26T07:12:48.075Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Technology Hero",
+        "label": "CIATN ECOSYSTEM",
+        "title": "Advanced Clinical Technology",
+        "description": "FDA-approved laser systems and precision dermal delivery platforms.",
+        "isVisible": true,
+        "order": 1
+      }
+    ]
+  },
+  "training": {
+    "id": "training",
+    "name": "Training & Education",
+    "slug": "/training",
+    "status": "Published",
+    "lastPublished": "2026-08-26T07:12:48.075Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Training Hero",
+        "label": "CIATN ACADEMY",
+        "title": "Clinical Aesthetic Training",
+        "description": "Hands-on physician and therapist training in aesthetic procedures.",
+        "image": "/images/rg.avif",
+        "isVisible": true,
+        "order": 1
+      }
+    ]
+  },
+  "career": {
+    "id": "career",
+    "name": "Career & Culture",
+    "slug": "/career",
+    "status": "Published",
+    "lastPublished": "2026-08-26T07:12:48.075Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Career Hero",
+        "label": "JOIN OUR PRACTICE",
+        "title": "Careers at Skintillatingg",
+        "description": "Join an elite team of dermatologists, therapists, and concierge specialists.",
+        "isVisible": true,
+        "order": 1
+      }
+    ]
+  },
+  "team": {
+    "id": "team",
+    "name": "Team Directory",
+    "slug": "/team",
+    "status": "Draft",
+    "lastPublished": "2026-08-26T07:12:48.075Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Team Hero",
+        "label": "THE PEOPLE BEHIND THE PRACTICE",
+        "title": "Meet the Team",
+        "description": "Experienced professionals united by precision and clinical care.",
+        "isVisible": true,
+        "order": 1
+      }
+    ]
+  },
+  "contact": {
+    "id": "contact",
+    "name": "Contact & Location",
+    "slug": "/contact",
+    "status": "Published",
+    "lastPublished": "2026-08-26T07:12:48.075Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Contact Hero",
+        "label": "PRACTICE LOCATION",
+        "title": "Contact & Appointments",
+        "description": "Koregaon Park & Boat Club Road Sanctuary, Pune.",
+        "isVisible": true,
+        "order": 1
+      }
+    ]
+  },
+  "book-consultation": {
+    "id": "book-consultation",
+    "name": "Book Consultation",
+    "slug": "/book-consultation",
+    "status": "Published",
+    "lastPublished": "2026-08-26T07:12:48.075Z",
+    "sections": [
+      {
+        "id": "hero",
+        "name": "Booking Hero",
+        "label": "PERSONALIZED CARE",
+        "title": "Schedule Your Consultation",
+        "description": "Private consultation with Dr. Akshaya Jain or clinical specialist.",
+        "isVisible": true,
+        "order": 1
+      }
+    ]
+  }
+}

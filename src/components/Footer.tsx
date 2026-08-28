@@ -101,6 +101,11 @@ export default function Footer() {
                 Book Consultation →
               </Link>
             </li>
+            <li>
+              <Link className="text-[10px] font-label-caps tracking-[0.14em] text-[#AEB9A9]/50 hover:text-[#C9A227] transition-colors uppercase pt-1 inline-block" href="/admin/login">
+                Admin Login
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

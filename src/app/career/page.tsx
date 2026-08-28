@@ -15,43 +15,43 @@ const CAREER_PATHWAYS = [
     title: "Clinical Cosmetology",
     role: "Aesthetic Doctors & Clinical Practitioners",
     desc: "Diagnose cutaneous pathologies, formulate chemical resurfacing protocols, and manage clinical skin rejuvenation.",
-    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg"
+    image: "/images/TECHNOLOGY TRAINING CAREER/career-pathway-01.png"
   },
   {
     title: "Laser & Aesthetic Technology",
     role: "Clinical Laser Specialists",
     desc: "Operate medical-grade Q-Switched, Diode, and Fractional laser systems with strict wavelength safety and fluence calibration.",
-    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-12-13 at 7.38.55 PM (1).jpeg"
+    image: "/images/TECHNOLOGY TRAINING CAREER/career-pathway-02.png"
   },
   {
     title: "Trichology",
     role: "Hair & Scalp Specialists",
     desc: "Perform digital trichoscopic mapping, autologous growth factor concentrate (GFC) therapy, and scalp microbiome management.",
-    image: "/images/TECHNOLOGY TRAINING CAREER/imagerfffvsvg.png"
+    image: "/images/TECHNOLOGY TRAINING CAREER/career-pathway-03.png"
   },
   {
     title: "Facial Aesthetics",
     role: "Facial Aesthetic Injectors",
     desc: "Perform 3D facial vector assessment, micro-dosing injectables, and tissue vectoring under strict anatomical safety protocols.",
-    image: "/images/TECHNOLOGY TRAINING CAREER/image.png"
+    image: "/images/TECHNOLOGY TRAINING CAREER/career-pathway-04.png"
   },
   {
     title: "Aesthetic Clinics",
     role: "Clinic Managers & Operations Leads",
     desc: "Oversee multi-disciplinary clinical operations, patient care standards, safety compliance, and treatment scheduling.",
-    image: "/images/TECHNOLOGY TRAINING CAREER/IMG-20251129-WA0013.jpg"
+    image: "/images/TECHNOLOGY TRAINING CAREER/career-pathway-05.png"
   },
   {
     title: "Wellness & Beauty",
     role: "Aesthetic Therapists & Wellness Leads",
     desc: "Deliver high-end non-invasive skin therapies, advanced medi-facials, and holistic wellness procedures.",
-    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.00.49_739ab8e2.jpg"
+    image: "/images/TECHNOLOGY TRAINING CAREER/career-pathway-06.png"
   },
   {
     title: "Private Practice / Entrepreneurship",
     role: "Clinic Founders & Practice Owners",
     desc: "Establish independent aesthetic clinic facilities with comprehensive understanding of machine acquisition, legal compliance, and branding.",
-    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.22_26d4540b.jpg"
+    image: "/images/TECHNOLOGY TRAINING CAREER/career-pathway-07.png"
   }
 ];
 
@@ -112,13 +112,13 @@ export default function CareerPage() {
                   alt="Professional Aesthetic Practice Career Pathway"
                   className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329]/90 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 p-4 bg-[#17251E]/90 border border-[#AEB9A9]/20 rounded-lg backdrop-blur-sm">
-                  <span className="font-label-caps text-[10px] tracking-widest text-[#C9A227] uppercase font-semibold block mb-1">
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute bottom-6 left-6 right-6 space-y-1 pointer-events-none">
+                  <span className="font-label-caps text-[10px] tracking-widest text-[#C9A227] uppercase font-semibold block drop-shadow-sm">
                     PROFESSIONAL DEVELOPMENT
                   </span>
-                  <p className="font-body-md text-xs text-[#F5F5DC]/90 font-light">
-                    Empowering Medical & Aesthetic Practitioners for Career Growth
+                  <p className="font-body-md text-xs text-[#F5F5DC] font-light drop-shadow-md">
+                    Empowering Medical &amp; Aesthetic Practitioners for Career Growth
                   </p>
                 </div>
               </div>
@@ -288,7 +288,7 @@ export default function CareerPage() {
 
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
               <img
-                src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.22_26d4540b.jpg"
+                src="/images/TECHNOLOGY TRAINING CAREER/faculty-mentorship.png"
                 alt="Faculty Mentorship Session"
                 className="w-full h-full object-cover object-center"
               />
@@ -348,7 +348,7 @@ export default function CareerPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
               <img
-                src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.22_26d4540b.jpg"
+                src="/images/TECHNOLOGY TRAINING CAREER/image copy 2.png"
                 alt="Clinical Practice Setup Guidance"
                 className="w-full h-full object-cover object-center"
               />

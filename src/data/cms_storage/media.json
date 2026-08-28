@@ -1,0 +1,34 @@
+[
+  {
+    "id": "m-1",
+    "filename": "inside the skintillatingg clinic.mp4",
+    "url": "/videos/inside the skintillatingg clinic.mp4",
+    "type": "video",
+    "category": "Clinic",
+    "uploadedAt": "2026-08-26T07:12:48.078Z"
+  },
+  {
+    "id": "m-2",
+    "filename": "dr-akshaya-jain.jpg",
+    "url": "/images/dr-akshaya-jain.jpg",
+    "type": "image",
+    "category": "Team",
+    "uploadedAt": "2026-08-26T07:12:48.078Z"
+  },
+  {
+    "id": "m-3",
+    "filename": "rg.avif",
+    "url": "/images/rg.avif",
+    "type": "image",
+    "category": "Training",
+    "uploadedAt": "2026-08-26T07:12:48.079Z"
+  },
+  {
+    "id": "m-4",
+    "filename": "booster shots.mp4",
+    "url": "/videos/booster shots.mp4",
+    "type": "video",
+    "category": "Treatments",
+    "uploadedAt": "2026-08-26T07:12:48.079Z"
+  }
+]

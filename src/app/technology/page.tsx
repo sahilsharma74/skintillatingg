@@ -28,7 +28,7 @@ const TECH_CATEGORIES = [
     title: "Trichology Diagnostics",
     desc: "Digital trichoscopic scalp mapping, scalp microbiome evaluation, and autologous growth factor infusion systems.",
     tag: "HAIR & SCALP",
-    image: "/images/TECHNOLOGY TRAINING CAREER/imagerfffvsvg.png"
+    image: "/images/TECHNOLOGY TRAINING CAREER/image copy.png"
   },
   {
     title: "Skin & Cosmetology",
@@ -46,7 +46,7 @@ const TECH_CATEGORIES = [
     title: "Clinical Diagnostics",
     desc: "Multispectral UV skin analysis, vascular imaging, and quantitative dermal hydration measurement technology.",
     tag: "CUTANEOUS MAPPING",
-    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.00.49_739ab8e2.jpg"
+    image: "/images/TECHNOLOGY TRAINING CAREER/clinical_skin_analysis_multispectral.png"
   }
 ];
 
@@ -99,12 +99,11 @@ export default function TechnologyPage() {
             <div className="lg:col-span-5">
               <div className="relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 shadow-2xl aspect-[4/3] bg-[#17251E]/80 group cinematic-img-container" data-cursor="VIEW">
                 <img
-                  src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-12-13 at 7.38.55 PM (1).jpeg"
+                  src="/images/TECHNOLOGY TRAINING CAREER/enhanced_1787819145374_rg.png"
                   alt="CIATN Clinical Technology & Equipment Suite"
                   className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1C3329]/90 via-transparent to-transparent" />
-                <div className="absolute bottom-6 left-6 right-6 p-4 bg-[#17251E]/90 border border-[#AEB9A9]/20 rounded-lg backdrop-blur-sm">
+                <div className="absolute bottom-6 left-6 right-6 bg-transparent">
                   <span className="font-label-caps text-[10px] tracking-widest text-[#C9A227] uppercase font-semibold block mb-1">
                     CLINICAL LEARNING ENVIRONMENT
                   </span>
@@ -124,7 +123,7 @@ export default function TechnologyPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
               <img
-                src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg"
+                src="/images/TECHNOLOGY TRAINING CAREER/raw.png"
                 alt="Practical Equipment Demonstration at CIATN"
                 className="w-full h-full object-cover object-center"
               />
@@ -332,60 +331,82 @@ export default function TechnologyPage() {
       </section>
 
       {/* SECTION 07 — TECHNOLOGY IN TRAINING */}
-      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 space-y-6">
-            <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
-              TRAINING PROGRESSION
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC] font-normal leading-tight">
-              From Demonstration to Hands-On Experience
-            </h2>
-            <p className="font-body-md text-sm sm:text-base text-[#F5F5DC]/85 leading-relaxed font-light">
-              Students progress step-by-step from observing senior doctors to operating clinical equipment under direct supervision.
-            </p>
-
-            <div className="space-y-4 pt-2">
-              <div className="flex items-start gap-4 p-4 bg-[#17251E]/90 border border-[#657A6A]/30 rounded-lg">
-                <span className="w-8 h-8 rounded-full bg-[#1C3329] border border-[#C9A227]/50 text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0">1</span>
-                <div>
-                  <h4 className="font-display text-base text-[#F5F5DC]">Expert Demonstration</h4>
-                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Senior clinical faculty showcase machine setup and procedure protocols.</p>
-                </div>
+      <section className="bg-[#F1EFE4] text-[#252522] py-20 sm:py-24 border-b border-[#657A6A]/20 overflow-hidden">
+        <div className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 xl:gap-14 items-center">
+            {/* LEFT COLUMN — CONTENT & 3 PROGRESSION CARDS */}
+            <div className="lg:col-span-6 space-y-6 lg:space-y-7">
+              <div>
+                <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-bold block mb-3">
+                  TRAINING PROGRESSION
+                </span>
+                <h2 className="font-display text-3xl sm:text-4xl lg:text-[46px] text-[#252522] font-normal leading-[1.12] mb-4">
+                  From Demonstration to Hands-On <br className="hidden sm:inline" />
+                  Experience
+                </h2>
+                <p className="font-body-md text-sm sm:text-base text-[#252522]/80 leading-relaxed font-light max-w-xl">
+                  Students progress step-by-step from observing senior doctors to operating clinical equipment under direct supervision.
+                </p>
               </div>
 
-              <div className="flex items-start gap-4 p-4 bg-[#17251E]/90 border border-[#657A6A]/30 rounded-lg">
-                <span className="w-8 h-8 rounded-full bg-[#1C3329] border border-[#C9A227]/50 text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0">2</span>
-                <div>
-                  <h4 className="font-display text-base text-[#F5F5DC]">Student Observation</h4>
-                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Close-up observation of real patient consultation, mapping, and treatment execution.</p>
+              <div className="space-y-4 pt-1">
+                {/* CARD 1 */}
+                <div className="flex items-center gap-4 p-5 bg-[#F9F8F3] border border-[#A6A397]/40 rounded-xl hover:border-[#C9A227] transition-all duration-300 shadow-sm">
+                  <div className="w-10 h-10 rounded-full border border-[#C9A227] text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0 bg-transparent">
+                    1
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className="font-display text-lg sm:text-[20px] text-[#252522] font-normal">
+                      Expert Demonstration
+                    </h4>
+                    <p className="font-body-md text-xs sm:text-sm text-[#252522]/75 font-light leading-relaxed">
+                      Senior clinical faculty showcase machine setup and procedure protocols.
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-start gap-4 p-4 bg-[#17251E]/90 border border-[#657A6A]/30 rounded-lg">
-                <span className="w-8 h-8 rounded-full bg-[#1C3329] border border-[#C9A227]/50 text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0">3</span>
-                <div>
-                  <h4 className="font-display text-base text-[#F5F5DC]">Guided Practice</h4>
-                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Supervised equipment handling and tactile technique practice on mannequins and models.</p>
+                {/* CARD 2 */}
+                <div className="flex items-center gap-4 p-5 bg-[#F9F8F3] border border-[#A6A397]/40 rounded-xl hover:border-[#C9A227] transition-all duration-300 shadow-sm">
+                  <div className="w-10 h-10 rounded-full border border-[#C9A227] text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0 bg-transparent">
+                    2
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className="font-display text-lg sm:text-[20px] text-[#252522] font-normal">
+                      Student Observation
+                    </h4>
+                    <p className="font-body-md text-xs sm:text-sm text-[#252522]/75 font-light leading-relaxed">
+                      Close-up observation of real patient consultation, mapping, and treatment execution.
+                    </p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="flex items-start gap-4 p-4 bg-[#17251E]/90 border border-[#657A6A]/30 rounded-lg">
-                <span className="w-8 h-8 rounded-full bg-[#1C3329] border border-[#C9A227]/50 text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0">4</span>
-                <div>
-                  <h4 className="font-display text-base text-[#F5F5DC]">Clinical Understanding</h4>
-                  <p className="font-body-md text-xs text-[#F5F5DC]/80 font-light">Independent understanding of machine settings, troubleshooting, and post-procedure protocols.</p>
+                {/* CARD 3 */}
+                <div className="flex items-center gap-4 p-5 bg-[#F9F8F3] border border-[#A6A397]/40 rounded-xl hover:border-[#C9A227] transition-all duration-300 shadow-sm">
+                  <div className="w-10 h-10 rounded-full border border-[#C9A227] text-[#C9A227] flex items-center justify-center font-display text-sm font-semibold shrink-0 bg-transparent">
+                    3
+                  </div>
+                  <div className="space-y-0.5">
+                    <h4 className="font-display text-lg sm:text-[20px] text-[#252522] font-normal">
+                      Guided Practice
+                    </h4>
+                    <p className="font-body-md text-xs sm:text-sm text-[#252522]/75 font-light leading-relaxed">
+                      Supervised equipment handling and tactile technique practice on mannequins and models.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 shadow-2xl aspect-[4/3] bg-[#17251E]">
-            <img
-              src="/images/TECHNOLOGY TRAINING CAREER/image.png"
-              alt="Hands-On Technology Practice at CIATN"
-              className="w-full h-full object-cover object-center"
-            />
+            {/* RIGHT COLUMN — CLINICAL IMAGE PANEL */}
+            <div className="lg:col-span-6 flex items-center justify-center">
+              <div className="relative rounded-[24px] overflow-hidden border border-[#A6A397]/30 shadow-md bg-[#EFECE1] w-full max-w-[400px] sm:max-w-[440px] lg:max-w-[460px] aspect-[437/652] mx-auto">
+                <img
+                  src="/images/TECHNOLOGY TRAINING CAREER/image.png"
+                  alt="Hands-On Technology Practice at CIATN"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 ease-out hover:scale-[1.02]"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
