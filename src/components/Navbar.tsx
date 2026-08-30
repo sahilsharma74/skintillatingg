@@ -29,6 +29,7 @@ export default function Navbar() {
   const isTrainingActive = pathname?.startsWith("/training");
   const isCareerActive = pathname?.startsWith("/career");
   const isTeamActive = pathname?.startsWith("/team");
+  const isGalleryActive = pathname?.startsWith("/gallery");
   const isContactActive = pathname?.startsWith("/contact");
 
   const navLinks = [
@@ -39,6 +40,7 @@ export default function Navbar() {
     { name: "TRAINING", href: "/training", active: isTrainingActive },
     { name: "CAREER", href: "/career", active: isCareerActive },
     { name: "TEAM", href: "/team", active: isTeamActive },
+    { name: "GALLERY", href: "/gallery", active: isGalleryActive },
     { name: "CONTACT", href: "/contact", active: isContactActive },
   ];
 
@@ -52,21 +54,21 @@ export default function Navbar() {
     >
       <div
         className={`max-w-[1440px] mx-auto px-4 sm:px-6 xl:px-10 flex items-center justify-between transition-all duration-500 ${
-          isScrolled ? "h-[64px]" : "h-[76px]"
+          isScrolled ? "h-[70px]" : "h-[82px]"
         }`}
       >
         {/* 1. BRAND AREA — LEFT */}
-        <Link href="/" className="flex items-center gap-3 shrink-0 group">
+        <Link href="/" className="flex items-center gap-3.5 shrink-0 group">
           <img
             src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5IT4xEX-nvIObGYulKr08O8x4bOuSASpr56qk65b6U9022MEjcZvRcqb0CKERo1tP4B1J9WA4oRGLCSjAg6KALbhwDgcSsdZNiusRA7HDmBijlJYhhGL8Cr5lPLR85NIlzPf0Hxhh1ssPAdrnx91V4oj2xI8hOWHia1uHuIifMt92W7Q--2makgCx7JZOKjEJ6G95GfbUQ0DxZWIRX_rH7hP00kA1M-teY_CBlB1U6HqgR6kRS-HIBz8h1nOdhilV"
             alt="Skintillatingg Logo"
-            className="h-9 sm:h-10 w-auto object-contain group-hover:opacity-90 transition-opacity"
+            className="h-11 sm:h-12 lg:h-[52px] w-auto object-contain group-hover:opacity-90 transition-opacity"
           />
           <div className="flex flex-col justify-center">
-            <span className="font-display text-[18px] sm:text-[19px] leading-none tracking-tight text-[#F5F5DC]">
+            <span className="font-display text-[20px] sm:text-[22px] lg:text-[24px] leading-none tracking-tight text-[#F5F5DC]">
               Skintillatingg
             </span>
-            <span className="font-label-caps text-[8px] sm:text-[8.5px] tracking-[0.22em] text-[#AEB9A9] uppercase mt-1 font-medium leading-none">
+            <span className="font-label-caps text-[8.5px] sm:text-[9.5px] lg:text-[10px] tracking-[0.22em] text-[#AEB9A9] uppercase mt-1 font-medium leading-none">
               DR. AKSHAYA JAIN
             </span>
           </div>

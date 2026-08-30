@@ -563,52 +563,6 @@ export default function TrainingPage() {
         </div>
       </section>
 
-      {/* SECTION 12 — STUDENT EXPERIENCE */}
-      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
-        <div className="space-y-10">
-          <div className="text-center max-w-2xl mx-auto">
-            <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
-              CAMPUS LIFE
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC] mt-2">
-              Learn. Practice. Connect. Grow.
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="relative rounded-xl overflow-hidden border border-[#657A6A]/30 aspect-[4/3] bg-[#17251E]">
-              <img src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.00.49_739ab8e2.jpg" alt="Student Learning" className="w-full h-full object-cover" />
-            </div>
-            <div className="relative rounded-xl overflow-hidden border border-[#657A6A]/30 aspect-[4/3] bg-[#17251E]">
-              <img src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg" alt="Practical Session" className="w-full h-full object-cover" />
-            </div>
-            <div className="relative rounded-xl overflow-hidden border border-[#657A6A]/30 aspect-[4/3] bg-[#17251E]">
-              <img src="/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.22_26d4540b.jpg" alt="Faculty Guidance" className="w-full h-full object-cover" />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 13 — VIDEO & TESTIMONIALS */}
-      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
-        <div className="space-y-8 text-center max-w-3xl mx-auto">
-          <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
-            PRACTITIONER TESTIMONIALS
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
-            What Our Students Say
-          </h2>
-          <blockquote className="bg-[#17251E]/90 border border-[#657A6A]/30 p-8 rounded-xl text-left space-y-4">
-            <p className="font-body-md text-sm sm:text-base text-[#F5F5DC]/90 italic font-light leading-relaxed">
-              &quot;The hands-on laser calibration and doctor-supervised clinical demonstrations gave me the confidence to introduce laser hair reduction and medical peels in my practice.&quot;
-            </p>
-            <div className="font-label-caps text-xs text-[#C9A227] font-semibold uppercase">
-              — Clinical Cosmetology Graduate
-            </div>
-          </blockquote>
-        </div>
-      </section>
-
       {/* SECTION 14 — TRAINING CTA */}
       <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20">
         <div className="bg-[#657A6A] text-[#F5F5DC] rounded-2xl p-8 sm:p-12 md:p-16 text-center shadow-2xl relative overflow-hidden">

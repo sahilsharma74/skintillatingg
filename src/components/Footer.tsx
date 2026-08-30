@@ -92,6 +92,11 @@ export default function Footer() {
               </Link>
             </li>
             <li>
+              <Link className="hover:text-[#F5F5DC] transition-colors" href="/gallery">
+                Visual Journal
+              </Link>
+            </li>
+            <li>
               <Link className="hover:text-[#F5F5DC] transition-colors" href="/contact">
                 Contact &amp; Sanctuary
               </Link>

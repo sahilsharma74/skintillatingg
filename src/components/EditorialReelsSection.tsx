@@ -40,13 +40,6 @@ export const REELS_DATA: ReelItem[] = [
     videoUrl: "/videos/Advanced Aesthetic Technology.mp4",
     aspectRatio: "9:16",
   },
-  {
-    id: "reel-05",
-    category: "TRANSFORMATIONS",
-    title: "Natural-Looking Results",
-    videoUrl: "/videos/ciatn/botox-fillers.mp4",
-    aspectRatio: "9:16",
-  },
 ];
 
 export default function EditorialReelsSection() {

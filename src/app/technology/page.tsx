@@ -50,14 +50,6 @@ const TECH_CATEGORIES = [
   }
 ];
 
-const GALLERY_IMAGES = [
-  { url: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-12-13 at 7.38.55 PM (1).jpeg", title: "Laser Workstation Calibration", caption: "Precision Energy Fluence Tuning" },
-  { url: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg", title: "Clinical Demonstration", caption: "Supervised Practitioner Learning" },
-  { url: "/images/TECHNOLOGY TRAINING CAREER/imagegsdgbeagv.png", title: "Trichoscopic Scalp Analysis", caption: "Follicular Vitality Mapping" },
-  { url: "/images/TECHNOLOGY TRAINING CAREER/image.png", title: "Facial Vectoring Assessment", caption: "3D Structural Planning" },
-  { url: "/images/TECHNOLOGY TRAINING CAREER/IMG-20251129-WA0013.jpg", title: "Clinical Equipment Suite", caption: "Multi-Modality Operating Suite" }
-];
-
 export default function TechnologyPage() {
   return (
     <main className="min-h-screen bg-[#1C3329] text-[#F5F5DC] overflow-x-hidden pt-20">
@@ -411,48 +403,6 @@ export default function TechnologyPage() {
         </div>
       </section>
 
-      {/* SECTION 08 — EDITORIAL PHOTO GALLERY */}
-      <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
-        <div className="space-y-10">
-          <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-[#657A6A]/30 pb-6">
-            <div>
-              <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold block mb-1">
-                CLINICAL ENVIRONMENT
-              </span>
-              <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
-                Equipment & Environment Gallery
-              </h2>
-            </div>
-            <span className="font-label-caps text-xs text-[#AEB9A9]">
-              CIATN Training Facilities
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {GALLERY_IMAGES.map((img, idx) => (
-              <div
-                key={idx}
-                className="group relative overflow-hidden rounded-xl border border-[#657A6A]/30 bg-[#17251E] aspect-[4/3] shadow-lg"
-              >
-                <img
-                  src={img.url}
-                  alt={img.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/90 via-[#17251E]/20 to-transparent opacity-90 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute bottom-4 left-4 right-4 space-y-1">
-                  <span className="font-label-caps text-[9px] tracking-widest text-[#C9A227] uppercase font-semibold block">
-                    {img.caption}
-                  </span>
-                  <h4 className="font-display text-lg text-[#F5F5DC] font-normal">
-                    {img.title}
-                  </h4>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* SECTION 09 — TECHNOLOGY CTA */}
       <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20">

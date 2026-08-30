@@ -33,9 +33,14 @@ export default function MagazineCursor() {
       const cursorTarget = target?.closest('[data-cursor]') as HTMLElement | null;
 
       if (cursorTarget) {
-        const cursorLabel = cursorTarget.getAttribute('data-cursor') || 'EXPLORE';
-        setLabel(cursorLabel);
-        setIsVisible(true);
+        const cursorLabel = cursorTarget.getAttribute('data-cursor');
+        if (cursorLabel && cursorLabel.toUpperCase() !== 'EXPLORE') {
+          setLabel(cursorLabel);
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+          setLabel(null);
+        }
       } else {
         setIsVisible(false);
         setLabel(null);
