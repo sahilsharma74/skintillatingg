@@ -58,37 +58,47 @@ export default function TeamCard({
       </div>
 
       {/* Content Body */}
-      <div className="p-6 flex flex-col flex-grow justify-between space-y-4">
-        <div>
-          <span className="font-label-caps text-[10px] tracking-[0.16em] uppercase text-[#1C3329]/75 block mb-1 font-semibold">
-            {member.role || `POSITION ${member.displayOrder || ""}`}
-          </span>
-          <h4 className="font-display text-2xl text-[#17251E] font-normal leading-snug">
-            {member.name || `Team Member ${member.displayOrder || 3} (Draft)`}
-          </h4>
-          <p className="font-body-md text-xs text-[#1C3329]/80 font-medium mt-1">
-            {member.specialization || "Unpublished / Ready to Edit"}
-          </p>
-        </div>
-
-        <p className="font-body-md text-xs sm:text-sm text-[#1C3329]/90 leading-relaxed font-light whitespace-pre-line">
-          {member.bio}
-        </p>
-
-        {/* Credentials list */}
-        {member.credentials && member.credentials.length > 0 && (
-          <div className="pt-3 border-t border-[#17251E]/15 space-y-1.5 mt-auto">
-            {member.credentials.map((cred, cIdx) => (
-              <div key={cIdx} className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#C9A227] shrink-0" />
-                <span className="font-body-md text-[11px] text-[#17251E] font-medium">
-                  {cred}
-                </span>
-              </div>
-            ))}
+      {(member.name || member.role || member.specialization || member.bio || (member.credentials && member.credentials.length > 0)) && (
+        <div className="p-6 flex flex-col flex-grow justify-between space-y-4">
+          <div>
+            {member.role && (
+              <span className="font-label-caps text-[10px] tracking-[0.16em] uppercase text-[#1C3329]/75 block mb-1 font-semibold">
+                {member.role}
+              </span>
+            )}
+            {member.name && (
+              <h4 className="font-display text-2xl text-[#17251E] font-normal leading-snug">
+                {member.name}
+              </h4>
+            )}
+            {member.specialization && (
+              <p className="font-body-md text-xs text-[#1C3329]/80 font-medium mt-1">
+                {member.specialization}
+              </p>
+            )}
           </div>
-        )}
-      </div>
+
+          {member.bio && (
+            <p className="font-body-md text-xs sm:text-sm text-[#1C3329]/90 leading-relaxed font-light whitespace-pre-line">
+              {member.bio}
+            </p>
+          )}
+
+          {/* Credentials list */}
+          {member.credentials && member.credentials.length > 0 && (
+            <div className="pt-3 border-t border-[#17251E]/15 space-y-1.5 mt-auto">
+              {member.credentials.map((cred, cIdx) => (
+                <div key={cIdx} className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#C9A227] shrink-0" />
+                  <span className="font-body-md text-[11px] text-[#17251E] font-medium">
+                    {cred}
+                  </span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }

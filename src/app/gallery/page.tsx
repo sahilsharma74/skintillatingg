@@ -1,235 +1,731 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/effects/ScrollReveal";
-import { GALLERY_ITEMS, GALLERY_CATEGORIES, GalleryItem } from "@/data/gallery";
+import { GALLERY_ITEMS, GALLERY_SECTIONS, GalleryItem } from "@/data/gallery";
+import { GalleryLightbox } from "@/components/gallery/GalleryLightbox";
+
+const CATEGORIES = [
+  "ALL",
+  "CLINIC",
+  "PEOPLE",
+  "TECHNOLOGY",
+  "TRAINING",
+  "TREATMENTS",
+  "MOMENTS",
+];
 
 export default function GalleryPage() {
-  const [selectedCategory, setSelectedCategory] = useState<string>("ALL");
+  const [activeCategory, setActiveCategory] = useState<string>("ALL");
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
-  const filteredItems = selectedCategory === "ALL"
-    ? GALLERY_ITEMS
-    : GALLERY_ITEMS.filter((item) => item.category === selectedCategory);
+  // Filter items based on active category
+  const filteredItems = GALLERY_ITEMS.filter((item) => {
+    if (activeCategory === "ALL") return true;
+    return (
+      item.category.toUpperCase().includes(activeCategory) ||
+      item.sectionId.toUpperCase().includes(activeCategory)
+    );
+  });
 
-  const getAspectClass = (aspect: GalleryItem["aspect"]) => {
-    switch (aspect) {
-      case "tall-portrait":
-        return "aspect-[9/14] sm:aspect-[9/15]";
-      case "portrait":
-        return "aspect-[4/5] sm:aspect-[3/4]";
-      case "landscape":
-        return "aspect-[4/3] sm:aspect-[16/11]";
-      case "wide-landscape":
-        return "aspect-[16/9] sm:aspect-[21/9]";
-      case "square":
-        return "aspect-square";
-      case "floating":
-        return "aspect-[5/6]";
-      default:
-        return "aspect-[4/3]";
+  const openLightbox = (item: GalleryItem) => {
+    const idx = filteredItems.findIndex((i) => i.id === item.id);
+    if (idx !== -1) {
+      setLightboxIndex(idx);
     }
   };
 
-  const getColSpanClass = (id: string) => {
-    switch (id) {
-      case "gallery-01":
-        return "col-span-12 md:col-span-6 lg:col-span-7";
-      case "gallery-02":
-        return "col-span-12 md:col-span-6 lg:col-span-5";
-      case "gallery-03":
-        return "col-span-12 md:col-span-6 lg:col-span-5";
-      case "gallery-04":
-        return "col-span-12 md:col-span-12 lg:col-span-12";
-      case "gallery-05":
-        return "col-span-12 md:col-span-6 lg:col-span-4";
-      case "gallery-06":
-        return "col-span-12 md:col-span-6 lg:col-span-5";
-      case "gallery-07":
-        return "col-span-12 md:col-span-12 lg:col-span-3";
-      case "gallery-08":
-        return "col-span-12 md:col-span-8 lg:col-span-8";
-      case "gallery-09":
-        return "col-span-12 md:col-span-4 lg:col-span-4";
-      case "gallery-10":
-        return "col-span-12 md:col-span-7 lg:col-span-7";
-      case "gallery-11":
-        return "col-span-12 md:col-span-5 lg:col-span-5";
-      default:
-        return "col-span-12 md:col-span-6 lg:col-span-6";
-    }
+  const closeLightbox = () => {
+    setLightboxIndex(null);
+  };
+
+  const prevLightbox = () => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev === 0 ? filteredItems.length - 1 : prev - 1) : null
+    );
+  };
+
+  const nextLightbox = () => {
+    if (lightboxIndex === null) return;
+    setLightboxIndex((prev) =>
+      prev !== null ? (prev === filteredItems.length - 1 ? 0 : prev + 1) : null
+    );
   };
 
   return (
-    <div className="bg-[#0F241B] min-h-screen text-[#F1EFE4] selection:bg-[#C9A227]/30">
+    <div className="min-h-screen bg-[#F5F5DC] text-[#17251E] overflow-x-hidden pt-28 sm:pt-36 pb-24 selection:bg-[#C9A227] selection:text-[#17251E]">
       <Navbar />
 
-      <main className="pt-32 sm:pt-40 pb-28">
-        {/* ==================================================
-            1. PAGE HERO — MINIMAL EDITORIAL OPENING
-        ================================================== */}
-        <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto mb-16 sm:mb-24">
-          <ScrollReveal showGoldLine goldLinePosition="bottom" className="pb-10">
-            <div className="max-w-3xl space-y-4">
-              <span className="font-label-caps text-[11px] sm:text-[12px] tracking-[0.25em] uppercase text-[#C9A227] font-semibold block">
-                VISUAL JOURNAL
-              </span>
-              <h1 className="font-display text-[42px] sm:text-[60px] lg:text-[76px] text-[#F1EFE4] font-normal leading-[1.05] tracking-tight">
-                Inside Skintillatingg
-              </h1>
-              <p className="font-body-md text-[15px] sm:text-[17px] text-[#A6A397] leading-relaxed font-light pt-2 max-w-2xl">
-                A visual collection of clinical precision, education, technology, people and moments from the Skintillatingg world.
-              </p>
-            </div>
-          </ScrollReveal>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 pt-4 sm:pt-8">
+        {/* 1. PAGE IDENTITY & EDITORIAL HEADER */}
+        <header className="mb-20 sm:mb-28 border-b border-[#657A6A]/20 pb-12 sm:pb-20">
+          <div className="flex items-center space-x-3 text-[#C9A227] font-mono text-[11px] tracking-[0.25em] uppercase mb-4 sm:mb-6 font-semibold">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#C9A227]"></span>
+            <span>VISUAL JOURNAL</span>
+          </div>
 
-          {/* CATEGORY FILTER CONTROL BAR */}
-          <ScrollReveal delay={100} className="mt-8 pt-6 border-t border-[#3F463A]/50">
-            <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto scrollbar-none pb-2">
-              {GALLERY_CATEGORIES.map((cat) => {
-                const isActive = selectedCategory === cat;
-                return (
-                  <button
-                    key={cat}
-                    onClick={() => setSelectedCategory(cat)}
-                    className={`font-label-caps text-[10px] sm:text-[11px] tracking-[0.18em] uppercase px-4 py-2 rounded-xs border transition-all duration-300 shrink-0 cursor-pointer ${
-                      isActive
-                        ? "bg-[#C9A227] text-[#0F241B] border-[#C9A227] font-semibold shadow-sm"
-                        : "bg-[#17251E]/60 text-[#F1EFE4]/70 border-[#3F463A]/60 hover:text-[#F1EFE4] hover:border-[#A6A397]/50"
-                    }`}
-                  >
-                    {cat}
-                  </button>
-                );
-              })}
-            </div>
-          </ScrollReveal>
-        </section>
+          <h1 className="text-4xl sm:text-6xl lg:text-8xl font-serif tracking-tight text-[#17251E] mb-6 font-normal leading-[1.06]">
+            The Art Behind <br className="hidden sm:inline" />
+            <span className="italic font-serif font-light text-[#17251E]/95">the Precision.</span>
+          </h1>
 
-        {/* ==================================================
-            2-11. MAIN GALLERY — ASYMMETRIC MASONRY COMPOSITION
-        ================================================== */}
-        <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto">
-          <div className="grid grid-cols-12 gap-8 sm:gap-10 lg:gap-12 items-start">
-            {filteredItems.map((item, idx) => {
-              const aspectClass = getAspectClass(item.aspect);
-              const colSpanClass = getColSpanClass(item.id);
+          <p className="max-w-2xl text-base sm:text-xl text-[#657A6A] font-light leading-relaxed mb-10 sm:mb-12">
+            A visual journey through Skintillatingg — our clinic, people, technology, treatments, training, and the moments that define our practice.
+          </p>
 
+          {/* Minimal Category Filter Bar */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 pt-6 border-t border-[#657A6A]/15">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 text-[11px] font-mono tracking-[0.18em] uppercase transition-all duration-300 ${
+                  activeCategory === cat
+                    ? "bg-[#17251E] text-[#F5F5DC] font-semibold shadow-sm"
+                    : "bg-[#EBE9DA]/80 text-[#17251E]/70 hover:text-[#17251E] hover:bg-[#E0DDCB] border border-[#657A6A]/20"
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+        </header>
+
+        {/* 8 EDITORIAL ART-DIRECTED SECTIONS */}
+        <main className="space-y-24 sm:space-y-36">
+          {GALLERY_SECTIONS.map((sec) => {
+            const sectionItems = filteredItems.filter(
+              (item) => item.sectionId === sec.id
+            );
+
+            if (sectionItems.length === 0) return null;
+
+            // SECTION 01: OPENING VISUAL
+            if (sec.id === "visual-journal") {
+              const coverItem = sectionItems[0];
               return (
-                <div
-                  key={item.id}
-                  className={`${colSpanClass} relative group`}
-                >
-                  <ScrollReveal delay={100 + (idx % 3) * 120} direction="up">
-                    {/* OVERLAP TYPE 1: OFFSET NUMBER BADGE */}
-                    {item.overlapType === "offset-number" && (
-                      <div className="absolute -top-4 -left-3 z-30 font-display text-[28px] sm:text-[34px] italic text-[#C9A227] font-normal leading-none pointer-events-none drop-shadow-md">
-                        {item.number}
-                      </div>
-                    )}
+                <section key={sec.id} className="relative max-w-6xl mx-auto">
+                  <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold mb-4">
+                    <span>01 / OPENING VISUAL</span>
+                    <span className="text-[#657A6A] font-normal">01 / {GALLERY_ITEMS.length}</span>
+                  </div>
 
-                    {/* OVERLAP TYPE 2: FLOATING BADGE */}
-                    {item.overlapType === "floating-badge" && (
-                      <div className="absolute -top-3 right-4 z-30 font-label-caps text-[9px] tracking-[0.2em] uppercase text-[#0F241B] bg-[#F1EFE4] font-semibold px-3 py-1 rounded-xs shadow-md pointer-events-none">
-                        ARCHIVE ENTRY
-                      </div>
-                    )}
-
-                    {/* MAIN IMAGE CONTAINER / PLACEHOLDER CANVAS */}
-                    <div
-                      className={`w-full ${aspectClass} relative rounded-lg border border-[#3F463A]/60 hover:border-[#C9A227]/70 transition-all duration-500 overflow-hidden group-hover:shadow-[0_12px_32px_rgba(0,0,0,0.35)] flex flex-col justify-between p-6 sm:p-8 cursor-pointer`}
-                      style={{
-                        backgroundColor: item.accentColor || "#17251E",
-                      }}
-                    >
-                      {/* Subtle Architectural Wireframe Markers & Crosshairs */}
-                      <div className="absolute inset-0 bg-[radial-gradient(#F1EFE4_1px,transparent_1px)] [background-size:24px_24px] opacity-[0.03] pointer-events-none" />
-                      
-                      {/* Corner Architectural Crosshairs (+) */}
-                      <span className="absolute top-3 left-3 text-[10px] text-[#A6A397]/40 font-mono pointer-events-none">+</span>
-                      <span className="absolute top-3 right-3 text-[10px] text-[#A6A397]/40 font-mono pointer-events-none">+</span>
-                      <span className="absolute bottom-3 left-3 text-[10px] text-[#A6A397]/40 font-mono pointer-events-none">+</span>
-                      <span className="absolute bottom-3 right-3 text-[10px] text-[#A6A397]/40 font-mono pointer-events-none">+</span>
-
-                      {/* ACTUAL IMAGE OR ELEGANT PLACEHOLDER SURFACE */}
-                      {item.image ? (
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                        />
-                      ) : (
-                        /* Architectural Empty Image Canvas Placeholder */
-                        <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center group-hover:bg-[#C9A227]/5 transition-colors duration-500">
-                          <div className="w-12 h-12 rounded-full border border-[#F1EFE4]/15 flex items-center justify-center mb-3 text-[#A6A397]/60 group-hover:border-[#C9A227]/40 group-hover:text-[#C9A227] transition-all duration-500">
-                            <span className="material-symbols-outlined text-[20px]">add_a_photo</span>
-                          </div>
-                          <span className="font-label-caps text-[9px] tracking-[0.22em] uppercase text-[#A6A397]/60 group-hover:text-[#F1EFE4]/80 transition-colors">
-                            IMAGE PLACEHOLDER • {item.aspect.toUpperCase()}
-                          </span>
-                        </div>
-                      )}
-
-                      {/* Dark Neutral Gradient Overlay for Readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#0F241B]/90 via-[#0F241B]/30 to-transparent pointer-events-none" />
-
-                      {/* TOP EDITORIAL LABEL */}
-                      <div className="relative z-20 flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <span className="font-label-caps text-[9.5px] sm:text-[10.5px] tracking-[0.22em] uppercase text-[#C9A227] font-semibold">
-                            {item.number} / {item.category}
-                          </span>
-                        </div>
-
-                        <span className="font-mono text-[9px] tracking-widest text-[#A6A397]/50 uppercase hidden sm:inline-block">
-                          SKT-ARCHIVE
+                  <div
+                    onClick={() => openLightbox(coverItem)}
+                    className="group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-700 bg-[#EBE9DA]"
+                  >
+                    <div className="relative w-full h-[480px] sm:h-[620px] lg:h-[700px]">
+                      <Image
+                        src={coverItem.image}
+                        alt={coverItem.title}
+                        fill
+                        priority
+                        sizes="90vw"
+                        quality={94}
+                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
+                        style={{ objectPosition: coverItem.objectPosition || "center" }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/80 via-transparent to-transparent p-6 sm:p-12 flex flex-col justify-end">
+                        <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] mb-2 font-semibold">
+                          {coverItem.category}
                         </span>
-                      </div>
-
-                      {/* BOTTOM CAPTION BLOCK */}
-                      <div className="relative z-20 space-y-1.5 mt-auto pt-8">
-                        <h3 className="font-display text-[20px] sm:text-[24px] lg:text-[26px] text-[#F1EFE4] font-normal leading-tight group-hover:text-[#F1EFE4] transition-colors">
-                          {item.title}
-                        </h3>
-                        <p className="font-body-md text-[12px] sm:text-[13px] text-[#A6A397] font-light leading-snug">
-                          {item.subtitle}
+                        <h2 className="text-3xl sm:text-5xl font-serif text-[#F5F5DC] font-normal leading-tight">
+                          {coverItem.title}
+                        </h2>
+                        <p className="text-sm sm:text-base text-[#F5F5DC]/85 font-light mt-2 max-w-xl">
+                          {coverItem.subtitle}
                         </p>
                       </div>
                     </div>
+                  </div>
 
-                    {/* OVERLAP TYPE 3: BOTTOM-LEFT OFFSET CAPTION */}
-                    {item.overlapType === "bottom-left" && (
-                      <div className="hidden sm:block absolute -bottom-4 left-6 z-30 bg-[#17251E] border border-[#3F463A] px-4 py-2 rounded-xs shadow-lg font-label-caps text-[9.5px] tracking-[0.2em] text-[#C9A227] uppercase font-medium">
-                        EDITORIAL SPOTLIGHT
+                  <div className="mt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-[#657A6A]/20 pb-8">
+                    <div>
+                      <div className="text-xs font-mono tracking-[0.2em] uppercase text-[#17251E] font-semibold">
+                        SKINTILLATINGG
                       </div>
-                    )}
-                  </ScrollReveal>
-                </div>
+                      <div className="text-xs font-mono tracking-[0.2em] uppercase text-[#657A6A]">
+                        WHERE SCIENCE MEETS THE ART OF BEAUTY
+                      </div>
+                    </div>
+                    <span className="text-[11px] font-mono text-[#C9A227] tracking-widest uppercase">
+                      CLICK TO VIEW ARCHIVE →
+                    </span>
+                  </div>
+                </section>
               );
-            })}
-          </div>
-        </section>
+            }
 
-        {/* ==================================================
-            FOOTER EDITORIAL STATEMENT
-        ================================================== */}
-        <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto mt-24 sm:mt-32 pt-16 border-t border-[#3F463A]/40 text-center">
-          <ScrollReveal>
-            <div className="max-w-xl mx-auto space-y-4">
-              <span className="font-label-caps text-[10px] tracking-[0.25em] uppercase text-[#C9A227] font-semibold block">
-                SKINTILLATINGG ARCHIVE
-              </span>
-              <h2 className="font-display text-[26px] sm:text-[32px] text-[#F1EFE4] font-normal">
-                Precision Behind Every Moment
-              </h2>
-              <p className="font-body-md text-[14px] text-[#A6A397] font-light leading-relaxed">
-                Our visual journal documents the continuous pursuit of clinical excellence, cutting-edge aesthetic technology, and transformative care in Pune.
-              </p>
-            </div>
-          </ScrollReveal>
-        </section>
-      </main>
+            // SECTION 02: THE CLINIC
+            if (sec.id === "clinic") {
+              const mainClinic = sectionItems.find((i) => i.id === "gallery-01") || sectionItems[0];
+              const stackedTop = sectionItems.find((i) => i.id === "gallery-02a");
+              const stackedBottom = sectionItems.find((i) => i.id === "gallery-02b");
+              const restClinic = sectionItems.filter(
+                (i) => i.id !== mainClinic.id && i.id !== stackedTop?.id && i.id !== stackedBottom?.id
+              );
+
+              return (
+                <section key={sec.id} className="relative">
+                  <div className="mb-10 sm:mb-14 border-t border-[#657A6A]/25 pt-8">
+                    <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold mb-2">
+                      <span>02 / THE CLINIC</span>
+                      <span className="text-[#657A6A]/60 font-normal">VOL. 2026</span>
+                    </div>
+                    <h2 className="text-3xl sm:text-5xl font-serif text-[#17251E] font-normal leading-tight">
+                      Precision, atmosphere <br className="hidden sm:inline" />
+                      <span className="italic">and care.</span>
+                    </h2>
+                    <p className="text-sm sm:text-base text-[#657A6A] font-light mt-2 max-w-xl leading-relaxed">
+                      The space where medical precision meets architectural serenity.
+                    </p>
+                  </div>
+
+                  {/* Asymmetric Composition: 1 Large Left + 2 Stacked Right */}
+                  <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start mb-8">
+                    {/* Left Main */}
+                    <div
+                      onClick={() => openLightbox(mainClinic)}
+                      className="col-span-12 md:col-span-7 group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA]/40"
+                    >
+                      <div className="relative w-full h-[440px] sm:h-[580px]">
+                        <Image
+                          src={mainClinic.image}
+                          alt={mainClinic.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 60vw"
+                          quality={90}
+                          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                          style={{ objectPosition: mainClinic.objectPosition || "top center" }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-6 flex flex-col justify-end">
+                          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
+                            {mainClinic.category}
+                          </span>
+                          <h3 className="text-xl sm:text-3xl font-serif text-[#F5F5DC] font-normal">
+                            {mainClinic.title}
+                          </h3>
+                          <p className="text-xs text-[#F5F5DC]/80 font-light mt-1">
+                            {mainClinic.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="p-4 bg-[#EBE9DA]/60 border-t border-[#657A6A]/15 text-xs text-[#657A6A] font-mono uppercase tracking-wider">
+                        CLINICAL ENVIRONMENT — The space where precision meets patient care.
+                      </div>
+                    </div>
+
+                    {/* Right Stacked Pair */}
+                    <div className="col-span-12 md:col-span-5 flex flex-col gap-6">
+                      {stackedTop && (
+                        <div
+                          onClick={() => openLightbox(stackedTop)}
+                          className="group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA]/40"
+                        >
+                          <div className="relative w-full h-[220px] sm:h-[270px]">
+                            <Image
+                              src={stackedTop.image}
+                              alt={stackedTop.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 40vw"
+                              quality={88}
+                              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                              style={{ objectPosition: stackedTop.objectPosition || "center" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                              <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-0.5 font-semibold">
+                                {stackedTop.category}
+                              </span>
+                              <h4 className="text-lg font-serif text-[#F5F5DC]">
+                                {stackedTop.title}
+                              </h4>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {stackedBottom && (
+                        <div
+                          onClick={() => openLightbox(stackedBottom)}
+                          className="group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA]/40"
+                        >
+                          <div className="relative w-full h-[220px] sm:h-[270px]">
+                            <Image
+                              src={stackedBottom.image}
+                              alt={stackedBottom.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 40vw"
+                              quality={88}
+                              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                              style={{ objectPosition: stackedBottom.objectPosition || "center" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                              <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-0.5 font-semibold">
+                                {stackedBottom.category}
+                              </span>
+                              <h4 className="text-lg font-serif text-[#F5F5DC]">
+                                {stackedBottom.title}
+                              </h4>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Rest Clinic items */}
+                  {restClinic.length > 0 && (
+                    <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start">
+                      {restClinic.map((item) => (
+                        <div
+                          key={item.id}
+                          onClick={() => openLightbox(item)}
+                          className={`${item.gridSpan} group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA]/40`}
+                        >
+                          <div className="relative w-full h-full min-h-[260px]">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 50vw"
+                              quality={88}
+                              className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                              style={{ objectPosition: item.objectPosition || "center" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                              <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
+                                {item.category}
+                              </span>
+                              <h3 className="text-lg sm:text-xl font-serif text-[#F5F5DC] font-normal">
+                                {item.title}
+                              </h3>
+                              <p className="text-xs text-[#F5F5DC]/80 font-light mt-1">
+                                {item.subtitle}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </section>
+              );
+            }
+
+            // SECTION 03: THE PEOPLE
+            if (sec.id === "people") {
+              return (
+                <section key={sec.id} className="relative">
+                  <div className="mb-10 sm:mb-14 border-t border-[#657A6A]/25 pt-8">
+                    <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold mb-2">
+                      <span>03 / THE PEOPLE</span>
+                      <span className="text-[#657A6A]/60 font-normal">MEDICAL LEADERSHIP</span>
+                    </div>
+                    <h2 className="text-3xl sm:text-5xl font-serif text-[#17251E] font-normal leading-tight">
+                      THE PEOPLE <br className="hidden sm:inline" />
+                      <span className="italic">BEHIND THE PRECISION</span>
+                    </h2>
+                    <p className="text-sm sm:text-base text-[#657A6A] font-light mt-2 max-w-xl leading-relaxed">
+                      Medical director, specialist practitioners, and clinical mentorship.
+                    </p>
+                  </div>
+
+                  {/* Vertical Staggered Editorial Portrait Arrangement */}
+                  <div className="space-y-16 sm:space-y-24">
+                    {sectionItems.map((item, idx) => {
+                      const isEven = idx % 2 === 0;
+                      return (
+                        <div
+                          key={item.id}
+                          className={`flex flex-col ${
+                            isEven ? "md:flex-row" : "md:flex-row-reverse"
+                          } gap-8 sm:gap-12 items-center`}
+                        >
+                          {/* Image Container */}
+                          <div
+                            onClick={() => openLightbox(item)}
+                            className="w-full md:w-1/2 group cursor-pointer relative overflow-hidden border border-[#657A6A]/25 hover:border-[#17251E]/60 transition-all duration-500 bg-[#EBE9DA] shadow-sm"
+                          >
+                            <div className="relative w-full h-[380px] sm:h-[480px] lg:h-[540px]">
+                              <Image
+                                src={item.image}
+                                alt={item.title}
+                                fill
+                                sizes="(max-width: 768px) 100vw, 50vw"
+                                quality={90}
+                                className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                                style={{ objectPosition: item.objectPosition || "top center" }}
+                              />
+                            </div>
+                          </div>
+
+                          {/* Text Editorial Info */}
+                          <div className="w-full md:w-1/2 space-y-4 px-2">
+                            <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold block">
+                              {item.category}
+                            </span>
+                            <h3 className="text-2xl sm:text-4xl font-serif text-[#17251E] font-normal">
+                              {item.title}
+                            </h3>
+                            <p className="text-sm sm:text-base text-[#657A6A] font-light leading-relaxed">
+                              {item.subtitle}
+                            </p>
+                            {item.description && (
+                              <p className="text-xs font-mono uppercase tracking-wider text-[#17251E]/80 pt-4 border-t border-[#657A6A]/20">
+                                {item.description}
+                              </p>
+                            )}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            }
+
+            // SECTION 04: TECHNOLOGY
+            if (sec.id === "technology") {
+              const mainTech = sectionItems[0];
+              const subTech = sectionItems.slice(1);
+
+              return (
+                <section key={sec.id} className="relative">
+                  <div className="mb-10 sm:mb-14 border-t border-[#657A6A]/25 pt-8">
+                    <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold mb-2">
+                      <span>04 / TECHNOLOGY</span>
+                      <span className="text-[#657A6A]/60 font-normal">CLINICAL MODALITIES</span>
+                    </div>
+                    <h2 className="text-3xl sm:text-5xl font-serif text-[#17251E] font-normal leading-tight">
+                      TECHNOLOGY <br className="hidden sm:inline" />
+                      <span className="italic">IN PRACTICE</span>
+                    </h2>
+                    <p className="text-sm sm:text-base text-[#657A6A] font-light mt-2 max-w-xl leading-relaxed">
+                      State-of-the-art diagnostic, laser, and photothermal equipment.
+                    </p>
+                  </div>
+
+                  {/* 1 Very Large Horizontal Image */}
+                  {mainTech && (
+                    <div
+                      onClick={() => openLightbox(mainTech)}
+                      className="group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA] mb-8"
+                    >
+                      <div className="relative w-full h-[400px] sm:h-[540px]">
+                        <Image
+                          src={mainTech.image}
+                          alt={mainTech.title}
+                          fill
+                          sizes="100vw"
+                          quality={90}
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                          style={{ objectPosition: mainTech.objectPosition || "center" }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-6 sm:p-10 flex flex-col justify-end">
+                          <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
+                            PRECISION TECHNOLOGY — {mainTech.category}
+                          </span>
+                          <h3 className="text-2xl sm:text-4xl font-serif text-[#F5F5DC] font-normal">
+                            {mainTech.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-[#F5F5DC]/80 font-light mt-1">
+                            {mainTech.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Smaller Offset Images */}
+                  <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start">
+                    {subTech.map((item) => (
+                      <div
+                        key={item.id}
+                        onClick={() => openLightbox(item)}
+                        className={`${item.gridSpan} group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA]/40`}
+                      >
+                        <div className="relative w-full h-full min-h-[260px]">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            quality={88}
+                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                            style={{ objectPosition: item.objectPosition || "center" }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                            <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
+                              {item.category}
+                            </span>
+                            <h4 className="text-lg font-serif text-[#F5F5DC]">
+                              {item.title}
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              );
+            }
+
+            // SECTION 05: TRAINING & EDUCATION
+            if (sec.id === "training") {
+              const primaryTraining = sectionItems[0];
+              const offsetTraining = sectionItems.slice(1);
+
+              return (
+                <section key={sec.id} className="relative">
+                  <div className="mb-10 sm:mb-14 border-t border-[#657A6A]/25 pt-8">
+                    <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold mb-2">
+                      <span>05 / TRAINING</span>
+                      <span className="text-[#657A6A]/60 font-normal">CIATN ACADEMY</span>
+                    </div>
+                    <h2 className="text-3xl sm:text-5xl font-serif text-[#17251E] font-normal leading-tight">
+                      LEARN. <br />
+                      PRACTICE. <br />
+                      <span className="italic">MASTER.</span>
+                    </h2>
+                    <p className="text-sm sm:text-base text-[#657A6A] font-light mt-2 max-w-xl leading-relaxed">
+                      Hands-on clinical workshops, live demonstrations, and practitioner mentorship.
+                    </p>
+                  </div>
+
+                  {/* Primary Cinematic Horizontal Image */}
+                  {primaryTraining && (
+                    <div
+                      onClick={() => openLightbox(primaryTraining)}
+                      className="group cursor-pointer relative overflow-hidden border border-[#657A6A]/25 hover:border-[#17251E]/60 transition-all duration-500 bg-[#EBE9DA] mb-8"
+                    >
+                      <div className="relative w-full h-[380px] sm:h-[500px]">
+                        <Image
+                          src={primaryTraining.image}
+                          alt={primaryTraining.title}
+                          fill
+                          sizes="100vw"
+                          quality={90}
+                          className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                          style={{ objectPosition: primaryTraining.objectPosition || "center" }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-6 sm:p-10 flex flex-col justify-end">
+                          <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C9A227] mb-1 font-semibold">
+                            {primaryTraining.category}
+                          </span>
+                          <h3 className="text-2xl sm:text-4xl font-serif text-[#F5F5DC]">
+                            {primaryTraining.title}
+                          </h3>
+                          <p className="text-xs sm:text-sm text-[#F5F5DC]/80 font-light mt-1">
+                            {primaryTraining.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Partially Offset Documentary Photos Around It */}
+                  <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start">
+                    {offsetTraining.map((item) => (
+                      <div
+                        key={item.id}
+                        onClick={() => openLightbox(item)}
+                        className={`${item.gridSpan} group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA]/40`}
+                      >
+                        <div className="relative w-full h-full min-h-[280px]">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            quality={88}
+                            className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                            style={{ objectPosition: item.objectPosition || "center" }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                            <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
+                              {item.category}
+                            </span>
+                            <h4 className="text-lg font-serif text-[#F5F5DC]">
+                              {item.title}
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              );
+            }
+
+            // SECTION 07: MOMENTS (Gen-Z Lifestyle Collage with subtle 1-2° rotation)
+            if (sec.id === "moments") {
+              const rotations = ["rotate-[1.2deg]", "-rotate-[1.5deg]", "rotate-[1deg]"];
+              return (
+                <section key={sec.id} className="relative">
+                  <div className="mb-10 sm:mb-14 border-t border-[#657A6A]/25 pt-8">
+                    <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold mb-2">
+                      <span>07 / MOMENTS</span>
+                      <span className="text-[#657A6A]/60 font-normal">LIFESTYLE & INSIGHTS</span>
+                    </div>
+                    <h2 className="text-3xl sm:text-5xl font-serif text-[#17251E] font-normal leading-tight">
+                      MOMENTS <br className="hidden sm:inline" />
+                      <span className="italic">AT SKINTILLATINGG</span>
+                    </h2>
+                    <p className="text-sm sm:text-base text-[#657A6A] font-light mt-2 max-w-xl leading-relaxed">
+                      Spontaneous practice interactions, celebrity client moments, and lifestyle snapshots.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start">
+                    {sectionItems.map((item, idx) => {
+                      const rotClass = rotations[idx % rotations.length];
+                      return (
+                        <div
+                          key={item.id}
+                          onClick={() => openLightbox(item)}
+                          className={`col-span-12 md:col-span-4 group cursor-pointer relative overflow-hidden border border-[#657A6A]/25 hover:border-[#17251E]/60 transition-all duration-500 bg-[#EBE9DA] shadow-sm transform hover:rotate-0 hover:scale-[1.02] ${rotClass}`}
+                        >
+                          <div className="relative w-full h-[360px] sm:h-[420px]">
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              sizes="(max-width: 768px) 100vw, 33vw"
+                              quality={88}
+                              className="object-cover transition-transform duration-700"
+                              style={{ objectPosition: item.objectPosition || "center" }}
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                              <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
+                                {item.category}
+                              </span>
+                              <h3 className="text-lg font-serif text-[#F5F5DC] font-normal">
+                                {item.title}
+                              </h3>
+                              <p className="text-xs text-[#F5F5DC]/80 font-light mt-1">
+                                {item.subtitle}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </section>
+              );
+            }
+
+            // SECTION 08: FINAL CINEMATIC FRAME
+            if (sec.id === "final-frame") {
+              const finalItem = sectionItems[0];
+              return (
+                <section key={sec.id} className="relative max-w-full">
+                  <div className="mb-6 text-center text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold">
+                    08 / FINAL CINEMATIC FRAME
+                  </div>
+
+                  <div
+                    onClick={() => openLightbox(finalItem)}
+                    className="group cursor-pointer relative overflow-hidden border-y border-[#657A6A]/30 bg-[#0F241B]"
+                  >
+                    <div className="relative w-full h-[380px] sm:h-[560px] lg:h-[640px]">
+                      <Image
+                        src={finalItem.image}
+                        alt={finalItem.title}
+                        fill
+                        sizes="100vw"
+                        quality={94}
+                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
+                        style={{ objectPosition: finalItem.objectPosition || "center" }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0F241B]/90 via-[#0F241B]/30 to-transparent p-8 sm:p-16 flex flex-col justify-end text-center items-center">
+                        <h2 className="text-4xl sm:text-7xl font-serif text-[#F5F5DC] tracking-tight font-normal mb-2">
+                          SKINTILLATINGG
+                        </h2>
+                        <p className="text-xs sm:text-sm font-mono tracking-[0.3em] text-[#C9A227] uppercase mb-4">
+                          WHERE SCIENCE MEETS THE ART OF BEAUTY
+                        </p>
+                        <span className="text-[10px] font-mono tracking-[0.2em] text-[#AEB9A9] uppercase pt-4 border-t border-[#F5F5DC]/20">
+                          VISUAL JOURNAL / 2026
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              );
+            }
+
+            // STANDARD SECTIONS (06 TREATMENTS, etc.)
+            return (
+              <section key={sec.id} className="relative">
+                {/* Fine Horizontal Section Header */}
+                <div className="mb-10 sm:mb-14 border-t border-[#657A6A]/25 pt-8">
+                  <div className="flex items-center justify-between text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold mb-2">
+                    <span>{sec.label}</span>
+                    <span className="text-[#657A6A]/60 font-normal">VOL. 2026</span>
+                  </div>
+                  <h2 className="text-3xl sm:text-5xl font-serif text-[#17251E] font-normal leading-tight">
+                    {sec.title}
+                  </h2>
+                  <p className="text-sm sm:text-base text-[#657A6A] font-light mt-2 max-w-xl leading-relaxed">
+                    {sec.subtitle}
+                  </p>
+                </div>
+
+                {/* Asymmetric Editorial Grid */}
+                <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start">
+                  {sectionItems.map((item) => (
+                    <div
+                      key={item.id}
+                      onClick={() => openLightbox(item)}
+                      className={`${item.gridSpan} group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA]/40 flex flex-col justify-between`}
+                    >
+                      <div className="relative w-full h-full min-h-[280px]">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                          quality={88}
+                          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                          style={{ objectPosition: item.objectPosition || "center" }}
+                        />
+
+                        {/* Subtle Bottom Editorial Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/90 via-[#17251E]/25 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5 sm:p-7">
+                          <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.22em] text-[#C9A227] mb-1 font-semibold">
+                            {item.category}
+                          </span>
+                          <h3 className="text-lg sm:text-2xl font-serif text-[#F5F5DC] font-normal leading-snug">
+                            {item.title}
+                          </h3>
+                          <p className="text-xs text-[#F5F5DC]/80 font-light mt-1 line-clamp-2">
+                            {item.subtitle}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            );
+          })}
+        </main>
+      </div>
+
+      {/* FULL-SCREEN LIGHTBOX MODAL */}
+      <GalleryLightbox
+        isOpen={lightboxIndex !== null}
+        item={lightboxIndex !== null ? filteredItems[lightboxIndex] : null}
+        currentIndex={lightboxIndex ?? 0}
+        totalItems={filteredItems.length}
+        onClose={closeLightbox}
+        onPrev={prevLightbox}
+        onNext={nextLightbox}
+      />
 
       <Footer />
     </div>

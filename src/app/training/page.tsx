@@ -128,19 +128,12 @@ export default function TrainingPage() {
               Chromocosmo Institute of Aesthetics, Trichology & Nutrition (CIATN) delivers rigorous clinical education, hands-on technology training, and expert doctor mentorship.
             </p>
             <div className="pt-2 flex flex-wrap gap-4">
-              <a
-                href="#programs"
-                className="bg-[#F5F5DC] text-[#17251E] hover:bg-[#F5F5DC]/90 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 shadow-md inline-flex items-center gap-2"
-              >
-                <span>EXPLORE PROGRAMS</span>
-                <span className="material-symbols-outlined text-sm font-bold">arrow_downward</span>
-              </a>
               <Link
                 href="/contact"
-                className="border border-[#AEB9A9]/40 text-[#F5F5DC] hover:border-[#F5F5DC] hover:bg-[#F5F5DC]/10 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 inline-flex items-center gap-2"
+                className="bg-[#F5F5DC] text-[#17251E] hover:bg-[#F5F5DC]/90 font-button text-[12px] tracking-[0.14em] px-8 py-4 rounded-[3px] uppercase font-semibold transition-colors duration-200 shadow-md inline-flex items-center gap-2"
               >
                 <span>ENQUIRE NOW</span>
-                <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                <span className="material-symbols-outlined text-sm font-bold">arrow_forward</span>
               </Link>
             </div>
           </div>
@@ -236,95 +229,7 @@ export default function TrainingPage() {
         </ScrollReveal>
       </section>
 
-      {/* SECTION 04 — CIATN PROGRAMS */}
-      <section id="programs" className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">
-        <ScrollReveal>
-          <div className="space-y-12">
-            <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-[#657A6A]/30 pb-6">
-              <div>
-                <span className="font-label-caps text-xs tracking-[0.2em] text-[#C9A227] uppercase font-semibold block mb-2">
-                  COURSE CATALOGUE
-                </span>
-                <h2 className="font-display text-3xl sm:text-4xl text-[#F5F5DC]">
-                  Explore Our Programs
-                </h2>
-              </div>
-              <span className="font-label-caps text-xs tracking-wider text-[#AEB9A9] uppercase font-semibold">
-                Verified Clinical Offerings
-              </span>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {PROGRAM_CATALOGUE.map((prog) => (
-                <div
-                  key={prog.id}
-                  className="bg-[#17251E]/90 border border-[#657A6A]/30 rounded-xl overflow-hidden flex flex-col justify-between hover:border-[#C9A227]/50 transition-all duration-300 group shadow-lg cinematic-card-lift"
-                  data-cursor="VIEW"
-                >
-                  <div>
-                    <div className="relative aspect-[16/10] overflow-hidden bg-[#1C3329] cinematic-img-container">
-                      <img
-                        src={prog.image}
-                        alt={prog.title}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute top-3 left-3 bg-[#1C3329]/95 text-[#C9A227] font-label-caps text-[9px] tracking-wider uppercase px-2.5 py-1 rounded border border-[#C9A227]/30 font-semibold">
-                        {prog.category}
-                      </div>
-                    </div>
-
-                    <div className="p-6 space-y-4">
-                      <h3 className="font-display text-2xl font-normal text-[#F5F5DC] group-hover:text-[#C9A227] transition-colors">
-                        {prog.title}
-                      </h3>
-                      <p className="font-body-md text-xs sm:text-sm text-[#F5F5DC]/80 leading-relaxed font-light">
-                        {prog.description}
-                      </p>
-
-                      <div className="space-y-2 pt-2 border-t border-[#657A6A]/20">
-                        <div className="flex items-center gap-2 text-xs text-[#F5F5DC]/90">
-                          <span className="material-symbols-outlined text-sm text-[#C9A227]">schedule</span>
-                          <span className="font-medium">{prog.duration}</span>
-                        </div>
-                        <div className="flex items-center gap-2 text-xs text-[#F5F5DC]/90">
-                          <span className="material-symbols-outlined text-sm text-[#C9A227]">school</span>
-                          <span className="font-light">{prog.eligibility}</span>
-                        </div>
-                      </div>
-
-                      <div className="pt-2 space-y-1.5">
-                        <span className="font-label-caps text-[9px] tracking-widest text-[#AEB9A9] uppercase font-semibold block">
-                          Key Modules
-                        </span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {prog.keyLearning.map((kl, kIdx) => (
-                            <span
-                              key={kIdx}
-                              className="bg-[#1C3329] border border-[#657A6A]/40 text-[#F5F5DC]/90 text-[10px] px-2 py-0.5 rounded font-light"
-                            >
-                              {kl}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="p-6 pt-0">
-                    <Link
-                      href="/contact"
-                      className="w-full border border-[#AEB9A9]/30 text-[#F5F5DC] hover:border-[#F5F5DC] hover:bg-[#F5F5DC] hover:text-[#17251E] font-button text-[11px] tracking-[0.12em] uppercase py-2.5 rounded transition-all duration-300 flex items-center justify-center gap-2 font-semibold"
-                    >
-                      <span>ENQUIRE ABOUT PROGRAM</span>
-                      <span className="material-symbols-outlined text-xs">arrow_forward</span>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </ScrollReveal>
-      </section>
 
       {/* SECTION 05 — LEARNING EXPERIENCE */}
       <section className="px-6 sm:px-10 md:px-16 lg:px-20 max-w-[1440px] mx-auto py-20 border-b border-[#657A6A]/30">

@@ -46,16 +46,14 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-        isScrolled
-          ? "bg-[#1C3329]/95 backdrop-blur-md border-b border-[#AEB9A9]/25 shadow-xl py-0"
-          : "bg-[#1C3329]/90 backdrop-blur-sm border-b border-[#F5F5DC]/12 py-1"
-      }`}
+      className={`fixed top-0 w-full z-50 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${isScrolled
+        ? "bg-[#1C3329]/95 backdrop-blur-md border-b border-[#AEB9A9]/25 shadow-xl py-0"
+        : "bg-[#1C3329]/90 backdrop-blur-sm border-b border-[#F5F5DC]/12 py-1"
+        }`}
     >
       <div
-        className={`max-w-[1440px] mx-auto px-4 sm:px-6 xl:px-10 flex items-center justify-between transition-all duration-500 ${
-          isScrolled ? "h-[70px]" : "h-[82px]"
-        }`}
+        className={`max-w-[1440px] mx-auto px-4 sm:px-6 xl:px-10 flex items-center justify-between transition-all duration-500 ${isScrolled ? "h-[70px]" : "h-[82px]"
+          }`}
       >
         {/* 1. BRAND AREA — LEFT */}
         <Link href="/" className="flex items-center gap-3.5 shrink-0 group">
@@ -80,18 +78,16 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
-              className={`font-label-caps text-[10.5px] xl:text-[11px] tracking-[0.12em] xl:tracking-[0.14em] uppercase transition-all duration-300 relative py-2 font-medium shrink-0 group ${
-                link.active
-                  ? "text-[#F5F5DC] font-semibold"
-                  : "text-[#F5F5DC]/75 hover:text-[#F5F5DC]"
-              }`}
+              className={`font-label-caps text-[10.5px] xl:text-[11px] tracking-[0.12em] xl:tracking-[0.14em] uppercase transition-all duration-300 relative py-2 font-medium shrink-0 group ${link.active
+                ? "text-[#F5F5DC] font-semibold"
+                : "text-[#F5F5DC]/75 hover:text-[#F5F5DC]"
+                }`}
             >
               <span>{link.name}</span>
               {/* Active / Hover Gold Indicator Line */}
               <span
-                className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C9A227] rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
-                  link.active ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-50"
-                }`}
+                className={`absolute bottom-0 left-0 h-[1.5px] bg-[#C9A227] rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${link.active ? "w-full opacity-100" : "w-0 opacity-0 group-hover:w-full group-hover:opacity-50"
+                  }`}
               />
             </Link>
           ))}
@@ -136,11 +132,10 @@ export default function Navbar() {
                 key={link.name}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className={`font-label-caps text-[12px] tracking-[0.16em] uppercase py-3 border-b border-[#F5F5DC]/10 flex items-center justify-between ${
-                  link.active
-                    ? "text-[#F5F5DC] font-semibold text-[#C9A227]"
-                    : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
-                }`}
+                className={`font-label-caps text-[12px] tracking-[0.16em] uppercase py-3 border-b border-[#F5F5DC]/10 flex items-center justify-between ${link.active
+                  ? "text-[#F5F5DC] font-semibold text-[#C9A227]"
+                  : "text-[#F5F5DC]/80 hover:text-[#F5F5DC]"
+                  }`}
               >
                 <span>{link.name}</span>
                 {link.active && (
