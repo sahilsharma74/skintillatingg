@@ -345,7 +345,7 @@ function BookConsultationForm() {
                         Select Treatments for Your Consultation
                       </h2>
                       <p className="font-body-md text-sm text-[#344C3D]">
-                        Select one or more treatments you'd like to discuss during your consultation.
+                        Select one or more treatments you&apos;d like to discuss during your consultation.
                       </p>
                     </div>
 
