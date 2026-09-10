@@ -7,7 +7,7 @@ import TeamHero from "@/components/team/TeamHero";
 import TeamTimeline from "@/components/team/TeamTimeline";
 import { INITIAL_TEAM_MEMBERS, TeamMember } from "@/data/team";
 
-const STORAGE_KEY = "skintillatingg_team_members_v3";
+const STORAGE_KEY = "skintillatingg_team_members_v5";
 
 export default function TeamPageClient() {
   const [members, setMembers] = useState<TeamMember[]>(INITIAL_TEAM_MEMBERS);

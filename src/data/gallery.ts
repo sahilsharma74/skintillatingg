@@ -234,8 +234,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     subtitle: "Dr. Akshaya Jain Demonstrating Live Patient Technique",
     image: "/images/gallery/Screenshot 2026-08-30 182930.png",
     aspect: "landscape",
-    objectPosition: "center",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6 h-[340px] md:h-[400px]"
+    objectPosition: "top center",
+    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6 h-[380px] md:h-[460px]"
   },
 
   {
@@ -247,8 +247,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     subtitle: "Live Clinical Demonstration with Celebrity Client",
     image: "/images/gallery/Screenshot 2026-08-30 183404.png",
     aspect: "landscape",
-    objectPosition: "center",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6 h-[340px] md:h-[400px]"
+    objectPosition: "top center",
+    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6 h-[380px] md:h-[460px]"
   },
   {
     id: "gallery-05d",
@@ -259,8 +259,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     subtitle: "Supervised Practitioner Training at CIATN Academy",
     image: "/images/TECHNOLOGY TRAINING CAREER/faculty-mentorship.png",
     aspect: "landscape",
-    objectPosition: "center",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-7 h-[360px] md:h-[400px]"
+    objectPosition: "top center",
+    gridSpan: "col-span-12 md:col-span-6 lg:col-span-7 h-[360px] md:h-[420px]"
   },
 
 
@@ -275,7 +275,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     subtitle: "Laser Application for Pigmentation & Texture",
     image: "/images/gallery/Screenshot 2026-08-30 183140.png",
     aspect: "square",
-    objectPosition: "center",
+    objectPosition: "top center",
     gridSpan: "col-span-12 md:col-span-4 lg:col-span-4 h-[320px] md:h-[380px]"
   },
 
@@ -290,8 +290,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     subtitle: "Dr. Akshaya Jain with Actor Sourabh Gokhale",
     image: "/images/gallery/Screenshot 2026-08-30 183116.png",
     aspect: "landscape",
-    objectPosition: "center",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-6 h-[360px] md:h-[420px]"
+    objectPosition: "top center",
+    gridSpan: "col-span-12 md:col-span-4 h-[400px] md:h-[460px]"
   },
   {
     id: "gallery-07b",
@@ -303,7 +303,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     image: "/images/gallery/Screenshot 2026-08-30 182435.png",
     aspect: "landscape",
     objectPosition: "top center",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-4 h-[360px] md:h-[420px]"
+    gridSpan: "col-span-12 md:col-span-4 h-[400px] md:h-[460px]"
   },
   {
     id: "gallery-07c",
@@ -314,8 +314,8 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     subtitle: "Rotary Vocational Excellence & Womanhood Awards",
     image: "/images/gallery/Screenshot 2026-08-30 182159.png",
     aspect: "landscape",
-    objectPosition: "center",
-    gridSpan: "col-span-12 md:col-span-6 lg:col-span-4 h-[360px] md:h-[420px]"
+    objectPosition: "top left",
+    gridSpan: "col-span-12 md:col-span-4 h-[400px] md:h-[460px]"
   },
 
   // SECTION 08: FINAL CINEMATIC FRAME
@@ -328,7 +328,7 @@ export const GALLERY_ITEMS: GalleryItem[] = [
     subtitle: "Where medical precision meets architectural serenity",
     image: "/images/gallery/Screenshot 2026-08-30 182243.png",
     aspect: "full",
-    objectPosition: "center",
+    objectPosition: "top center",
     gridSpan: "col-span-12 h-[380px] md:h-[560px]",
     description: "SKINTILLATINGG • WHERE SCIENCE MEETS THE ART OF BEAUTY"
   }

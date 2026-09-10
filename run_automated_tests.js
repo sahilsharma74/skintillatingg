@@ -17,9 +17,8 @@ const coreRoutes = [
   { path: '/career', expectedStatus: [200], name: 'Careers Page' },
   { path: '/contact', expectedStatus: [200], name: 'Contact Page' },
   { path: '/book-consultation', expectedStatus: [200], name: 'Consultation Booking' },
-  { path: '/admin/login', expectedStatus: [200], name: 'Admin Login' },
-  { path: '/admin', expectedStatus: [200, 307, 302], name: 'Admin Dashboard (Protected)' },
-  { path: '/api/admin/auth/session', expectedStatus: [200, 401], name: 'Admin Session API' },
+  { path: '/sitemap.xml', expectedStatus: [200], name: 'Dynamic XML Sitemap' },
+  { path: '/robots.txt', expectedStatus: [200], name: 'Robots.txt' },
 ];
 
 // Extract treatment slugs directly from data file

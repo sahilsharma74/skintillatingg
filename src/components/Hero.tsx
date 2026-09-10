@@ -101,7 +101,7 @@ export default function Hero() {
           {/* Top Category Label */}
           <div className="space-y-4">
             <p
-              className={`font-label-caps text-[10px] sm:text-[11px] text-[#C9A227] tracking-[0.25em] uppercase font-semibold transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+              className={`font-label-caps text-xs sm:text-sm text-[#C9A227] tracking-[0.2em] uppercase font-semibold transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                 isMounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: "200ms" }}
@@ -128,8 +128,8 @@ export default function Hero() {
             }`}
             style={{ transitionDelay: "600ms" }}
           >
-            <h2 className="font-label-caps text-[13px] sm:text-[14px] text-[#C9A227] tracking-[0.2em] uppercase font-semibold">
-              DR. AKSHAYA JAIN
+            <h2 className="font-label-caps text-sm sm:text-base text-[#C9A227] tracking-wide font-semibold">
+              Dr. Akshaya Jain
             </h2>
             <p className="font-body-md text-[14px] sm:text-[15px] leading-[24px] text-[#F5F5DC]/90 font-light max-w-lg">
               Award-winning Aesthetic Cosmetologist &amp; Celebrity Hair Specialist, providing advanced, natural-looking results with a human touch.
@@ -145,9 +145,9 @@ export default function Hero() {
           >
             <Link
               href="/book-consultation"
-              className="inline-flex items-center gap-3 bg-[#C9A227] text-[#17251E] font-button text-[12px] sm:text-[13px] tracking-[0.15em] uppercase px-8 py-4 rounded-xs hover:bg-[#F5F5DC] hover:shadow-[0_4px_25px_rgba(201,162,39,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 font-bold group shadow-md"
+              className="inline-flex items-center gap-3 bg-[#C9A227] text-[#17251E] font-button text-xs sm:text-sm tracking-wider px-8 py-4 rounded-xs hover:bg-[#F5F5DC] hover:shadow-[0_4px_25px_rgba(201,162,39,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 font-bold group shadow-md"
             >
-              <span>BOOK CONSULTATION</span>
+              <span>Book Consultation</span>
               <span className="material-symbols-outlined text-[16px] font-bold transition-transform duration-300 group-hover:translate-x-1.5">
                 east
               </span>
@@ -162,10 +162,10 @@ export default function Hero() {
           }`}
           style={{ transitionDelay: "1000ms" }}
         >
-          <span className="font-label-caps text-[10px] sm:text-[11px] tracking-[0.25em] text-[#F5F5DC]/90 uppercase font-semibold">
+          <span className="font-label-caps text-xs tracking-[0.2em] text-[#F5F5DC]/90 uppercase font-semibold">
             PUNE • INDIA
           </span>
-          <span className="font-label-caps text-[10px] sm:text-[11px] tracking-[0.2em] text-[#C9A227] uppercase font-semibold">
+          <span className="font-label-caps text-xs tracking-[0.18em] text-[#C9A227] uppercase font-semibold">
             EST. 2012
           </span>
         </div>
@@ -229,8 +229,8 @@ export default function Hero() {
             <p className="font-display text-[26px] sm:text-[36px] lg:text-[40px] text-[#17251E] leading-none font-normal mb-1">
               {yearsVal}
             </p>
-            <p className="font-label-caps text-[8px] sm:text-[10px] leading-tight text-[#17251E]/80 uppercase tracking-[0.12em] font-bold">
-              YEARS OF CLINICAL PRACTICE
+            <p className="font-label-caps text-xs leading-snug text-[#17251E]/90 tracking-wide font-semibold">
+              Years of Clinical Practice
             </p>
           </div>
 
@@ -239,8 +239,8 @@ export default function Hero() {
             <p className="font-display text-[26px] sm:text-[36px] lg:text-[40px] text-[#17251E] leading-none font-normal mb-1">
               {transformationsVal}
             </p>
-            <p className="font-label-caps text-[8px] sm:text-[10px] leading-tight text-[#17251E]/80 uppercase tracking-[0.12em] font-bold">
-              TRANSFORMATIONS
+            <p className="font-label-caps text-xs leading-snug text-[#17251E]/90 tracking-wide font-semibold">
+              Transformations
             </p>
           </div>
 
@@ -249,8 +249,8 @@ export default function Hero() {
             <p className="font-display text-[26px] sm:text-[36px] lg:text-[40px] text-[#17251E] leading-none font-normal mb-1">
               {satisfactionVal}
             </p>
-            <p className="font-label-caps text-[8px] sm:text-[10px] leading-tight text-[#17251E]/80 uppercase tracking-[0.12em] font-bold">
-              PATIENT SATISFACTION
+            <p className="font-label-caps text-xs leading-snug text-[#17251E]/90 tracking-wide font-semibold">
+              Patient Satisfaction
             </p>
           </div>
         </div>

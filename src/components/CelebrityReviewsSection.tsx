@@ -14,7 +14,7 @@ export interface CelebrityReview {
 export const CELEBRITY_REVIEWS: CelebrityReview[] = [
   {
     id: "review-01",
-    name: "SIDDHARTH JADHAV",
+    name: "Siddharth Jadhav",
     profession: "Bollywood Actor",
     quote:
       "They care my skin and hair more than I do! Skintillatingg is unique!",
@@ -22,7 +22,7 @@ export const CELEBRITY_REVIEWS: CelebrityReview[] = [
   },
   {
     id: "review-02",
-    name: "SOURABH GOKHALE",
+    name: "Sourabh Gokhale",
     profession: "Bollywood Actor",
     quote:
       "Staying healthy depends on caring yourself better. Skintillatingg cares me best, makes me best on screen.",
@@ -30,7 +30,7 @@ export const CELEBRITY_REVIEWS: CelebrityReview[] = [
   },
   {
     id: "review-03",
-    name: "VEDVIKA SONI",
+    name: "Vedvika Soni",
     profession: "Bollywood/Tollywood Actress",
     quote:
       "I trust Skintillatingg for their utmost care and expertise. Treatments which make me feel special.",
@@ -38,7 +38,7 @@ export const CELEBRITY_REVIEWS: CelebrityReview[] = [
   },
   {
     id: "review-04",
-    name: "ANUSHKA PIMPUTKAR",
+    name: "Anushka Pimputkar",
     profession: "Bollywood Actor",
     quote:
       "It's always perfection and care with Skintillatingg treatments.",
@@ -111,7 +111,7 @@ export default function CelebrityReviewsSection() {
             <span className="font-label-caps text-xs tracking-[0.25em] uppercase text-[#AEB9A9] font-semibold">
               CELEBRITY REVIEWS
             </span>
-            <span className="font-label-caps text-[10px] tracking-widest uppercase text-[#C9A227] font-medium">
+            <span className="font-label-caps text-xs tracking-widest uppercase text-[#C9A227] font-medium">
               LUXURY TESTIMONIALS
             </span>
           </div>
@@ -145,9 +145,10 @@ export default function CelebrityReviewsSection() {
               </blockquote>
             </div>
 
-            {/* Bottom Controls with Animated Timer Progress Line */}
-            <div className="pt-6 border-t border-[#657A6A]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-              <div className="flex items-center gap-4">
+            {/* Bottom Controls with Separated Numerical Pagination and Navigation Arrows */}
+            <div className="pt-6 border-t border-[#657A6A]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
+              {/* Numerical Indicators */}
+              <div className="flex items-center gap-5" role="tablist" aria-label="Testimonial slides">
                 {CELEBRITY_REVIEWS.map((_, idx) => {
                   const numStr = String(idx + 1).padStart(2, "0");
                   const isActive = idx === currentIndex;
@@ -155,8 +156,10 @@ export default function CelebrityReviewsSection() {
                     <button
                       key={idx}
                       type="button"
+                      role="tab"
+                      aria-selected={isActive}
                       onClick={() => handleUserInteract(() => goToIndex(idx))}
-                      className={`font-label-caps text-xs tracking-wider transition-all duration-300 relative py-1 ${
+                      className={`font-label-caps text-xs tracking-wider transition-all duration-300 relative py-1 px-1 min-w-[32px] min-h-[32px] flex items-center justify-center ${
                         isActive
                           ? "text-[#F5F5DC] font-bold"
                           : "text-[#AEB9A9]/50 hover:text-[#F5F5DC] font-normal"
@@ -172,12 +175,13 @@ export default function CelebrityReviewsSection() {
                 })}
               </div>
 
-              <div className="flex items-center gap-3">
+              {/* Directional Controls (Separated with gap-4) */}
+              <div className="flex items-center gap-4">
                 <button
                   type="button"
                   onClick={() => handleUserInteract(goToPrev)}
                   aria-label="Previous testimonial"
-                  className="w-9 h-9 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#C9A227] hover:bg-[#C9A227]/10 transition-all duration-200"
+                  className="w-10 h-10 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#C9A227] hover:bg-[#C9A227]/10 transition-all duration-200 shadow-sm"
                 >
                   <span className="material-symbols-outlined text-sm">chevron_left</span>
                 </button>
@@ -185,7 +189,7 @@ export default function CelebrityReviewsSection() {
                   type="button"
                   onClick={() => handleUserInteract(goToNext)}
                   aria-label="Next testimonial"
-                  className="w-9 h-9 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#C9A227] hover:bg-[#C9A227]/10 transition-all duration-200"
+                  className="w-10 h-10 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#C9A227] hover:bg-[#C9A227]/10 transition-all duration-200 shadow-sm"
                 >
                   <span className="material-symbols-outlined text-sm">chevron_right</span>
                 </button>

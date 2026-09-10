@@ -9,10 +9,10 @@ This document tracks all completed and pending tasks across UX, Admin CRM, Perfo
 ### 1. Booking Flow & Patient UX
 | Feature | Current State | Target Improvement | Impact | Status |
 | :--- | :--- | :--- | :---: | :---: |
-| **Treatment Search (Step 1)** | Static 26-item list | Instant live search & category filter pills | 🔥 High | Pending |
-| **Mobile Floating Action Bar** | Button at bottom of 26 items | Sticky bottom bar: *"X Selected — Next Step →"* | 🔥 High | Pending |
-| **Step Stepper Navigation** | Linear Next/Back only | Clickable step numbers (1, 2, 3) to jump back | ⚡ Medium | Pending |
-| **Add to Calendar** | Text/WhatsApp only | 1-Click Google Calendar & Apple `.ics` invite | 🔥 High | Pending |
+| **Treatment Search (Step 1)** | Static 26-item list | Instant live search & category filter pills | 🔥 High | Completed |
+| **Mobile Floating Action Bar** | Button at bottom of 26 items | Sticky bottom bar: *"X Selected — Next Step →"* | 🔥 High | Completed |
+| **Step Stepper Navigation** | Linear Next/Back only | Clickable step numbers (1, 2, 3) to jump back | ⚡ Medium | Completed |
+| **Add to Calendar** | Text/WhatsApp only | 1-Click Google Calendar & Apple `.ics` invite | 🔥 High | Completed |
 | **Working Day Validation** | Open date picker | Disable past dates & enforce slot boundaries | ⚡ Medium | Pending |
 
 ### 2. Admin CRM & Backend Persistence
@@ -41,47 +41,36 @@ This document tracks all completed and pending tasks across UX, Admin CRM, Perfo
   - [x] Install and configure Playwright E2E suite (`playwright.config.ts`)
   - [x] Verify all 16 Playwright tests pass on Desktop and Mobile viewports
 
-- [ ] **1. Booking Wizard & Patient UX Upgrades**
-  - [ ] **1.1 Live Treatment Search & Filter in Step 1**
-    - [ ] Add search input field with instant debounce filtering (`src/app/book-consultation/page.tsx`)
-    - [ ] Add category filter pills (*ALL, SKIN & FACIAL, HAIRCARE, BODY, HAIR REMOVAL*)
-    - [ ] Add search clear button and zero-results fallback state
-  - [ ] **1.2 Sticky Mobile Floating Action Bar**
-    - [ ] Create floating pill for mobile viewports (`md:hidden`)
-    - [ ] Display live selection badge (*"X Treatments Selected"*)
-    - [ ] Add immediate *"Proceed to Details →"* button
-  - [ ] **1.3 Interactive Step Stepper**
-    - [ ] Make completed step icons (1, 2, 3) clickable for instant backward navigation
-    - [ ] Ensure forward navigation requires step validation
-  - [ ] **1.4 1-Click "Add to Calendar" Integration**
-    - [ ] Implement Google Calendar link generator with date, time slot, and clinic location
-    - [ ] Implement Apple / Outlook `.ics` calendar file download button on confirmation screen
-  - [ ] **1.5 Date & Slot Validation**
-    - [ ] Enforce `min` date constraint to prevent past booking
+- [x] **1. Booking Wizard & Patient UX Upgrades**
+  - [x] **1.1 Live Treatment Search & Filter in Step 1**
+    - [x] Add search input field with instant debounce filtering (`src/app/book-consultation/page.tsx`)
+    - [x] Add category filter pills (*ALL, SKIN & FACIAL, HAIRCARE, BODY, HAIR REMOVAL*)
+    - [x] Add search clear button and zero-results fallback state
+  - [x] **1.2 Sticky Mobile Floating Action Bar**
+    - [x] Create floating pill for mobile viewports (`md:hidden`)
+    - [x] Display live selection badge (*"X Treatments Selected"*)
+    - [x] Add immediate *"Proceed to Details →"* button
+  - [x] **1.3 Interactive Step Stepper**
+    - [x] Make completed step icons (1, 2, 3) clickable for instant backward navigation
+    - [x] Ensure forward navigation requires step validation
+  - [x] **1.4 1-Click "Add to Calendar" Integration**
+    - [x] Implement Google Calendar link generator with date, time slot, and clinic location
+    - [x] Implement Apple / Outlook `.ics` calendar file download button on confirmation screen
+  - [x] **1.5 Date & Slot Validation (Custom Luxury Calendar UI)**
+    - [x] Implement custom Skintillatingg Luxury Calendar UI (`#1C3329` dark green, `#F5F5DC` warm cream, `#C9A227` gold)
+    - [x] Enforce Monday clinic closure rule & Sunday open working day
+    - [x] Add quick-select preset buttons (*"Tomorrow"*, *"In 3 Days"*, *"Next Sunday"*)
 
-- [ ] **2. Admin Bookings CRM & Persistence API**
-  - [ ] **2.1 Backend Persistence API (`/api/bookings`)**
-    - [ ] Create `POST /api/bookings` route handler (`src/app/api/bookings/route.ts`)
-    - [ ] Store leads in persistent JSON data storage (`src/data/cms_storage/bookings.json`)
-    - [ ] Generate unique booking reference IDs (`CIATN-2026-XXXX`)
-    - [ ] Create `GET /api/bookings` authenticated endpoint for admin retrieval
-    - [ ] Create `PATCH /api/bookings` endpoint to update status (*New, Contacted, Scheduled, Completed, Cancelled*)
-  - [ ] **2.2 Admin Bookings Management Dashboard (`/admin/bookings`)**
-    - [ ] Create `/admin/(dashboard)/bookings/page.tsx`
-    - [ ] Build search & filter toolbar (filter by status, search by patient name, phone, or ref code)
-    - [ ] Build interactive bookings table with status badges and notes
-    - [ ] Add one-click *"Chat on WhatsApp"* button pre-filled with patient reference
-    - [ ] Add *"Export to CSV"* button for clinic data export
-  - [ ] **2.3 Admin Sidebar Integration**
-    - [ ] Update `src/components/admin/AdminSidebarClient.tsx` to include "Bookings / Leads" navigation link
+- [ ] ~**2. Admin Bookings CRM & Persistence API**~ *(ON HOLD / EXCLUDED PER USER DECISION)*
+  - *Admin login features, admin panel, and admin API endpoints removed from scope per user request.*
 
 - [ ] **3. Local SEO, Medical Schema & Dynamic Sitemaps**
-  - [ ] **3.1 Medical JSON-LD Structured Data**
-    - [ ] Add `MedicalBusiness` / `DermatologyClinic` Schema.org script to `src/app/layout.tsx` (Koregaon Park, Pune location, services, opening hours)
-  - [ ] **3.2 Dynamic Next.js XML Sitemap**
-    - [ ] Create `src/app/sitemap.ts` dynamically indexing all static pages and 26+ treatment routes
-  - [ ] **3.3 Robots.txt Configuration**
-    - [ ] Create `src/app/robots.ts` disallowing `/admin/` and referencing `/sitemap.xml`
+  - [x] **3.1 Medical JSON-LD Structured Data**
+    - [x] Add `MedicalBusiness` / `DermatologyClinic` Schema.org script to `src/app/layout.tsx` (Koregaon Park, Pune location, services, opening hours)
+  - [x] **3.2 Dynamic Next.js XML Sitemap**
+    - [x] Create `src/app/sitemap.ts` dynamically indexing all static pages and 26+ treatment routes
+  - [x] **3.3 Robots.txt Configuration**
+    - [x] Create `src/app/robots.ts` disallowing `/api/` and referencing `/sitemap.xml`
 
 - [ ] **4. Automated E2E Testing & Verification**
   - [ ] **4.1 Update Playwright Booking Spec**

@@ -128,7 +128,7 @@ export default function GalleryPage() {
                         className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
                         style={{ objectPosition: coverItem.objectPosition || "center" }}
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/80 via-transparent to-transparent p-6 sm:p-12 flex flex-col justify-end">
+                      <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#17251E]/85 via-[#17251E]/30 to-transparent p-6 sm:p-12 flex flex-col justify-end">
                         <span className="text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#C9A227] mb-2 font-semibold">
                           {coverItem.category}
                         </span>
@@ -201,7 +201,7 @@ export default function GalleryPage() {
                           className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                           style={{ objectPosition: mainClinic.objectPosition || "top center" }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-6 flex flex-col justify-end">
+                        <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#17251E]/85 via-[#17251E]/30 to-transparent p-6 flex flex-col justify-end">
                           <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
                             {mainClinic.category}
                           </span>
@@ -235,7 +235,7 @@ export default function GalleryPage() {
                               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                               style={{ objectPosition: stackedTop.objectPosition || "center" }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#17251E]/85 via-[#17251E]/30 to-transparent p-5 flex flex-col justify-end">
                               <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-0.5 font-semibold">
                                 {stackedTop.category}
                               </span>
@@ -262,7 +262,7 @@ export default function GalleryPage() {
                               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                               style={{ objectPosition: stackedBottom.objectPosition || "center" }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#17251E]/85 via-[#17251E]/30 to-transparent p-5 flex flex-col justify-end">
                               <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-0.5 font-semibold">
                                 {stackedBottom.category}
                               </span>
@@ -295,7 +295,7 @@ export default function GalleryPage() {
                               className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                               style={{ objectPosition: item.objectPosition || "center" }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                            <div className="absolute inset-0 z-10 bg-gradient-to-t from-[#17251E]/85 via-[#17251E]/30 to-transparent p-5 flex flex-col justify-end">
                               <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
                                 {item.category}
                               </span>
@@ -501,7 +501,7 @@ export default function GalleryPage() {
                       onClick={() => openLightbox(primaryTraining)}
                       className="group cursor-pointer relative overflow-hidden border border-[#657A6A]/25 hover:border-[#17251E]/60 transition-all duration-500 bg-[#EBE9DA] mb-8"
                     >
-                      <div className="relative w-full h-[380px] sm:h-[500px]">
+                      <div className="relative w-full h-[420px] sm:h-[560px]">
                         <Image
                           src={primaryTraining.image}
                           alt={primaryTraining.title}
@@ -509,7 +509,7 @@ export default function GalleryPage() {
                           sizes="100vw"
                           quality={90}
                           className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                          style={{ objectPosition: primaryTraining.objectPosition || "center" }}
+                          style={{ objectPosition: primaryTraining.objectPosition || "top center" }}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-6 sm:p-10 flex flex-col justify-end">
                           <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C9A227] mb-1 font-semibold">
@@ -534,7 +534,7 @@ export default function GalleryPage() {
                         onClick={() => openLightbox(item)}
                         className={`${item.gridSpan} group cursor-pointer relative overflow-hidden border border-[#657A6A]/20 hover:border-[#17251E]/50 transition-all duration-500 bg-[#EBE9DA]/40`}
                       >
-                        <div className="relative w-full h-full min-h-[280px]">
+                        <div className="relative w-full h-[360px] sm:h-[460px]">
                           <Image
                             src={item.image}
                             alt={item.title}
@@ -542,7 +542,7 @@ export default function GalleryPage() {
                             sizes="(max-width: 768px) 100vw, 50vw"
                             quality={88}
                             className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                            style={{ objectPosition: item.objectPosition || "center" }}
+                            style={{ objectPosition: item.objectPosition || "top center" }}
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
                             <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
@@ -560,9 +560,8 @@ export default function GalleryPage() {
               );
             }
 
-            // SECTION 07: MOMENTS (Gen-Z Lifestyle Collage with subtle 1-2° rotation)
+            // SECTION 07: MOMENTS (Clean editorial 3-card grid without rotation distortion)
             if (sec.id === "moments") {
-              const rotations = ["rotate-[1.2deg]", "-rotate-[1.5deg]", "rotate-[1deg]"];
               return (
                 <section key={sec.id} className="relative">
                   <div className="mb-10 sm:mb-14 border-t border-[#657A6A]/25 pt-8">
@@ -580,29 +579,28 @@ export default function GalleryPage() {
                   </div>
 
                   <div className="grid grid-cols-12 gap-6 sm:gap-8 items-start">
-                    {sectionItems.map((item, idx) => {
-                      const rotClass = rotations[idx % rotations.length];
+                    {sectionItems.map((item) => {
                       return (
                         <div
                           key={item.id}
                           onClick={() => openLightbox(item)}
-                          className={`col-span-12 md:col-span-4 group cursor-pointer relative overflow-hidden border border-[#657A6A]/25 hover:border-[#17251E]/60 transition-all duration-500 bg-[#EBE9DA] shadow-sm transform hover:rotate-0 hover:scale-[1.02] ${rotClass}`}
+                          className="col-span-12 md:col-span-4 group cursor-pointer relative overflow-hidden border border-[#657A6A]/25 hover:border-[#17251E]/60 transition-all duration-500 bg-[#EBE9DA] shadow-sm hover:scale-[1.01]"
                         >
-                          <div className="relative w-full h-[360px] sm:h-[420px]">
+                          <div className="relative w-full h-[420px] sm:h-[500px]">
                             <Image
                               src={item.image}
                               alt={item.title}
                               fill
                               sizes="(max-width: 768px) 100vw, 33vw"
-                              quality={88}
-                              className="object-cover transition-transform duration-700"
-                              style={{ objectPosition: item.objectPosition || "center" }}
+                              quality={90}
+                              className="object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                              style={{ objectPosition: item.objectPosition || "top center" }}
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/85 via-transparent to-transparent p-5 flex flex-col justify-end">
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/90 via-[#17251E]/20 to-transparent p-5 flex flex-col justify-end">
                               <span className="text-[9px] font-mono uppercase tracking-[0.2em] text-[#C9A227] mb-1 font-semibold">
                                 {item.category}
                               </span>
-                              <h3 className="text-lg font-serif text-[#F5F5DC] font-normal">
+                              <h3 className="text-lg font-serif text-[#F5F5DC] font-normal leading-snug">
                                 {item.title}
                               </h3>
                               <p className="text-xs text-[#F5F5DC]/80 font-light mt-1">

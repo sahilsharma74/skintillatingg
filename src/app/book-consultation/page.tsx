@@ -63,6 +63,10 @@ function BookConsultationForm() {
   const searchParams = useSearchParams();
   const [currentStep, setCurrentStep] = useState<number>(1);
 
+  // Search & Category Filter state
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [activeCategory, setActiveCategory] = useState<string>("ALL");
+
   // Multi-select state for treatments (storing treatment titles or IDs)
   const [selectedTreatments, setSelectedTreatments] = useState<string[]>([]);
   const [personalDetails, setPersonalDetails] = useState({
@@ -84,6 +88,63 @@ function BookConsultationForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
   const [referenceNumber, setReferenceNumber] = useState<string>("");
+
+  // Custom Luxury Calendar State
+  const now = new Date();
+  const [calendarYear, setCalendarYear] = useState<number>(now.getFullYear());
+  const [calendarMonth, setCalendarMonth] = useState<number>(now.getMonth());
+
+  const MONTH_NAMES = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+
+  // Category Filter Pill Definitions
+  const CATEGORIES = [
+    { id: "ALL", label: "ALL TREATMENTS" },
+    { id: "SKIN & FACIAL AESTHETICS", label: "SKIN & FACIAL" },
+    { id: "HAIRCARE", label: "HAIRCARE" },
+    { id: "BODY / CONTOURING", label: "BODY" },
+    { id: "HAIR REMOVAL", label: "HAIR REMOVAL" },
+  ];
+
+  // Helper function: Check if treatment matches searchQuery
+  const matchesSearch = (treatment: Treatment, groupName: string) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase().trim();
+    return (
+      treatment.title.toLowerCase().includes(q) ||
+      treatment.excerpt.toLowerCase().includes(q) ||
+      treatment.category.toLowerCase().includes(q) ||
+      groupName.toLowerCase().includes(q)
+    );
+  };
+
+  // Helper function: Count matching treatments for a category ID
+  const getCategoryCount = (categoryId: string) => {
+    let count = 0;
+    CATEGORY_GROUPS.forEach((group) => {
+      if (categoryId !== "ALL" && group.name !== categoryId) return;
+      const groupTreatments = group.treatmentIds
+        .map((id) => TREATMENTS_DATA.find((t) => t.id === id))
+        .filter((t): t is Treatment => Boolean(t));
+      count += groupTreatments.filter((t) => matchesSearch(t, group.name)).length;
+    });
+    return count;
+  };
+
+  // Total matching treatments in current view
+  const totalMatchingTreatments = getCategoryCount(activeCategory);
 
   // Handle URL Pre-selection (e.g. /book-consultation?service=HIFU or ?treatment=laser-hair-reduction)
   useEffect(() => {
@@ -190,6 +251,113 @@ function BookConsultationForm() {
     setCurrentStep((prev) => Math.max(prev - 1, 1));
   };
 
+  // Interactive Stepper Click Handler
+  const handleStepClick = (targetStep: number) => {
+    if (targetStep === currentStep) return;
+
+    // Allow instant backward navigation
+    if (targetStep < currentStep) {
+      setErrors({});
+      setCurrentStep(targetStep);
+      return;
+    }
+
+    // Forward navigation requires preceding step validation
+    if (targetStep > currentStep) {
+      // Validate Step 1
+      if (selectedTreatments.length === 0) {
+        setErrors({ selectedTreatments: "Please select at least one treatment you'd like to discuss." });
+        setCurrentStep(1);
+        return;
+      }
+      // If jumping to Step 3 or 4, validate Step 2
+      if (targetStep > 2 && !validateStep2()) {
+        setCurrentStep(2);
+        return;
+      }
+      // If jumping to Step 4, validate Step 3
+      if (targetStep > 3 && !validateStep3()) {
+        setCurrentStep(3);
+        return;
+      }
+
+      setErrors({});
+      setCurrentStep(targetStep);
+    }
+  };
+
+  // Calendar Event Generator Helpers
+  const getGoogleCalendarUrl = () => {
+    const dateStr = schedule.preferredDate || new Date().toISOString().split("T")[0];
+    const cleanDate = dateStr.replace(/-/g, "");
+
+    let startHour = "100000";
+    let endHour = "110000";
+    if (schedule.preferredTime.includes("Afternoon")) {
+      startHour = "130000";
+      endHour = "140000";
+    } else if (schedule.preferredTime.includes("Evening")) {
+      startHour = "160000";
+      endHour = "170000";
+    }
+
+    const startIso = `${cleanDate}T${startHour}`;
+    const endIso = `${cleanDate}T${endHour}`;
+
+    const title = encodeURIComponent("Skintillatingg Consultation — Dr. Akshaya Jain");
+    const details = encodeURIComponent(
+      `Consultation Request with Dr. Akshaya Jain.\n\n` +
+        `Reference Number: ${referenceNumber}\n` +
+        `Selected Treatments: ${selectedTreatments.join(", ")}\n` +
+        `Patient Name: ${personalDetails.fullName}`
+    );
+    const location = encodeURIComponent("Skintillatingg Medical Aesthetics, Koregaon Park, Pune");
+
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startIso}/${endIso}&details=${details}&location=${location}`;
+  };
+
+  const downloadIcsFile = () => {
+    const dateStr = schedule.preferredDate || new Date().toISOString().split("T")[0];
+    const cleanDate = dateStr.replace(/-/g, "");
+
+    let startHour = "100000";
+    let endHour = "110000";
+    if (schedule.preferredTime.includes("Afternoon")) {
+      startHour = "130000";
+      endHour = "140000";
+    } else if (schedule.preferredTime.includes("Evening")) {
+      startHour = "160000";
+      endHour = "170000";
+    }
+
+    const startIso = `${cleanDate}T${startHour}`;
+    const endIso = `${cleanDate}T${endHour}`;
+
+    const icsContent = [
+      "BEGIN:VCALENDAR",
+      "VERSION:2.0",
+      "PRODID:-//Skintillatingg//Consultation Booking//EN",
+      "CALSCALE:GREGORIAN",
+      "BEGIN:VEVENT",
+      `SUMMARY:Skintillatingg Consultation — Dr. Akshaya Jain`,
+      `DESCRIPTION:Consultation Request with Dr. Akshaya Jain.\\nReference: ${referenceNumber}\\nSelected Treatments: ${selectedTreatments.join(", ")}\\nPatient: ${personalDetails.fullName}`,
+      `LOCATION:Skintillatingg Medical Aesthetics\\, Koregaon Park\\, Pune`,
+      `DTSTART:${startIso}`,
+      `DTEND:${endIso}`,
+      "STATUS:CONFIRMED",
+      "END:VEVENT",
+      "END:VCALENDAR",
+    ].join("\r\n");
+
+    const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
+    const link = document.createElement("a");
+    link.href = window.URL.createObjectURL(blob);
+    link.setAttribute("download", `Skintillatingg-Consultation-${referenceNumber || "Request"}.ics`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const treatmentsFormattedList =
     selectedTreatments.length > 0 ? selectedTreatments.join(", ") : "General Consultation";
 
@@ -276,7 +444,33 @@ function BookConsultationForm() {
                 </div>
               </div>
 
-              <div className="pt-4 space-y-4">
+              {/* 1-Click "Add to Calendar" Integration */}
+              <div className="bg-[#657A6A]/10 border border-[#657A6A]/40 rounded-xl p-4 space-y-3">
+                <span className="font-label-caps text-xs text-[#344C3D] uppercase font-bold tracking-wider block text-center">
+                  📅 ADD CONSULTATION TO YOUR CALENDAR
+                </span>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <a
+                    href={getGoogleCalendarUrl()}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-[#1C3329] text-[#F5F5DC] hover:bg-[#17251E] font-button text-xs py-3 px-4 rounded-lg flex items-center justify-center gap-2 font-medium shadow-sm transition-all text-center"
+                  >
+                    <span className="material-symbols-outlined text-sm text-[#C9A227]">calendar_today</span>
+                    <span>Google Calendar</span>
+                  </a>
+                  <button
+                    type="button"
+                    onClick={downloadIcsFile}
+                    className="border border-[#1C3329] text-[#17251E] hover:bg-[#1C3329]/10 font-button text-xs py-3 px-4 rounded-lg flex items-center justify-center gap-2 font-semibold shadow-sm transition-all text-center"
+                  >
+                    <span className="material-symbols-outlined text-sm text-[#1C3329]">download</span>
+                    <span>Apple / Outlook (.ics)</span>
+                  </button>
+                </div>
+              </div>
+
+              <div className="pt-2 space-y-4">
                 <a
                   href={`https://wa.me/918669813636?text=${whatsappMessage}`}
                   target="_blank"
@@ -307,29 +501,50 @@ function BookConsultationForm() {
         ) : (
           /* Multi-step Form Wizard */
           <div className="w-full">
-            {/* Step Progress Bar */}
+            {/* Step Progress Bar (Interactive Stepper) */}
             <div className="grid grid-cols-4 gap-2 mb-12">
               {[
                 { step: 1, title: "01 — Treatments" },
                 { step: 2, title: "02 — Details" },
                 { step: 3, title: "03 — Schedule" },
                 { step: 4, title: "04 — Goals" },
-              ].map((item) => (
-                <div
-                  key={item.step}
-                  className={`p-3 rounded-lg border text-center transition-all ${
-                    currentStep === item.step
-                      ? "bg-[#1C3329] border-[#1C3329] text-[#F5F5DC] font-semibold shadow-md"
-                      : currentStep > item.step
-                      ? "bg-[#657A6A] border-[#657A6A] text-[#F5F5DC]"
-                      : "bg-[#F5F5DC] border-[#657A6A]/40 text-[#344C3D]"
-                  }`}
-                >
-                  <span className="font-label-caps text-[11px] md:text-xs block truncate">
-                    {item.title}
-                  </span>
-                </div>
-              ))}
+              ].map((item) => {
+                const isCurrent = currentStep === item.step;
+                const isCompleted = item.step < currentStep;
+
+                return (
+                  <button
+                    type="button"
+                    key={item.step}
+                    onClick={() => handleStepClick(item.step)}
+                    className={`p-3 rounded-lg border text-center transition-all cursor-pointer group flex flex-col items-center justify-center gap-1 ${
+                      isCurrent
+                        ? "bg-[#1C3329] border-[#1C3329] text-[#F5F5DC] font-semibold shadow-md ring-2 ring-[#C9A227]/50"
+                        : isCompleted
+                        ? "bg-[#657A6A] border-[#657A6A] text-[#F5F5DC] hover:bg-[#1C3329] hover:border-[#1C3329] hover:shadow-lg"
+                        : "bg-[#F5F5DC] border-[#657A6A]/40 text-[#344C3D] hover:bg-[#657A6A]/10"
+                    }`}
+                    title={
+                      isCompleted
+                        ? `Click to jump back to ${item.title}`
+                        : isCurrent
+                        ? `Current step: ${item.title}`
+                        : `Jump to ${item.title}`
+                    }
+                  >
+                    <div className="flex items-center justify-center gap-1.5 w-full">
+                      {isCompleted && (
+                        <span className="material-symbols-outlined text-xs text-[#C9A227] font-bold">
+                          check_circle
+                        </span>
+                      )}
+                      <span className="font-label-caps text-[11px] md:text-xs block truncate">
+                        {item.title}
+                      </span>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
             <div className="w-full px-[20px] md:px-[80px] -mx-[20px] md:-mx-[80px] rounded-2xl py-0">
@@ -403,87 +618,181 @@ function BookConsultationForm() {
                       </div>
                     )}
 
-                    {/* Category Groups Grid */}
-                    <div className="space-y-10">
-                      {CATEGORY_GROUPS.map((group) => {
-                        const groupTreatments = group.treatmentIds
-                          .map((id) => TREATMENTS_DATA.find((t) => t.id === id))
-                          .filter((t): t is Treatment => Boolean(t));
-
-                        if (groupTreatments.length === 0) return null;
-
-                        return (
-                          <div key={group.name} className="space-y-4">
-                            <div className="flex items-center gap-3 border-b border-[#657A6A]/40 pb-2">
-                              <h3 className="font-label-caps text-xs md:text-sm font-semibold tracking-widest text-[#344C3D] uppercase">
-                                {group.name}
-                              </h3>
-                              <span className="text-xs text-[#344C3D]/70 font-body-md">
-                                ({groupTreatments.length})
-                              </span>
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                              {groupTreatments.map((treatment) => {
-                                const isSelected = selectedTreatments.includes(treatment.title);
-                                return (
-                                  <div
-                                    key={treatment.id}
-                                    onClick={() => toggleTreatment(treatment.title)}
-                                    className={`p-5 rounded-xl border cursor-pointer transition-all duration-200 flex flex-col justify-between select-none ${
-                                      isSelected
-                                        ? "bg-[#1C3329] border-[#C9A227] shadow-lg ring-1 ring-[#C9A227] text-[#F5F5DC]"
-                                        : "bg-[#F5F5DC] border-[#657A6A] hover:border-[#17251E] text-[#17251E]"
-                                    }`}
-                                  >
-                                    <div>
-                                      <div className="flex items-start justify-between gap-2 mb-2">
-                                        <h4
-                                          className={`font-display text-base md:text-lg leading-snug font-normal ${
-                                            isSelected ? "text-[#F5F5DC]" : "text-[#17251E]"
-                                          }`}
-                                        >
-                                          {treatment.title}
-                                        </h4>
-                                        <div
-                                          className={`w-5 h-5 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors text-xs ${
-                                            isSelected
-                                              ? "bg-[#C9A227] border-[#C9A227] text-[#17251E] font-bold"
-                                              : "border-[#657A6A] bg-transparent text-transparent"
-                                          }`}
-                                        >
-                                          ✓
-                                        </div>
-                                      </div>
-
-                                      <p
-                                        className={`font-body-md text-xs line-clamp-2 leading-relaxed mb-3 ${
-                                          isSelected ? "text-[#F5F5DC]/90" : "text-[#344C3D]"
-                                        }`}
-                                      >
-                                        {treatment.excerpt}
-                                      </p>
-                                    </div>
-
-                                    {treatment.procedureOverview?.duration && (
-                                      <div
-                                        className={`pt-2 border-t text-[11px] font-label-caps uppercase tracking-wider ${
-                                          isSelected
-                                            ? "border-[#F5F5DC]/20 text-[#C9A227]"
-                                            : "border-[#657A6A]/20 text-[#344C3D]"
-                                        }`}
-                                      >
-                                        Duration: {treatment.procedureOverview.duration}
-                                      </div>
-                                    )}
-                                  </div>
-                                );
-                              })}
-                            </div>
+                    {/* Live Search Input & Category Filter Pills */}
+                    <div className="space-y-4 bg-[#F5F5DC] border border-[#657A6A]/50 rounded-xl p-4 md:p-5 shadow-sm">
+                      {/* Live Search Input Bar */}
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-[#344C3D]">
+                          <span className="material-symbols-outlined text-xl">search</span>
+                        </div>
+                        <input
+                          type="text"
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          placeholder="Search treatments by name, concern, or keyword (e.g. HIFU, Laser, Peel, PRP)..."
+                          className="w-full bg-[#F5F5DC] border border-[#657A6A]/60 rounded-lg pl-11 pr-24 py-3 text-sm text-[#17251E] placeholder-[#344C3D]/60 focus:outline-none focus:border-[#17251E] focus:ring-1 focus:ring-[#17251E] transition-all shadow-inner"
+                        />
+                        {searchQuery ? (
+                          <button
+                            type="button"
+                            onClick={() => setSearchQuery("")}
+                            className="absolute inset-y-0 right-3 flex items-center gap-1.5 text-xs text-[#344C3D] hover:text-[#17251E] font-medium"
+                          >
+                            <span className="bg-[#657A6A]/20 hover:bg-[#657A6A]/40 w-5 h-5 rounded-full flex items-center justify-center text-xs transition-colors">✕</span>
+                            <span>Clear</span>
+                          </button>
+                        ) : (
+                          <div className="absolute inset-y-0 right-3.5 flex items-center pointer-events-none text-xs text-[#344C3D]/70 font-medium">
+                            {totalMatchingTreatments} available
                           </div>
-                        );
-                      })}
+                        )}
+                      </div>
+
+                      {/* Category Filter Pills */}
+                      <div className="flex flex-wrap gap-2 pt-1 border-t border-[#657A6A]/20">
+                        {CATEGORIES.map((cat) => {
+                          const count = getCategoryCount(cat.id);
+                          const isActive = activeCategory === cat.id;
+                          return (
+                            <button
+                              key={cat.id}
+                              type="button"
+                              onClick={() => setActiveCategory(cat.id)}
+                              className={`px-3.5 py-1.5 rounded-full text-xs font-label-caps tracking-wider transition-all flex items-center gap-1.5 select-none ${
+                                isActive
+                                  ? "bg-[#1C3329] text-[#F5F5DC] font-semibold shadow-sm ring-1 ring-[#C9A227]"
+                                  : "bg-[#657A6A]/15 text-[#344C3D] hover:bg-[#657A6A]/30 hover:text-[#17251E] border border-[#657A6A]/40"
+                              }`}
+                            >
+                              <span>{cat.label}</span>
+                              <span
+                                className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                                  isActive ? "bg-[#C9A227] text-[#17251E]" : "bg-[#657A6A]/30 text-[#344C3D]"
+                                }`}
+                              >
+                                {count}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
                     </div>
+
+                    {/* Zero Results Fallback State */}
+                    {totalMatchingTreatments === 0 ? (
+                      <div className="bg-[#F5F5DC] border border-dashed border-[#657A6A] rounded-xl p-8 md:p-10 text-center space-y-4 my-6">
+                        <div className="w-14 h-14 rounded-full bg-[#657A6A]/20 flex items-center justify-center mx-auto text-[#344C3D]">
+                          <span className="material-symbols-outlined text-3xl">search_off</span>
+                        </div>
+                        <div>
+                          <h3 className="font-display text-xl text-[#17251E] mb-1">
+                            No Treatments Found
+                          </h3>
+                          <p className="font-body-md text-sm text-[#344C3D] max-w-md mx-auto">
+                            No therapies matched &quot;{searchQuery}&quot;
+                            {activeCategory !== "ALL" ? ` in category "${activeCategory}"` : ""}.
+                          </p>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSearchQuery("");
+                            setActiveCategory("ALL");
+                          }}
+                          className="inline-flex items-center gap-2 bg-[#1C3329] text-[#F5F5DC] px-5 py-2.5 rounded-lg text-xs font-button hover:bg-[#17251E] transition-colors shadow-sm font-semibold"
+                        >
+                          <span className="material-symbols-outlined text-base">refresh</span>
+                          Reset Search &amp; Filters
+                        </button>
+                      </div>
+                    ) : (
+                      /* Category Groups Grid */
+                      <div className="space-y-10">
+                        {CATEGORY_GROUPS.map((group) => {
+                          if (activeCategory !== "ALL" && group.name !== activeCategory) {
+                            return null;
+                          }
+
+                          const groupTreatments = group.treatmentIds
+                            .map((id) => TREATMENTS_DATA.find((t) => t.id === id))
+                            .filter((t): t is Treatment => Boolean(t))
+                            .filter((t) => matchesSearch(t, group.name));
+
+                          if (groupTreatments.length === 0) return null;
+
+                          return (
+                            <div key={group.name} className="space-y-4">
+                              <div className="flex items-center gap-3 border-b border-[#657A6A]/40 pb-2">
+                                <h3 className="font-label-caps text-xs md:text-sm font-semibold tracking-widest text-[#344C3D] uppercase">
+                                  {group.name}
+                                </h3>
+                                <span className="text-xs text-[#344C3D]/70 font-body-md">
+                                  ({groupTreatments.length})
+                                </span>
+                              </div>
+
+                              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                                {groupTreatments.map((treatment) => {
+                                  const isSelected = selectedTreatments.includes(treatment.title);
+                                  return (
+                                    <div
+                                      key={treatment.id}
+                                      onClick={() => toggleTreatment(treatment.title)}
+                                      className={`p-5 rounded-xl border cursor-pointer transition-all duration-200 flex flex-col justify-between select-none ${
+                                        isSelected
+                                          ? "bg-[#1C3329] border-[#C9A227] shadow-lg ring-1 ring-[#C9A227] text-[#F5F5DC]"
+                                          : "bg-[#F5F5DC] border-[#657A6A] hover:border-[#17251E] text-[#17251E]"
+                                      }`}
+                                    >
+                                      <div>
+                                        <div className="flex items-start justify-between gap-2 mb-2">
+                                          <h4
+                                            className={`font-display text-base md:text-lg leading-snug font-normal ${
+                                              isSelected ? "text-[#F5F5DC]" : "text-[#17251E]"
+                                            }`}
+                                          >
+                                            {treatment.title}
+                                          </h4>
+                                          <div
+                                            className={`w-5 h-5 rounded-full border flex items-center justify-center flex-shrink-0 transition-colors text-xs ${
+                                              isSelected
+                                                ? "bg-[#C9A227] border-[#C9A227] text-[#17251E] font-bold"
+                                                : "border-[#657A6A] bg-transparent text-transparent"
+                                            }`}
+                                          >
+                                            ✓
+                                          </div>
+                                        </div>
+
+                                        <p
+                                          className={`font-body-md text-xs line-clamp-2 leading-relaxed mb-3 ${
+                                            isSelected ? "text-[#F5F5DC]/90" : "text-[#344C3D]"
+                                          }`}
+                                        >
+                                          {treatment.excerpt}
+                                        </p>
+                                      </div>
+
+                                      {treatment.procedureOverview?.duration && (
+                                        <div
+                                          className={`pt-2 border-t text-[11px] font-label-caps uppercase tracking-wider ${
+                                            isSelected
+                                              ? "border-[#F5F5DC]/20 text-[#C9A227]"
+                                              : "border-[#657A6A]/20 text-[#344C3D]"
+                                          }`}
+                                        >
+                                          Duration: {treatment.procedureOverview.duration}
+                                        </div>
+                                      )}
+                                    </div>
+                                  );
+                                })}
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -609,46 +918,286 @@ function BookConsultationForm() {
                       </p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
-                      <div>
-                        <label className="block font-label-caps text-xs text-[#17251E] uppercase mb-2 font-semibold">
-                          Preferred Date *
-                        </label>
-                        <input
-                          type="date"
-                          value={schedule.preferredDate}
-                          min={new Date().toISOString().split("T")[0]}
-                          onChange={(e) =>
-                            setSchedule({ ...schedule, preferredDate: e.target.value })
-                          }
-                          className="w-full bg-[#F5F5DC] border border-[#657A6A]/60 rounded p-3.5 text-sm text-[#17251E] focus:outline-none focus:border-[#17251E]"
-                        />
+                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 pt-2">
+                      {/* Custom Skintillatingg Luxury Calendar (8 Cols) */}
+                      <div className="lg:col-span-7 bg-[#F5F5DC] border-2 border-[#1C3329]/30 rounded-2xl p-5 md:p-6 shadow-md space-y-4">
+                        {/* Calendar Header & Month Nav */}
+                        <div className="flex items-center justify-between border-b border-[#657A6A]/30 pb-3">
+                          <div>
+                            <span className="font-label-caps text-[10px] text-[#C9A227] tracking-widest uppercase block font-bold">
+                              CLINIC APPOINTMENT CALENDAR
+                            </span>
+                            <h3 className="font-display text-xl md:text-2xl text-[#17251E] font-medium">
+                              {MONTH_NAMES[calendarMonth]} {calendarYear}
+                            </h3>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (calendarMonth === 0) {
+                                  setCalendarMonth(11);
+                                  setCalendarYear((y) => y - 1);
+                                } else {
+                                  setCalendarMonth((m) => m - 1);
+                                }
+                              }}
+                              className="w-9 h-9 rounded-lg bg-[#1C3329] text-[#F5F5DC] hover:bg-[#17251E] hover:scale-105 active:scale-95 transition-all flex items-center justify-center shadow-sm"
+                              title="Previous Month"
+                            >
+                              ‹
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => {
+                                if (calendarMonth === 11) {
+                                  setCalendarMonth(0);
+                                  setCalendarYear((y) => y + 1);
+                                } else {
+                                  setCalendarMonth((m) => m + 1);
+                                }
+                              }}
+                              className="w-9 h-9 rounded-lg bg-[#1C3329] text-[#F5F5DC] hover:bg-[#17251E] hover:scale-105 active:scale-95 transition-all flex items-center justify-center shadow-sm"
+                              title="Next Month"
+                            >
+                              ›
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Weekday Header Row */}
+                        <div className="grid grid-cols-7 text-center gap-1 font-label-caps text-xs text-[#344C3D] font-bold tracking-wider py-1 border-b border-[#657A6A]/20">
+                          {["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"].map((day, idx) => (
+                            <div key={day} className={idx === 1 ? "text-red-800/70" : ""}>
+                              {day}
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Calendar Grid */}
+                        <div className="grid grid-cols-7 gap-1.5 pt-1">
+                          {/* Filler empty cells before 1st of month */}
+                          {Array.from({
+                            length: new Date(calendarYear, calendarMonth, 1).getDay(),
+                          }).map((_, i) => (
+                            <div key={`empty-${i}`} className="h-10 md:h-11" />
+                          ))}
+
+                          {/* Days of Month */}
+                          {Array.from({
+                            length: new Date(calendarYear, calendarMonth + 1, 0).getDate(),
+                          }).map((_, i) => {
+                            const dayNum = i + 1;
+                            const dObj = new Date(calendarYear, calendarMonth, dayNum);
+                            const isoString = `${calendarYear}-${String(calendarMonth + 1).padStart(
+                              2,
+                              "0"
+                            )}-${String(dayNum).padStart(2, "0")}`;
+
+                            const isSelected = schedule.preferredDate === isoString;
+                            const today = new Date();
+                            const isToday =
+                              dObj.getFullYear() === today.getFullYear() &&
+                              dObj.getMonth() === today.getMonth() &&
+                              dObj.getDate() === today.getDate();
+
+                            const isPast =
+                              dObj < new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                            const isMonday = dObj.getDay() === 1;
+                            const isDisabled = isPast || isMonday;
+
+                            return (
+                              <button
+                                key={dayNum}
+                                type="button"
+                                disabled={isDisabled}
+                                onClick={() => {
+                                  setSchedule({ ...schedule, preferredDate: isoString });
+                                  setErrors((prev) => {
+                                    const next = { ...prev };
+                                    delete next.preferredDate;
+                                    return next;
+                                  });
+                                }}
+                                className={`h-10 md:h-11 rounded-lg text-xs md:text-sm font-semibold transition-all flex flex-col items-center justify-center relative ${
+                                  isSelected
+                                    ? "bg-[#1C3329] text-[#F5F5DC] border-2 border-[#C9A227] shadow-lg ring-2 ring-[#C9A227]/40 scale-105"
+                                    : isToday
+                                    ? "border-2 border-[#C9A227] text-[#17251E] bg-[#C9A227]/10 hover:bg-[#1C3329] hover:text-[#F5F5DC]"
+                                    : isDisabled
+                                    ? "opacity-30 text-[#657A6A] bg-[#657A6A]/5 cursor-not-allowed border-transparent"
+                                    : "bg-[#F5F5DC] text-[#17251E] border border-[#657A6A]/40 hover:bg-[#1C3329] hover:text-[#F5F5DC] hover:border-[#1C3329] cursor-pointer"
+                                }`}
+                                title={
+                                  isMonday
+                                    ? "Clinic closed on Mondays"
+                                    : isPast
+                                    ? "Past date unavailable"
+                                    : `Select ${MONTH_NAMES[calendarMonth]} ${dayNum}, ${calendarYear}`
+                                }
+                              >
+                                <span>{dayNum}</span>
+                                {isMonday && (
+                                  <span className="text-[9px] leading-tight text-red-700/80 font-normal">
+                                    Closed
+                                  </span>
+                                )}
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {/* Quick Presets & Date Status Bar */}
+                        <div className="pt-3 border-t border-[#657A6A]/30 flex flex-col sm:flex-row items-center justify-between gap-3">
+                          <div className="flex items-center gap-1.5 flex-wrap">
+                            <span className="text-[11px] font-label-caps text-[#344C3D] font-bold">
+                              Quick Select:
+                            </span>
+                            {[
+                              { label: "Tomorrow", offset: 1 },
+                              { label: "In 3 Days", offset: 3 },
+                              { label: "Next Sunday", offset: 7 },
+                            ].map((preset) => (
+                              <button
+                                key={preset.label}
+                                type="button"
+                                onClick={() => {
+                                  const target = new Date();
+                                  target.setDate(target.getDate() + preset.offset);
+                                  if (target.getDay() === 1) target.setDate(target.getDate() + 1); // skip Monday
+                                  const isoStr = `${target.getFullYear()}-${String(
+                                    target.getMonth() + 1
+                                  ).padStart(2, "0")}-${String(target.getDate()).padStart(2, "0")}`;
+                                  setSchedule({ ...schedule, preferredDate: isoStr });
+                                  setCalendarMonth(target.getMonth());
+                                  setCalendarYear(target.getFullYear());
+                                  setErrors((prev) => {
+                                    const next = { ...prev };
+                                    delete next.preferredDate;
+                                    return next;
+                                  });
+                                }}
+                                className="px-2.5 py-1 rounded-md text-[11px] font-label-caps bg-[#657A6A]/15 text-[#17251E] hover:bg-[#1C3329] hover:text-[#F5F5DC] border border-[#657A6A]/40 transition-colors"
+                              >
+                                {preset.label}
+                              </button>
+                            ))}
+                          </div>
+
+                          {schedule.preferredDate ? (
+                            <div className="bg-[#1C3329] text-[#F5F5DC] px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 shadow-sm">
+                              <span className="material-symbols-outlined text-sm text-[#C9A227]">
+                                check_circle
+                              </span>
+                              <span>{schedule.preferredDate}</span>
+                            </div>
+                          ) : (
+                            <span className="text-xs text-red-600 font-medium animate-pulse">
+                              * Select a date from calendar
+                            </span>
+                          )}
+                        </div>
+
                         {errors.preferredDate && (
-                          <p className="text-red-600 text-xs mt-1">{errors.preferredDate}</p>
+                          <div className="bg-red-50 border border-red-300 rounded-lg p-2.5 text-red-700 text-xs flex items-center gap-2">
+                            <span className="material-symbols-outlined text-sm">error</span>
+                            <span>{errors.preferredDate}</span>
+                          </div>
                         )}
                       </div>
 
-                      <div>
-                        <label className="block font-label-caps text-xs text-[#17251E] uppercase mb-2 font-semibold">
-                          Preferred Time Slot
-                        </label>
-                        <select
-                          value={schedule.preferredTime}
-                          onChange={(e) =>
-                            setSchedule({ ...schedule, preferredTime: e.target.value })
-                          }
-                          className="w-full bg-[#F5F5DC] border border-[#657A6A]/60 rounded p-3.5 text-sm text-[#17251E] focus:outline-none focus:border-[#17251E]"
-                        >
-                          <option value="Morning (10:00 AM - 1:00 PM)" className="bg-[#F5F5DC] text-[#17251E]">
-                            Morning (10:00 AM - 1:00 PM)
-                          </option>
-                          <option value="Afternoon (1:00 PM - 4:00 PM)" className="bg-[#F5F5DC] text-[#17251E]">
-                            Afternoon (1:00 PM - 4:00 PM)
-                          </option>
-                          <option value="Evening (4:00 PM - 7:00 PM)" className="bg-[#F5F5DC] text-[#17251E]">
-                            Evening (4:00 PM - 7:00 PM)
-                          </option>
-                        </select>
+                      {/* Preferred Time Slot (5 Cols) */}
+                      <div className="lg:col-span-5 bg-[#F5F5DC] border border-[#657A6A]/50 rounded-2xl p-5 md:p-6 shadow-sm space-y-4 flex flex-col justify-between">
+                        <div>
+                          <label className="block font-label-caps text-xs text-[#17251E] uppercase mb-2 font-bold tracking-wider">
+                            PREFERRED TIME SLOT *
+                          </label>
+                          <p className="text-xs text-[#344C3D] mb-4">
+                            Choose your preferred time range for your in-clinic consultation.
+                          </p>
+
+                          <div className="space-y-3">
+                            {[
+                              {
+                                slot: "Morning (10:00 AM - 1:00 PM)",
+                                title: "Morning Consultation",
+                                time: "10:00 AM — 1:00 PM",
+                                icon: "wb_twilight",
+                              },
+                              {
+                                slot: "Afternoon (1:00 PM - 4:00 PM)",
+                                title: "Afternoon Consultation",
+                                time: "1:00 PM — 4:00 PM",
+                                icon: "light_mode",
+                              },
+                              {
+                                slot: "Evening (4:00 PM - 7:00 PM)",
+                                title: "Evening Consultation",
+                                time: "4:00 PM — 7:00 PM",
+                                icon: "dark_mode",
+                              },
+                            ].map((item) => {
+                              const isSlotSelected = schedule.preferredTime === item.slot;
+                              return (
+                                <button
+                                  key={item.slot}
+                                  type="button"
+                                  onClick={() =>
+                                    setSchedule({ ...schedule, preferredTime: item.slot })
+                                  }
+                                  className={`w-full p-4 rounded-xl border text-left transition-all flex items-center justify-between group cursor-pointer ${
+                                    isSlotSelected
+                                      ? "bg-[#1C3329] border-[#1C3329] text-[#F5F5DC] shadow-md ring-2 ring-[#C9A227]"
+                                      : "bg-[#F5F5DC] border-[#657A6A]/50 text-[#17251E] hover:bg-[#657A6A]/10 hover:border-[#1C3329]"
+                                  }`}
+                                >
+                                  <div className="flex items-center gap-3">
+                                    <span
+                                      className={`material-symbols-outlined text-xl ${
+                                        isSlotSelected ? "text-[#C9A227]" : "text-[#344C3D]"
+                                      }`}
+                                    >
+                                      {item.icon}
+                                    </span>
+                                    <div>
+                                      <span className="font-semibold text-sm block">
+                                        {item.title}
+                                      </span>
+                                      <span
+                                        className={`text-xs block ${
+                                          isSlotSelected ? "text-[#F5F5DC]/80" : "text-[#344C3D]"
+                                        }`}
+                                      >
+                                        {item.time}
+                                      </span>
+                                    </div>
+                                  </div>
+                                  <div
+                                    className={`w-5 h-5 rounded-full border flex items-center justify-center text-xs ${
+                                      isSlotSelected
+                                        ? "bg-[#C9A227] border-[#C9A227] text-[#17251E] font-bold"
+                                        : "border-[#657A6A] group-hover:border-[#1C3329]"
+                                    }`}
+                                  >
+                                    {isSlotSelected && "✓"}
+                                  </div>
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+
+                        <div className="pt-4 border-t border-[#657A6A]/20 bg-[#657A6A]/10 rounded-xl p-3.5 text-xs text-[#344C3D] space-y-1">
+                          <div className="flex items-center gap-1.5 font-bold text-[#17251E]">
+                            <span className="material-symbols-outlined text-sm text-[#C9A227]">
+                              info
+                            </span>
+                            <span>Clinic Hours & Policy</span>
+                          </div>
+                          <p className="leading-relaxed">
+                            Tue – Sun: 10:00 AM – 7:00 PM (Closed Mondays). Our medical team will contact you to confirm final slot alignment.
+                          </p>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -785,6 +1334,37 @@ function BookConsultationForm() {
           </div>
         )}
       </section>
+
+      {/* Sticky Mobile Floating Action Bar (Step 1) */}
+      {!isSubmitted && currentStep === 1 && (
+        <div className="fixed bottom-0 left-0 right-0 z-50 p-4 bg-[#1C3329]/95 backdrop-blur-md border-t border-[#C9A227]/40 shadow-2xl md:hidden transition-all duration-300 animate-in slide-in-from-bottom-5">
+          <div className="flex items-center justify-between gap-3 max-w-md mx-auto">
+            <div className="flex items-center gap-2 text-[#F5F5DC]">
+              <span className="w-2.5 h-2.5 rounded-full bg-[#C9A227] animate-pulse"></span>
+              <div>
+                <div className="font-display text-sm font-semibold leading-tight text-[#F5F5DC]">
+                  {selectedTreatments.length === 0
+                    ? "Select Treatments"
+                    : `${selectedTreatments.length} ${selectedTreatments.length === 1 ? "Treatment" : "Treatments"} Selected`}
+                </div>
+                <div className="font-label-caps text-[10px] text-[#F5F5DC]/70 uppercase tracking-wider">
+                  {selectedTreatments.length === 0 ? "Tap cards above to select" : "Ready for next step"}
+                </div>
+              </div>
+            </div>
+
+            <button
+              type="button"
+              onClick={handleNext}
+              disabled={selectedTreatments.length === 0}
+              className="bg-[#C9A227] hover:bg-[#b59020] text-[#17251E] font-button text-xs px-5 py-3 rounded-lg font-bold shadow-md flex items-center gap-1.5 transition-all disabled:opacity-40 disabled:cursor-not-allowed flex-shrink-0"
+            >
+              <span>Proceed to Details</span>
+              <span className="material-symbols-outlined text-sm font-bold">arrow_forward</span>
+            </button>
+          </div>
+        </div>
+      )}
 
       <Footer />
     </main>

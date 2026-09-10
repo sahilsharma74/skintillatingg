@@ -125,10 +125,10 @@ export default function ServicesBento() {
                 <div className="pt-4 border-t border-[#17251E]/15 flex items-center justify-between">
                   <Link
                     href={`/book-consultation?treatment=${service.title.toLowerCase().replace(/ /g, "-")}`}
-                    className="font-button text-[11px] tracking-[0.15em] uppercase text-[#17251E] font-semibold flex items-center gap-2 group-hover:text-[#C9A227] transition-colors"
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-[#17251E] text-[#F5F5DC] hover:bg-[#C9A227] hover:text-[#17251E] rounded-[3px] text-xs font-semibold tracking-wider uppercase transition-all duration-300 shadow-sm"
                   >
                     <span>INQUIRE</span>
-                    <span className="material-symbols-outlined text-[14px] transition-transform duration-300 group-hover:translate-x-1.5">
+                    <span className="material-symbols-outlined text-[14px] transition-transform duration-300 group-hover:translate-x-1">
                       east
                     </span>
                   </Link>

@@ -27,13 +27,6 @@ export const REELS_DATA: ReelItem[] = [
     aspectRatio: "9:16",
   },
   {
-    id: "reel-03",
-    category: "EXPERTISE",
-    title: "Meet Dr. Akshaya Jain",
-    videoUrl: "/videos/booster shots.mp4",
-    aspectRatio: "9:16",
-  },
-  {
     id: "reel-04",
     category: "TECHNOLOGY",
     title: "Advanced Aesthetic Technology",
