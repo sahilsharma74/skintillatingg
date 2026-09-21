@@ -56,6 +56,9 @@ export async function generateMetadata({ params }: TreatmentDetailProps): Promis
       description: treatment.excerpt,
       images: [treatment.image],
     },
+    alternates: {
+      canonical: `/treatments/${treatment.slug}`,
+    },
   };
 }
 

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import StatsSection from "@/components/StatsSection";
@@ -7,6 +8,12 @@ import CelebrityReviewsSection from "@/components/CelebrityReviewsSection";
 import SanctuarySection from "@/components/SanctuarySection";
 import ServicesBento from "@/components/ServicesBento";
 import Footer from "@/components/Footer";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: '/',
+  },
+};
 
 export default function Home() {
   return (
