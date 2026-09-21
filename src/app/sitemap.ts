@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { TREATMENTS_DATA } from "@/data/treatments";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://skintillatingg.vercel.app";
+  const baseUrl = "https://www.skintillatingg.co.in";
 
   // Core static pages
   const staticRoutes: MetadataRoute.Sitemap = [

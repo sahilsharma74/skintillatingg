@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/api/"],
     },
-    sitemap: "https://skintillatingg.vercel.app/sitemap.xml",
+    sitemap: "https://www.skintillatingg.co.in/sitemap.xml",
   };
 }

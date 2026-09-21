@@ -17,7 +17,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://skintillatingg.vercel.app"),
+  metadataBase: new URL("https://www.skintillatingg.co.in"),
   title: {
     default: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
     template: "%s | Skintillatingg",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
     description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune. Specialized in HIFU, Hair GFC, Dermal Fillers, and Clinical Aesthetics.",
-    url: "https://skintillatingg.vercel.app",
+    url: "https://www.skintillatingg.co.in",
     siteName: "Skintillatingg Clinic Sanctuary",
     images: [
       {
@@ -94,9 +94,9 @@ export default function RootLayout({
               "@type": ["MedicalBusiness", "DermatologyClinic", "MedicalClinic"],
               name: "Skintillatingg - Dr. Akshaya Jain Luxury Aesthetic Clinic",
               alternateName: "Skintillatingg Cosmo • Tricho Clinic Sanctuary",
-              url: "https://skintillatingg.vercel.app",
-              logo: "https://skintillatingg.vercel.app/skintillatingg-favicon.svg",
-              image: "https://skintillatingg.vercel.app/skintillatingg-gold-logo.png",
+              url: "https://www.skintillatingg.co.in",
+              logo: "https://www.skintillatingg.co.in/skintillatingg-favicon.svg",
+              image: "https://www.skintillatingg.co.in/skintillatingg-gold-logo.png",
               description:
                 "Premier aesthetic cosmetology, trichology, and therapeutic skin rejuvenation clinic in Koregaon Park, Pune led by award-winning Dr. Akshaya Jain.",
               telephone: "+918669813636",

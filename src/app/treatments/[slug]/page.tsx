@@ -3,6 +3,7 @@ import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { TREATMENTS_DATA } from "@/data/treatments";
+import type { Metadata } from "next";
 
 interface TreatmentDetailProps {
   params: Promise<{
@@ -17,6 +18,45 @@ export async function generateStaticParams() {
   // Alias for hair-oxygenation spelling
   params.push({ slug: "hair-oxygenation" });
   return params;
+}
+
+export async function generateMetadata({ params }: TreatmentDetailProps): Promise<Metadata> {
+  const { slug } = await params;
+  const treatment = TREATMENTS_DATA.find(
+    (item) =>
+      item.slug === slug ||
+      (slug === "hair-oxygenation" && item.slug === "hair-oxigenation") ||
+      (slug === "hair-oxigenation" && item.slug === "hair-oxygenation")
+  );
+
+  if (!treatment) {
+    return {
+      title: "Treatment Not Found | Skintillatingg",
+    };
+  }
+
+  return {
+    title: treatment.title,
+    description: treatment.excerpt,
+    openGraph: {
+      title: `${treatment.title} | Skintillatingg`,
+      description: treatment.excerpt,
+      images: [
+        {
+          url: treatment.image,
+          width: 1200,
+          height: 630,
+          alt: treatment.title,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${treatment.title} | Skintillatingg`,
+      description: treatment.excerpt,
+      images: [treatment.image],
+    },
+  };
 }
 
 export default async function TreatmentDetailPage({ params }: TreatmentDetailProps) {
