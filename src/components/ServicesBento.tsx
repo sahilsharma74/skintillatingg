@@ -16,22 +16,14 @@ export default function ServicesBento() {
     {
       num: "01",
       category: "01 • SPECIALTY",
-      title: "BOOSTER SHOTS",
-      desc: "Personalized skin booster treatments designed to support hydration, skin quality, radiance and a refreshed, healthy-looking appearance.",
-      type: "video",
-      videoSrc: "/videos/booster%20shots.mp4",
-    },
-    {
-      num: "02",
-      category: "02 • SPECIALTY",
       title: "HIFU",
       desc: "A non-surgical ultrasound-based treatment designed to support firmer-looking skin and a more defined appearance through focused energy delivery.",
       type: "video",
       videoSrc: "/videos/hifu.mp4.mp4",
     },
     {
-      num: "03",
-      category: "03 • SPECIALTY",
+      num: "02",
+      category: "02 • SPECIALTY",
       title: "Laser Hair Removal",
       desc: "An advanced laser-based treatment designed to reduce unwanted hair while supporting smoother-looking skin and long-term hair management.",
       type: "video",
@@ -65,8 +57,8 @@ export default function ServicesBento() {
           </div>
         </ScrollReveal>
 
-        {/* Editorial Service Grid (3 Warm Cream Panels) */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        {/* Editorial Service Grid (2 Warm Cream Panels) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
           {services.map((service, idx) => (
             <ScrollReveal key={idx} delay={idx * 150} direction="up">
               <div
