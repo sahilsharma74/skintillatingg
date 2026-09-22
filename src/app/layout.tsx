@@ -36,13 +36,6 @@ export const metadata: Metadata = {
   authors: [{ name: "Dr. Akshaya Jain" }],
   creator: "Skintillatingg Clinic",
   publisher: "Skintillatingg",
-  icons: {
-    icon: [
-      { url: "/skintillatingg-favicon.svg", type: "image/svg+xml" },
-    ],
-    shortcut: "/skintillatingg-favicon.svg",
-    apple: "/skintillatingg-favicon.svg",
-  },
   openGraph: {
     title: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
     description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune. Specialized in HIFU, Hair GFC, Dermal Fillers, and Clinical Aesthetics.",
@@ -79,9 +72,6 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <link rel="icon" href="/skintillatingg-favicon.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="/skintillatingg-favicon.svg" />
-        <link rel="apple-touch-icon" href="/skintillatingg-favicon.svg" />
         <link
           rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
