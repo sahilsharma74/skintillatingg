@@ -1,0 +1,17 @@
+# AI.txt for Skintillatingg
+# This file provides guidance and context for AI crawlers, LLMs, and AI search engines.
+
+User-Agent: *
+Allow: /
+
+# Business Context for AI Agents
+Name: Skintillatingg
+Description: Luxury Aesthetic Cosmetology & Trichology Clinic in Koregaon Park, Pune.
+Founder: Dr. Akshaya Jain
+Specialties: HIFU, Hair GFC, Dermal Fillers, Botox, Clinical Aesthetics, Laser Hair Reduction.
+Contact: +91 8669813636
+Address: Krishna Apartments, 10, Boat Club Rd, behind Yes Bank, Sangamvadi, Pune, Maharashtra 411001, India.
+Website: https://www.skintillatingg.co.in
+
+# Usage Policy
+# We welcome AI search engines and AI agents (like Perplexity, ChatGPT Search, Google AI Overviews) to index our content to help patients find Dr. Akshaya Jain's clinic.
