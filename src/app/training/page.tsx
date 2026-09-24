@@ -504,10 +504,10 @@ export default function TrainingPage() {
       {/* Interactive Certificate Viewer Modal */}
       {selectedCert && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm">
-          <div className="bg-[#17251E] border border-[#C9A227]/60 rounded-2xl max-w-lg w-full p-6 space-y-4 text-[#F5F5DC] relative shadow-2xl">
+          <div className="bg-[#17251E] border border-[#C9A227]/60 rounded-2xl max-w-lg w-full p-6 space-y-4 text-[#F5F5DC] relative shadow-2xl max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setSelectedCert(null)}
-              className="absolute top-4 right-4 text-[#F5F5DC]/80 hover:text-[#C9A227]"
+              className="absolute top-4 right-4 text-[#F5F5DC]/80 hover:text-[#C9A227] z-10 bg-[#17251E]/50 rounded-full p-1"
             >
               <span className="material-symbols-outlined text-2xl">close</span>
             </button>
@@ -519,6 +519,19 @@ export default function TrainingPage() {
                 {selectedCert}
               </h3>
             </div>
+            
+            <div className="w-full relative rounded border border-[#657A6A]/30 overflow-hidden bg-[#1C3329]">
+              <img 
+                src={
+                  selectedCert === "NSDC Accreditation & TC ID Reference" 
+                    ? "/images/national-skill-development-credential.webp" 
+                    : "/images/ciatn-clinical-practitioner-certificate.webp"
+                } 
+                alt={selectedCert}
+                className="w-full h-auto object-contain"
+              />
+            </div>
+
             <div className="p-4 bg-[#1C3329] border border-[#657A6A]/30 rounded-lg space-y-2 text-xs font-light text-[#F5F5DC]/90">
               <p><strong>Issuing Authority:</strong> Chromocosmo Institute of Aesthetics, Trichology & Nutrition (CIATN)</p>
               <p><strong>Verification Standard:</strong> Structured Practical Hours & Clinical Safety Compliance</p>

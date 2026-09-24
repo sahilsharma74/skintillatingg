@@ -151,8 +151,8 @@ export default function ContactPage() {
               </span>
               <ul className="space-y-2 font-body-md text-sm text-[#F5F5DC]/90">
                 <li className="flex justify-between">
-                  <span>Monday — Saturday:</span>
-                  <span className="text-[#F5F5DC]">10:00 AM — 7:00 PM</span>
+                  <span>Monday - Saturday:</span>
+                  <span className="text-[#F5F5DC]">10:00 AM - 7:00 PM</span>
                 </li>
                 <li className="flex justify-between">
                   <span>Sunday:</span>

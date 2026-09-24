@@ -46,7 +46,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMember[] = [
     bio: "Experienced beauty and aesthetics educator with extensive expertise in beauty culture, aesthetics, beauty therapy, hair design, and professional training.",
     category: "CLINICAL TEAM",
     displayOrder: 2,
-    objectPosition: "center 30%",
+    objectPosition: "center top",
     status: "published",
   },
   {

@@ -28,7 +28,10 @@ export default function Footer() {
             Dr. Akshaya Jain
           </p>
           <p className="font-body-md text-[#F5F5DC]/70 text-[12px] leading-relaxed font-light">
-            Cosmo • Tricho • Therapeutic Sanctuary, Pune.
+            Cosmo • Tricho • Therapeutic
+          </p>
+          <p className="font-body-md text-[#F5F5DC]/70 text-[12px] leading-relaxed font-light">
+            Pune - 411001
           </p>
         </div>
 
