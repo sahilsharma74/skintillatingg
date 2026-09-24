@@ -311,7 +311,7 @@ function BookConsultationForm() {
         `Selected Treatments: ${selectedTreatments.join(", ")}\n` +
         `Patient Name: ${personalDetails.fullName}`
     );
-    const location = encodeURIComponent("Skintillatingg Medical Aesthetics, Koregaon Park, Pune");
+    const location = encodeURIComponent("Skintillatingg Medical Aesthetics, Opp. to Clover Infotech, Pune");
 
     return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${startIso}/${endIso}&details=${details}&location=${location}`;
   };
@@ -341,7 +341,7 @@ function BookConsultationForm() {
       "BEGIN:VEVENT",
       `SUMMARY:Skintillatingg Consultation — Dr. Akshaya Jain`,
       `DESCRIPTION:Consultation Request with Dr. Akshaya Jain.\\nReference: ${referenceNumber}\\nSelected Treatments: ${selectedTreatments.join(", ")}\\nPatient: ${personalDetails.fullName}`,
-      `LOCATION:Skintillatingg Medical Aesthetics\\, Koregaon Park\\, Pune`,
+      `LOCATION:Skintillatingg Medical Aesthetics\\, Opp. to Clover Infotech\\, Pune`,
       `DTSTART:${startIso}`,
       `DTEND:${endIso}`,
       "STATUS:CONFIRMED",
@@ -386,7 +386,7 @@ function BookConsultationForm() {
               Book a <span className="italic text-[#F5F5DC]">Consultation</span>
             </h1>
             <p className="font-body-md text-[#F5F5DC]/90 text-base md:text-lg">
-              Request your diagnostic appointment with Dr. Akshaya Jain at our Koregaon Park sanctuary. Select all therapies you would like to explore.
+              Request your diagnostic appointment with Dr. Akshaya Jain at our sanctuary (Opp. to Clover Infotech, Pune). Select all therapies you would like to explore.
             </p>
           </div>
         </ScrollReveal>

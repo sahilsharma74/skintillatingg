@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import ScrollReveal from "@/components/effects/ScrollReveal";
 
 export interface CelebrityReview {
@@ -18,7 +18,7 @@ export const CELEBRITY_REVIEWS: CelebrityReview[] = [
     profession: "Bollywood Actor",
     quote:
       "They care my skin and hair more than I do! Skintillatingg is unique!",
-    image: "/images/siddharth-jadhav.jpg",
+    image: "/images/siddharth-jadhav.webp",
   },
   {
     id: "review-02",
@@ -26,7 +26,7 @@ export const CELEBRITY_REVIEWS: CelebrityReview[] = [
     profession: "Bollywood Actor",
     quote:
       "Staying healthy depends on caring yourself better. Skintillatingg cares me best, makes me best on screen.",
-    image: "/images/sourabh-gokhale.jpg",
+    image: "/images/sourabh-gokhale.webp",
   },
   {
     id: "review-03",
@@ -34,7 +34,7 @@ export const CELEBRITY_REVIEWS: CelebrityReview[] = [
     profession: "Bollywood/Tollywood Actress",
     quote:
       "I trust Skintillatingg for their utmost care and expertise. Treatments which make me feel special.",
-    image: "/images/vedvika-soni.jpg",
+    image: "/images/vedvika-soni.webp",
   },
   {
     id: "review-04",
@@ -42,70 +42,77 @@ export const CELEBRITY_REVIEWS: CelebrityReview[] = [
     profession: "Bollywood Actor",
     quote:
       "It's always perfection and care with Skintillatingg treatments.",
-    image: "/images/anushka-pimputkar.jpg",
+    image: "/images/anushka-pimputkar.webp",
   },
   {
     id: "review-05",
     name: "Public Personality",
     profession: "International Presenter",
     quote:
-      "Finding a cosmetologist who understands subtle, bespoke aesthetic enhancement is rare. Dr. Akshaya’s clinical mastery makes Skintillatingg truly world-class.",
-    image: "/images/dr-akshaya-jain.jpg",
+      "Finding a cosmetologist who understands subtle, bespoke aesthetic enhancement is rare. Dr. Akshaya's clinical mastery makes Skintillatingg truly world-class.",
+    image: "/images/dr-akshaya-jain.webp",
   },
 ];
 
+/** Cache of preloaded images so we don't reload them */
+const imageCache = new Set<string>();
+
+function preloadImage(src: string): void {
+  if (imageCache.has(src)) return;
+  const img = new window.Image();
+  img.onload = () => imageCache.add(src);
+  img.onerror = () => {};
+  img.src = src;
+}
+
 export default function CelebrityReviewsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [displayIndex, setDisplayIndex] = useState(0);
+  const [isFading, setIsFading] = useState(false);
   const autoPlayRef = useRef<NodeJS.Timeout | null>(null);
+  const len = CELEBRITY_REVIEWS.length;
 
-  const current = CELEBRITY_REVIEWS[currentIndex];
+  const current = CELEBRITY_REVIEWS[displayIndex];
 
-  const goToNext = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => (prev + 1) % CELEBRITY_REVIEWS.length);
-  };
-
-  const goToPrev = () => {
-    if (isTransitioning) return;
-    setIsTransitioning(true);
-    setCurrentIndex((prev) => (prev - 1 + CELEBRITY_REVIEWS.length) % CELEBRITY_REVIEWS.length);
-  };
-
-  const goToIndex = (index: number) => {
-    if (isTransitioning || index === currentIndex) return;
-    setIsTransitioning(true);
-    setCurrentIndex(index);
-  };
-
+  // Preload adjacent images whenever currentIndex changes
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsTransitioning(false);
-    }, 600);
-    return () => clearTimeout(timer);
-  }, [currentIndex]);
+    const prevIdx = (currentIndex - 1 + len) % len;
+    const nextIdx = (currentIndex + 1) % len;
+    preloadImage(CELEBRITY_REVIEWS[prevIdx].image);
+    preloadImage(CELEBRITY_REVIEWS[nextIdx].image);
+    preloadImage(CELEBRITY_REVIEWS[currentIndex].image);
+  }, [currentIndex, len]);
 
+  // Handle crossfade transition
+  useEffect(() => {
+    if (currentIndex === displayIndex) return;
+    setIsFading(true);
+    const t = setTimeout(() => {
+      setDisplayIndex(currentIndex);
+      setIsFading(false);
+    }, 280);
+    return () => clearTimeout(t);
+  }, [currentIndex, displayIndex]);
+
+  const navigate = useCallback((newIdx: number) => {
+    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
+    setCurrentIndex(((newIdx % len) + len) % len);
+  }, [len]);
+
+  // Autoplay
   useEffect(() => {
     autoPlayRef.current = setInterval(() => {
-      setIsTransitioning(true);
-      setCurrentIndex((prev) => (prev + 1) % CELEBRITY_REVIEWS.length);
+      setCurrentIndex((prev) => (prev + 1) % len);
     }, 7500);
-
     return () => {
       if (autoPlayRef.current) clearInterval(autoPlayRef.current);
     };
-  }, [currentIndex]);
-
-  const handleUserInteract = (action: () => void) => {
-    if (autoPlayRef.current) clearInterval(autoPlayRef.current);
-    action();
-  };
+  }, [len]);
 
   return (
     <section className="py-16 sm:py-20 bg-[#1C3329] text-[#F5F5DC] border-b border-[#657A6A]/30 overflow-hidden relative">
       <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16 lg:px-20 relative z-10">
-        {/* Section Label with ScrollReveal */}
+        {/* Section Label */}
         <ScrollReveal showGoldLine goldLinePosition="bottom" className="mb-10">
           <div className="flex items-center justify-between pb-3">
             <span className="font-label-caps text-xs tracking-[0.25em] uppercase text-[#AEB9A9] font-semibold">
@@ -122,8 +129,8 @@ export default function CelebrityReviewsSection() {
           {/* Left Content / Quote & Details */}
           <div className="lg:col-span-7 flex flex-col justify-between space-y-6">
             <div
-              className={`space-y-4 transition-all duration-700 ease-out ${
-                isTransitioning ? "opacity-20 translate-x-3" : "opacity-100 translate-x-0"
+              className={`space-y-4 transition-opacity duration-300 ease-out ${
+                isFading ? "opacity-0" : "opacity-100"
               }`}
             >
               <div>
@@ -145,7 +152,7 @@ export default function CelebrityReviewsSection() {
               </blockquote>
             </div>
 
-            {/* Bottom Controls with Separated Numerical Pagination and Navigation Arrows */}
+            {/* Bottom Controls */}
             <div className="pt-6 border-t border-[#657A6A]/20 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
               {/* Numerical Indicators */}
               <div className="flex items-center gap-5" role="tablist" aria-label="Testimonial slides">
@@ -158,7 +165,7 @@ export default function CelebrityReviewsSection() {
                       type="button"
                       role="tab"
                       aria-selected={isActive}
-                      onClick={() => handleUserInteract(() => goToIndex(idx))}
+                      onClick={() => navigate(idx)}
                       className={`font-label-caps text-xs tracking-wider transition-all duration-300 relative py-1 px-1 min-w-[32px] min-h-[32px] flex items-center justify-center ${
                         isActive
                           ? "text-[#F5F5DC] font-bold"
@@ -175,11 +182,11 @@ export default function CelebrityReviewsSection() {
                 })}
               </div>
 
-              {/* Directional Controls (Separated with gap-4) */}
+              {/* Arrows */}
               <div className="flex items-center gap-4">
                 <button
                   type="button"
-                  onClick={() => handleUserInteract(goToPrev)}
+                  onClick={() => navigate(currentIndex - 1)}
                   aria-label="Previous testimonial"
                   className="w-10 h-10 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#C9A227] hover:bg-[#C9A227]/10 transition-all duration-200 shadow-sm"
                 >
@@ -187,7 +194,7 @@ export default function CelebrityReviewsSection() {
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleUserInteract(goToNext)}
+                  onClick={() => navigate(currentIndex + 1)}
                   aria-label="Next testimonial"
                   className="w-10 h-10 rounded-full border border-[#657A6A]/40 flex items-center justify-center text-[#F5F5DC]/80 hover:text-[#F5F5DC] hover:border-[#C9A227] hover:bg-[#C9A227]/10 transition-all duration-200 shadow-sm"
                 >
@@ -197,19 +204,23 @@ export default function CelebrityReviewsSection() {
             </div>
           </div>
 
-          {/* Right Celebrity Image Frame */}
+          {/* Right Image Frame — fixed dimensions, crossfade */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
             <div
               data-cursor="VIEW"
               className="relative w-full max-w-[340px] aspect-[4/5] rounded-sm overflow-hidden bg-[#17251E] border border-[#657A6A]/40 shadow-xl cinematic-img-container cursor-pointer"
             >
-              <img
-                src={current.image}
-                alt={current.name}
-                className={`w-full h-full object-cover object-center transition-all duration-700 ease-out ${
-                  isTransitioning ? "opacity-40 scale-105" : "opacity-100 scale-100"
-                }`}
-              />
+              {/* Stacked images for gapless crossfade */}
+              {CELEBRITY_REVIEWS.map((review, idx) => (
+                <img
+                  key={review.id}
+                  src={review.image}
+                  alt={`${review.name} - Skintillatingg celebrity review`}
+                  className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-300 ease-out ${
+                    idx === displayIndex ? (isFading ? "opacity-0" : "opacity-100") : "opacity-0"
+                  }`}
+                />
+              ))}
               <div className="absolute inset-0 bg-gradient-to-t from-[#17251E]/70 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
@@ -218,4 +229,3 @@ export default function CelebrityReviewsSection() {
     </section>
   );
 }
-

@@ -24,7 +24,7 @@ export default function ServicesBento() {
     {
       num: "02",
       category: "02 • SPECIALTY",
-      title: "Laser Hair Removal",
+      title: "Laser Hair Reduction",
       desc: "An advanced laser-based treatment designed to reduce unwanted hair while supporting smoother-looking skin and long-term hair management.",
       type: "video",
       videoSrc: "/videos/laser-hair-removal.mp4.mp4",
@@ -119,7 +119,7 @@ export default function ServicesBento() {
                     href={`/book-consultation?treatment=${service.title.toLowerCase().replace(/ /g, "-")}`}
                     className="inline-flex items-center gap-2 px-4 py-2 bg-[#17251E] text-[#F5F5DC] hover:bg-[#C9A227] hover:text-[#17251E] rounded-[3px] text-xs font-semibold tracking-wider uppercase transition-all duration-300 shadow-sm"
                   >
-                    <span>INQUIRE</span>
+                    <span>ENQUIRE</span>
                     <span className="material-symbols-outlined text-[14px] transition-transform duration-300 group-hover:translate-x-1">
                       east
                     </span>

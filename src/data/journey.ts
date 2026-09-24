@@ -36,7 +36,7 @@ export const MILESTONES: Milestone[] = [
   },
   {
     year: "SANCTUARY",
-    title: "Koregaon Park / Boat Club Road Sanctuary",
+    title: "Opp. to Clover Infotech Sanctuary",
     description:
       "Opened the flagship state-of-the-art sanctuary in Pune, featuring FDA-approved laser technology, private consultation suites, and tranquil patient environments.",
     category: "Flagship Clinic",

@@ -19,7 +19,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMember[] = [
     name: "Dr. Akshaya Jain",
     role: "FOUNDER & CHIEF AESTHETIC MENTOR",
     specialization: "Aesthetic Medicine • Advanced Skin & Hair Solutions",
-    image: "/images/dr-akshaya-jain.jpg",
+    image: "/images/dr-akshaya-jain.webp",
     credentials: [
       "13+ Years Clinical Practice",
       "3 National Excellence Awards",
@@ -37,7 +37,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMember[] = [
     name: "Mrs. Amruta N.C. Kangle",
     role: "FOUNDER & BEAUTY EDUCATION PROFESSIONAL",
     specialization: "Beauty Culture • Aesthetics & Hair Design • Professional Training",
-    image: "/images/mom.png",
+    image: "/images/mom.webp",
     credentials: [
       "Beauty & Aesthetics Educator",
       "Beauty Culture & Hair Design Expert",
@@ -46,7 +46,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMember[] = [
     bio: "Experienced beauty and aesthetics educator with extensive expertise in beauty culture, aesthetics, beauty therapy, hair design, and professional training.",
     category: "CLINICAL TEAM",
     displayOrder: 2,
-    objectPosition: "center 25%",
+    objectPosition: "center 30%",
     status: "published",
   },
   {
@@ -54,7 +54,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMember[] = [
     name: "Sangita Kabrabam",
     role: "SENIOR SKIN & HAIR THERAPIST | TRAINER & MENTOR",
     specialization: "Skin & Hair Therapy • Staff Training & Mentorship",
-    image: "/images/sangita.jpeg",
+    image: "/images/sangita.webp",
     credentials: [
       "10+ Years Skin & Hair Therapy",
       "Senior Trainer & Mentor",
@@ -63,7 +63,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMember[] = [
     bio: "With 10 years of experience as a Skin and Hair Therapist, I have worked with reputed organizations such as, Skincity, and Skintillatingg.\n\nI began my career as a therapist and gradually progressed into senior roles, taking on responsibilities as a trainer and guide. For the past three years at Skintillatingg, I have been mentoring and training therapists while contributing my expertise to skin and hair care services.",
     category: "CLINICAL TEAM",
     displayOrder: 3,
-    objectPosition: "center 20%",
+    objectPosition: "center 15%",
     status: "published",
   },
 ];

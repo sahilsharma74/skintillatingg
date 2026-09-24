@@ -138,7 +138,7 @@ function getInitialPagesData(): Record<string, PageData> {
         },
         {
           id: "sanctuary",
-          name: "Koregaon Park Sanctuary",
+          name: "Skintillatingg Sanctuary",
           title: "Flagship Clinic",
           description: "State-of-the-art Pune sanctuary with FDA-approved technology.",
           image: "/images/sanctuary-exterior.jpg",
@@ -282,7 +282,7 @@ function getInitialPagesData(): Record<string, PageData> {
           name: "Contact Hero",
           label: "PRACTICE LOCATION",
           title: "Contact & Appointments",
-          description: "Koregaon Park & Boat Club Road Sanctuary, Pune.",
+          description: "Opp. to Clover Infotech, Pune.",
           isVisible: true,
           order: 1,
         },
@@ -315,7 +315,7 @@ function getInitialSettingsData(): SiteSettings {
     metaDescription: "Premier aesthetic cosmetology, trichology, and therapeutic skin rejuvenation clinic in Pune led by award-winning Dr. Akshaya Jain.",
     phoneNumber: "8669813636",
     emailAddress: "info@skintillatingg.com",
-    address: "Koregaon Park / Boat Club Road, Pune, Maharashtra 411001",
+    address: "Opp. to Clover Infotech, Boat Club Road, Pune, Maharashtra 411001",
     logoUrl: "https://lh3.googleusercontent.com/aida-public/AB6AXuC5IT4xEX-nvIObGYulKr08O8x4bOuSASpr56qk65b6U9022MEjcZvRcqb0CKERo1tP4B1J9WA4oRGLCSjAg6KALbhwDgcSsdZNiusRA7HDmBijlJYhhGL8Cr5lPLR85NIlzPf0Hxhh1ssPAdrnx91V4oj2xI8hOWHia1uHuIifMt92W7Q--2makgCx7JZOKjEJ6G95GfbUQ0DxZWIRX_rH7hP00kA1M-teY_CBlB1U6HqgR6kRS-HIBz8h1nOdhilV",
     faviconUrl: "/skintillatingg-favicon.svg",
     socials: {

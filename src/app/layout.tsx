@@ -22,12 +22,12 @@ export const metadata: Metadata = {
     default: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
     template: "%s | Skintillatingg",
   },
-  description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune. Specialized in HIFU, Hair GFC, Dermal Fillers, and Clinical Aesthetics.",
+  description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Pune. Specialized in HIFU, Hair GFC, Dermal Fillers, and Clinical Aesthetics.",
   keywords: [
     "Dr Akshaya Jain",
     "Skintillatingg Clinic",
     "Luxury Aesthetic Clinic Pune",
-    "Koregaon Park Dermatologist",
+    "Pune Dermatologist",
     "Hair GFC Treatment",
     "HIFU Facial Lifting",
     "Celebrity Hair Specialist Pune",
@@ -38,7 +38,7 @@ export const metadata: Metadata = {
   publisher: "Skintillatingg",
   openGraph: {
     title: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
-    description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune. Specialized in HIFU, Hair GFC, Dermal Fillers, and Clinical Aesthetics.",
+    description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Pune. Specialized in HIFU, Hair GFC, Dermal Fillers, and Clinical Aesthetics.",
     url: "https://www.skintillatingg.co.in",
     siteName: "Skintillatingg Clinic Sanctuary",
     images: [
@@ -55,7 +55,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Dr. Akshaya Jain - Luxury Aesthetic Clinic | Skintillatingg",
-    description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Koregaon Park, Pune.",
+    description: "Award-Winning Aesthetic Cosmetologist & Celebrity Hair Specialist in Pune.",
     images: ["/skintillatingg-gold-logo.png"],
   },
   robots: {
@@ -88,7 +88,7 @@ export default function RootLayout({
               logo: "https://www.skintillatingg.co.in/skintillatingg-favicon.svg",
               image: "https://www.skintillatingg.co.in/skintillatingg-gold-logo.png",
               description:
-                "Premier aesthetic cosmetology, trichology, and therapeutic skin rejuvenation clinic in Koregaon Park, Pune led by award-winning Dr. Akshaya Jain.",
+                "Premier aesthetic cosmetology, trichology, and therapeutic skin rejuvenation clinic in Pune, Pune led by award-winning Dr. Akshaya Jain.",
               telephone: "+918669813636",
               email: "skintillatingg123@gmail.com",
               priceRange: "$$$",

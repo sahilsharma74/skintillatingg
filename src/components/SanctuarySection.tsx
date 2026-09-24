@@ -32,12 +32,12 @@ export default function SanctuarySection() {
                   A Sanctuary for Transformation
                 </h2>
                 <p className="font-body-md text-[15px] sm:text-[16px] leading-[28px] text-[#F5F5DC]/85 font-light">
-                  Experience the intersection of medical precision and artistic vision. Our clinic in Koregaon Park is meticulously designed to provide a serene, private environment where your aesthetic journey is handled with utmost clinical discretion and individual care.
+                  Experience the intersection of medical precision and artistic vision. Our clinic is meticulously designed to provide a serene, private environment where your aesthetic journey is handled with utmost clinical discretion and individual care.
                 </p>
                 <div className="pt-4 flex items-center gap-6">
                   <div className="w-12 h-px bg-[#AEB9A9]/40"></div>
                   <span className="font-label-caps text-[10px] tracking-[0.2em] text-[#AEB9A9] uppercase font-medium">
-                    Koregaon Park • Pune
+                    Opp. to Clover Infotech • Pune
                   </span>
                 </div>
               </div>

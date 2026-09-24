@@ -25,10 +25,10 @@ export default function EditorialIntro() {
           {/* Right Column: Narrative Copy & Link */}
           <div className="lg:col-span-5 space-y-6 pt-2">
             <p className="font-body-md text-[15px] sm:text-[16px] leading-[28px] text-[#1C3329] font-normal">
-              Dr. Akshaya Jain is an award-winning aesthetic cosmetologist and celebrity hair specialist based in Koregaon Park, Pune, with over 12 years of clinical experience. She specializes in advanced skin, hair, and laser therapies.
+              Dr. Akshaya Jain is an award-winning aesthetic cosmetologist and celebrity hair specialist based in Pune, with over 12 years of clinical experience. She specializes in advanced skin, hair, and laser therapies.
             </p>
             <p className="font-body-md text-[15px] sm:text-[16px] leading-[28px] text-[#1C3329]/90 font-light">
-              Her philosophy centers on enhancing natural beauty while preserving individual expression—combining FDA-approved technologies with bespoke treatment plans tailored to each patient&apos;s unique anatomical canvas.
+              Her philosophy centers on enhancing natural beauty while preserving individual expression-combining FDA-approved technologies with bespoke treatment plans tailored to each patient&apos;s unique anatomical canvas.
             </p>
             <div className="pt-4">
               <Link

@@ -280,7 +280,7 @@ export default function TreatmentsPage() {
                       href={`/book-consultation?treatment=${treatment.slug}`}
                       className="flex-1 bg-[#F5F5DC] text-[#17251E] hover:bg-[#C9A227] hover:text-[#17251E] font-button text-[11px] tracking-[0.12em] uppercase py-3 px-3 rounded transition-all duration-300 flex items-center justify-center gap-1 font-semibold group/inq shadow-sm"
                     >
-                      <span>INQUIRE</span>
+                      <span>ENQUIRE</span>
                       <span className="material-symbols-outlined text-xs group-hover/inq:translate-x-0.5 transition-transform">
                         east
                       </span>

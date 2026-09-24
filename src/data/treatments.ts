@@ -4,7 +4,6 @@ export type TreatmentSubcategory =
   | "ACNE & SCARS"
   | "SKIN"
   | "HAIRCARE"
-  | "HAIR"
   | "BODY"
   | "INJECTABLES"
   | "LASER"
@@ -16,7 +15,6 @@ export const TREATMENT_CATEGORIES: TreatmentSubcategory[] = [
   "ACNE & SCARS",
   "SKIN",
   "HAIRCARE",
-  "HAIR",
   "BODY",
   "INJECTABLES",
   "LASER",
@@ -313,7 +311,7 @@ export const TREATMENTS_DATA: Treatment[] = [
     slug: "prp",
     title: "PRP",
     category: "Treatments",
-    subcategories: ["ALL", "HAIR", "SKIN", "INJECTABLES", "ANTI-AGEING"],
+    subcategories: ["ALL", "HAIRCARE", "SKIN", "INJECTABLES", "ANTI-AGEING"],
     focusAreas: ["Scalp & Hair Follicles", "Under-Eye Hollows", "Facial Rejuvenation"],
     excerpt:
       "Platelet-rich plasma therapy designed to support natural skin and hair rejuvenation using growth factors derived from the patient's own blood.",

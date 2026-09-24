@@ -73,7 +73,7 @@ export default function ContactPage() {
             <span className="italic text-[#F5F5DC]">Clinic Sanctuary</span>
           </h1>
           <p className="font-body-md text-[#F5F5DC]/90 text-lg leading-relaxed">
-            Located in the serene enclave of Koregaon Park / Boat Club Road, Pune. Our team is ready to assist your skincare and trichological inquiries.
+            Located at Opp. to Clover Infotech, Boat Club Road, Pune. Our team is ready to assist your skincare and trichological inquiries.
           </p>
         </div>
       </section>
@@ -141,7 +141,7 @@ export default function ContactPage() {
                 Sangamvadi, Pune, Maharashtra 411001
               </p>
               <p className="font-body-md text-xs text-[#F5F5DC] mt-2 font-medium">
-                Landmark: Koregaon Park / Boat Club Road Area
+                Landmark: Opp. to Clover Infotech
               </p>
             </div>
 
@@ -300,7 +300,7 @@ export default function ContactPage() {
         </span>
         <div className="relative h-96 md:h-[450px] rounded-2xl overflow-hidden border border-[#AEB9A9]/30 shadow-2xl">
           <iframe
-            title="Koregaon Park, Pune location map"
+            title="Skintillatingg clinic location map"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3782.9!2d73.8909!3d18.5319!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bc2c07f4b6ba4f3%3A0x99ba90b8e0ea9f53!2sBoat%20Club%20Rd%2C%20Sangamvadi%2C%20Pune%2C%20Maharashtra%20411001!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
             className="w-full h-full border-0"
             loading="lazy"

@@ -382,7 +382,7 @@ export default function JourneyPage() {
             <span className="italic text-[#F5F5DC]">Your Confidence.</span>
           </h2>
           <p className="font-body-md text-[#F5F5DC]/90 text-lg max-w-xl mx-auto">
-            Experience evidence-led aesthetic care with Dr. Akshaya Jain in Koregaon Park / Boat Club Road, Pune.
+            Experience evidence-led aesthetic care with Dr. Akshaya Jain in Opp. to Clover Infotech, Pune.
           </p>
           <div className="flex flex-wrap justify-center gap-4 pt-4">
             <Link

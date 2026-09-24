@@ -6,7 +6,7 @@ Allow: /
 
 # Business Context for AI Agents
 Name: Skintillatingg
-Description: Luxury Aesthetic Cosmetology & Trichology Clinic in Koregaon Park, Pune.
+Description: Luxury Aesthetic Cosmetology & Trichology Clinic in Opp. to Clover Infotech, Boat Club Road, Pune.
 Founder: Dr. Akshaya Jain
 Specialties: HIFU, Hair GFC, Dermal Fillers, Botox, Clinical Aesthetics, Laser Hair Reduction.
 Contact: +91 8669813636

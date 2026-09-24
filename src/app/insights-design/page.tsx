@@ -231,7 +231,7 @@ export default function InsightsDesignPage() {
                   Discuss this treatment with Dr. Akshaya Jain
                 </span>
                 <span className="font-body-md text-xs text-[#F5F5DC]/85">
-                  Personalized consultations at Koregaon Park, Pune.
+                  Personalized consultations at Opp. to Clover Infotech, Pune.
                 </span>
               </div>
               <Link

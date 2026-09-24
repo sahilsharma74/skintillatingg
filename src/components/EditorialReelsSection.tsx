@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, useCallback } from "react";
 import ScrollReveal from "@/components/effects/ScrollReveal";
 
 export interface ReelItem {
@@ -8,6 +8,7 @@ export interface ReelItem {
   category: string;
   title: string;
   videoUrl?: string;
+  poster?: string;
   aspectRatio: "9:16";
 }
 
@@ -17,6 +18,7 @@ export const REELS_DATA: ReelItem[] = [
     category: "CLINIC",
     title: "Inside the Skintillatingg Clinic",
     videoUrl: "/videos/inside the skintillatingg clinic.mp4",
+    poster: "/videos/posters/inside the skintillatingg clinic.webp",
     aspectRatio: "9:16",
   },
   {
@@ -24,6 +26,7 @@ export const REELS_DATA: ReelItem[] = [
     category: "TREATMENTS",
     title: "Precision Behind Every Treatment",
     videoUrl: "/videos/Precision Behind Every TREATMENTS.mp4",
+    poster: "/videos/posters/Precision Behind Every TREATMENTS.webp",
     aspectRatio: "9:16",
   },
   {
@@ -31,15 +34,109 @@ export const REELS_DATA: ReelItem[] = [
     category: "TECHNOLOGY",
     title: "Advanced Aesthetic Technology",
     videoUrl: "/videos/Advanced Aesthetic Technology.mp4",
+    poster: "/videos/posters/Advanced Aesthetic Technology.webp",
     aspectRatio: "9:16",
   },
 ];
+
+/** Individual reel card with IntersectionObserver play/pause */
+function ReelCard({ reel, onClick }: { reel: ReelItem; onClick: () => void }) {
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const cardRef = useRef<HTMLButtonElement | null>(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  const setupObserver = useCallback(() => {
+    const card = cardRef.current;
+    if (!card) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          const vid = videoRef.current;
+          if (!vid) return;
+          if (entry.isIntersecting) {
+            // Set src lazily only when approaching viewport
+            if (!vid.src && reel.videoUrl) {
+              vid.src = reel.videoUrl;
+              vid.load();
+            }
+            vid.play().catch(() => {});
+          } else {
+            vid.pause();
+          }
+        });
+      },
+      { threshold: 0.25, rootMargin: "200px 0px" }
+    );
+
+    observer.observe(card);
+    return () => observer.disconnect();
+  }, [reel.videoUrl]);
+
+  useEffect(() => {
+    return setupObserver();
+  }, [setupObserver]);
+
+  return (
+    <button
+      ref={cardRef}
+      type="button"
+      onClick={onClick}
+      data-cursor="VIEW"
+      className="w-full aspect-[9/16] bg-[#1C3329] border border-[#F5F5DC]/20 rounded-xl p-6 flex flex-col justify-between relative group/card hover:border-[#C9A227] transition-all duration-500 overflow-hidden text-left shadow-lg cursor-pointer cinematic-card-lift cinematic-img-container"
+    >
+      {/* Poster visible until video loads */}
+      {reel.poster && !isLoaded && (
+        <img
+          src={reel.poster}
+          alt={`${reel.title} preview`}
+          className="absolute inset-0 w-full h-full object-cover object-center pointer-events-none"
+        />
+      )}
+
+      {/* Lazy-loaded video */}
+      {reel.videoUrl && (
+        <video
+          ref={videoRef}
+          poster={reel.poster}
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          onCanPlay={() => setIsLoaded(true)}
+          aria-hidden="true"
+          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 pointer-events-none md:group-hover/card:scale-[1.02] ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        />
+      )}
+
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 pointer-events-none" />
+
+      {/* Top Badge */}
+      <div className="relative z-20">
+        <span className="inline-block font-label-caps text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#F5F5DC] font-semibold px-2.5 py-1 bg-[#17251E]/80 border border-[#F5F5DC]/20 rounded-xs backdrop-blur-sm">
+          {reel.category}
+        </span>
+      </div>
+
+      {/* Bottom Title */}
+      <div className="relative z-20 space-y-1 mt-auto">
+        <h4 className="font-display text-[18px] sm:text-[20px] leading-snug text-[#F5F5DC] font-normal">
+          {reel.title}
+        </h4>
+      </div>
+    </button>
+  );
+}
 
 export default function EditorialReelsSection() {
   const scrollContainerRef = useRef<HTMLDivElement | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeReel, setActiveReel] = useState<ReelItem | null>(null);
+  const modalVideoRef = useRef<HTMLVideoElement | null>(null);
 
   const checkScroll = () => {
     const el = scrollContainerRef.current;
@@ -59,6 +156,15 @@ export default function EditorialReelsSection() {
       window.removeEventListener("resize", checkScroll);
     };
   }, []);
+
+  // Load modal video src only when opened
+  useEffect(() => {
+    if (activeReel && modalVideoRef.current) {
+      modalVideoRef.current.src = activeReel.videoUrl || "";
+      modalVideoRef.current.load();
+      modalVideoRef.current.play().catch(() => {});
+    }
+  }, [activeReel]);
 
   const handleScroll = (direction: "left" | "right") => {
     const el = scrollContainerRef.current;
@@ -91,8 +197,11 @@ export default function EditorialReelsSection() {
                 onClick={() => handleScroll("left")}
                 disabled={!canScrollLeft}
                 aria-label="Previous reels"
-                className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${canScrollLeft ? "opacity-100 hover:bg-[#F5F5DC]/10 hover:border-[#C9A227] cursor-pointer" : "opacity-30 cursor-default"
-                  }`}
+                className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${
+                  canScrollLeft
+                    ? "opacity-100 hover:bg-[#F5F5DC]/10 hover:border-[#C9A227] cursor-pointer"
+                    : "opacity-30 cursor-default"
+                }`}
               >
                 <span className="material-symbols-outlined text-sm">chevron_left</span>
               </button>
@@ -102,8 +211,11 @@ export default function EditorialReelsSection() {
                 onClick={() => handleScroll("right")}
                 disabled={!canScrollRight}
                 aria-label="Scroll more reels"
-                className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${canScrollRight ? "opacity-100 hover:bg-[#F5F5DC]/10 hover:border-[#C9A227] cursor-pointer" : "opacity-30 cursor-default"
-                  }`}
+                className={`w-9 h-9 rounded-full border border-[#F5F5DC]/30 flex items-center justify-center text-[#F5F5DC] transition-all duration-300 ${
+                  canScrollRight
+                    ? "opacity-100 hover:bg-[#F5F5DC]/10 hover:border-[#C9A227] cursor-pointer"
+                    : "opacity-30 cursor-default"
+                }`}
               >
                 <span className="material-symbols-outlined text-sm">chevron_right</span>
               </button>
@@ -138,43 +250,13 @@ export default function EditorialReelsSection() {
 
           {/* REEL CARDS (9:16 Ratio) */}
           {REELS_DATA.map((reel, idx) => (
-            <ScrollReveal key={reel.id} delay={150 + idx * 100} direction="up" className="shrink-0 w-[220px] sm:w-[260px] md:w-[280px] snap-start">
-              <button
-                type="button"
-                onClick={() => setActiveReel(reel)}
-                data-cursor="VIEW"
-                className="w-full aspect-[9/16] bg-[#1C3329] border border-[#F5F5DC]/20 rounded-xl p-6 flex flex-col justify-between relative group/card hover:border-[#C9A227] transition-all duration-500 overflow-hidden text-left shadow-lg cursor-pointer cinematic-card-lift cinematic-img-container"
-              >
-                {/* Background Live Autoplay Video (Full Opacity, Natural Colors) */}
-                {reel.videoUrl && (
-                  <video
-                    src={reel.videoUrl}
-                    muted
-                    loop
-                    playsInline
-                    autoPlay
-                    aria-hidden="true"
-                    className="absolute inset-0 w-full h-full object-cover object-center opacity-100 transition-transform duration-700 pointer-events-none md:group-hover/card:scale-[1.02]"
-                  />
-                )}
-
-                {/* Neutral Gradient Overlay for Text Contrast */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent z-10 pointer-events-none" />
-
-                {/* Top Badge */}
-                <div className="relative z-20">
-                  <span className="inline-block font-label-caps text-[9px] sm:text-[10px] tracking-[0.2em] uppercase text-[#F5F5DC] font-semibold px-2.5 py-1 bg-[#17251E]/80 border border-[#F5F5DC]/20 rounded-xs backdrop-blur-sm">
-                    {reel.category}
-                  </span>
-                </div>
-
-                {/* Bottom Title */}
-                <div className="relative z-20 space-y-1 mt-auto">
-                  <h4 className="font-display text-[18px] sm:text-[20px] leading-snug text-[#F5F5DC] font-normal">
-                    {reel.title}
-                  </h4>
-                </div>
-              </button>
+            <ScrollReveal
+              key={reel.id}
+              delay={150 + idx * 100}
+              direction="up"
+              className="shrink-0 w-[220px] sm:w-[260px] md:w-[280px] snap-start"
+            >
+              <ReelCard reel={reel} onClick={() => setActiveReel(reel)} />
             </ScrollReveal>
           ))}
         </div>
@@ -185,7 +267,13 @@ export default function EditorialReelsSection() {
         <div className="fixed inset-0 z-50 bg-[#17251E]/90 backdrop-blur-md flex items-center justify-center p-4">
           <div className="relative w-full max-w-[420px] aspect-[9/16] bg-[#17251E] rounded-xl border border-[#657A6A]/40 overflow-hidden shadow-2xl flex flex-col">
             <button
-              onClick={() => setActiveReel(null)}
+              onClick={() => {
+                if (modalVideoRef.current) {
+                  modalVideoRef.current.pause();
+                  modalVideoRef.current.src = "";
+                }
+                setActiveReel(null);
+              }}
               className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-[#17251E]/80 text-[#F5F5DC] flex items-center justify-center border border-[#F5F5DC]/20 hover:bg-[#C9A227] hover:text-[#17251E] transition-colors"
               aria-label="Close video"
             >
@@ -193,9 +281,12 @@ export default function EditorialReelsSection() {
             </button>
             {activeReel.videoUrl ? (
               <video
-                src={activeReel.videoUrl}
+                ref={modalVideoRef}
+                poster={activeReel.poster}
                 controls
-                autoPlay
+                muted
+                playsInline
+                preload="metadata"
                 className="w-full h-full object-cover"
               />
             ) : (
