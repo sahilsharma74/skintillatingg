@@ -122,51 +122,50 @@ export default function GalleryPage() {
                   </p>
                 </div>
 
-                {/* Editorial Grid Layout driven by natural image ratios */}
-                <div className="grid grid-cols-12 gap-4 sm:gap-6 lg:gap-8 items-start">
-                  {sectionItems.map((item) => {
-                    // Strip out hardcoded heights from gridSpan to prevent cropping
-                    const cleanGridSpan = item.gridSpan.replace(/h-\[[^\]]+\]/g, '').replace(/\b(?:sm:|md:|lg:|xl:)?h-\w+\b/g, '').trim();
-
-                    return (
-                      <div
-                        key={item.id}
-                        className={`group flex flex-col ${cleanGridSpan}`}
-                      >
-                        {/* Image Container */}
-                        <div 
-                          onClick={() => openLightbox(item)}
-                          className="relative w-full overflow-hidden cursor-pointer bg-[#EBE9DA]/40 mb-4"
-                        >
-                          <Image
-                            src={item.image}
-                            alt={item.title}
-                            width={0}
-                            height={0}
-                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                            quality={90}
-                            className="w-full h-auto object-cover transition-transform duration-1000 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.04] grayscale-[10%] group-hover:grayscale-0"
-                            style={{ objectPosition: item.objectPosition || "center" }}
-                          />
-                        </div>
-
-                        {/* Print-Inspired Caption (Below Image) */}
-                        <div className="flex flex-col justify-start space-y-2 mt-2 px-1">
-                          <span className="text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold border-b border-[#C9A227]/30 pb-1 w-fit">
-                            {item.category}
-                          </span>
-                          <h3 className="text-xl sm:text-2xl lg:text-3xl font-serif text-[#17251E] font-normal leading-tight">
-                            {item.title}
-                          </h3>
-                          {item.subtitle && (
-                            <p className="text-xs sm:text-sm text-[#657A6A] font-light leading-relaxed">
-                              {item.subtitle}
-                            </p>
-                          )}
-                        </div>
+                {/* Balanced Editorial Grid Layout */}
+                <div
+                  className={`grid gap-6 lg:gap-8 items-start ${
+                    sectionItems.length === 1
+                      ? "grid-cols-1 max-w-3xl"
+                      : sectionItems.length === 2
+                      ? "grid-cols-1 md:grid-cols-2"
+                      : sectionItems.length === 4
+                      ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
+                      : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                  }`}
+                >
+                  {sectionItems.map((item) => (
+                    <div
+                      key={item.id}
+                      className="group flex flex-col cursor-pointer transition-all duration-300"
+                      onClick={() => openLightbox(item)}
+                    >
+                      {/* Image Frame with Full Container Width */}
+                      <div className="relative w-full overflow-hidden bg-[#EBE9DA]/50 mb-3.5 border border-[#657A6A]/15 group-hover:border-[#C9A227]/60 transition-colors shadow-sm">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          className="w-full h-auto object-cover block transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-[1.03]"
+                          style={{ objectPosition: item.objectPosition || "center" }}
+                        />
                       </div>
-                    );
-                  })}
+
+                      {/* Print-Inspired Caption Below Image */}
+                      <div className="flex flex-col space-y-1.5 px-0.5">
+                        <span className="text-[10px] font-mono uppercase tracking-[0.25em] text-[#C9A227] font-semibold">
+                          {item.category}
+                        </span>
+                        <h3 className="text-xl sm:text-2xl font-serif text-[#17251E] font-normal leading-tight group-hover:text-[#C9A227] transition-colors">
+                          {item.title}
+                        </h3>
+                        {item.subtitle && (
+                          <p className="text-xs sm:text-sm text-[#657A6A] font-light leading-relaxed">
+                            {item.subtitle}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </section>
             );
