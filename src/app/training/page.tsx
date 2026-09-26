@@ -28,7 +28,7 @@ const PROGRAM_CATALOGUE: ProgramItem[] = [
     eligibility: "Medical Graduates & Cosmetologists",
     certification: "CIATN Certified Clinical Cosmetologist",
     keyLearning: ["Cutaneous Diagnostics", "Chemical Resurfacing", "Hydro-Dermabrasion", "Post-Peel Neutralization"],
-    image: "/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg"
+    image: "/images/TECHNOLOGY TRAINING CAREER/training-activity-25.jpg"
   },
   {
     id: "laser-technician",
@@ -61,7 +61,7 @@ const PROGRAM_CATALOGUE: ProgramItem[] = [
     eligibility: "Medical Doctors & Trichologists",
     certification: "Advanced Diploma in Clinical Trichology",
     keyLearning: ["Digital Trichoscopy", "GFC & PRP Protocol", "Scalp Microbiome Assessment", "Alopecia Subtype Profiling"],
-    image: "/images/TECHNOLOGY TRAINING CAREER/image copy.png"
+    image: "/images/TECHNOLOGY TRAINING CAREER/technology-asset-20.png"
   },
   {
     id: "botox-fillers",
@@ -141,7 +141,7 @@ export default function TrainingPage() {
           {/* WIDE CINEMATIC LANDSCAPE IMAGE CONTAINER WITH DIRECT TEXT OVERLAY */}
           <div className="w-full relative rounded-[24px] overflow-hidden border border-[#AEB9A9]/25 shadow-2xl aspect-[16/8.5] min-h-[360px] sm:min-h-[440px] md:min-h-[500px] lg:min-h-[540px] bg-[#17251E] group mt-8 cinematic-img-container" data-cursor="VIEW">
             <img
-              src="/images/rg.avif"
+              src="/images/clinic-environment-rg.avif"
               alt="CIATN Practical Clinical Education & Training"
               className="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-[1.01]"
             />
@@ -167,7 +167,7 @@ export default function TrainingPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
               <img
-                src="/images/TECHNOLOGY TRAINING CAREER/rg2.avif"
+                src="/images/TECHNOLOGY TRAINING CAREER/clinic-environment-rg2.avif"
                 alt="CIATN Clinical Classroom and Consultation Training"
                 className="w-full h-full object-cover object-center"
               />
@@ -262,7 +262,7 @@ export default function TrainingPage() {
 
           <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E]">
             <img
-              src="/images/TECHNOLOGY TRAINING CAREER/rg3.avif"
+              src="/images/TECHNOLOGY TRAINING CAREER/clinic-environment-rg3.avif"
               alt="CIATN Interactive Classroom Session"
               className="w-full h-full object-cover object-center"
             />
@@ -290,7 +290,7 @@ export default function TrainingPage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E]">
             <img
-              src="/images/TECHNOLOGY TRAINING CAREER/IMG-20251129-WA0013.jpg"
+              src="/images/TECHNOLOGY TRAINING CAREER/training-asset-21.jpg"
               alt="CIATN Structured Study Manuals & Clinical Materials"
               className="w-full h-full object-cover object-center"
             />

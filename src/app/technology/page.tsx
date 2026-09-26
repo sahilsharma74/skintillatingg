@@ -28,7 +28,7 @@ const TECH_CATEGORIES = [
     title: "Trichology Diagnostics",
     desc: "Digital trichoscopic scalp mapping, scalp microbiome evaluation, and autologous growth factor infusion systems.",
     tag: "HAIR & SCALP",
-    image: "/images/TECHNOLOGY TRAINING CAREER/image copy.png"
+    image: "/images/TECHNOLOGY TRAINING CAREER/technology-asset-20.png"
   },
   {
     title: "Skin & Cosmetology",

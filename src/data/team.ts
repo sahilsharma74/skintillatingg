@@ -37,7 +37,7 @@ export const INITIAL_TEAM_MEMBERS: TeamMember[] = [
     name: "Mrs. Amruta N.C. Kangle",
     role: "FOUNDER & BEAUTY EDUCATION PROFESSIONAL",
     specialization: "Beauty Culture • Aesthetics & Hair Design • Professional Training",
-    image: "/images/mom.webp",
+    image: "/images/amruta-nc-kangle.webp",
     credentials: [
       "Beauty & Aesthetics Educator",
       "Beauty Culture & Hair Design Expert",

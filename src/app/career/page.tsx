@@ -348,7 +348,7 @@ export default function CareerPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative rounded-2xl overflow-hidden border border-[#AEB9A9]/30 aspect-[4/3] bg-[#17251E] cinematic-img-container" data-cursor="VIEW">
               <img
-                src="/images/TECHNOLOGY TRAINING CAREER/image copy 2.png"
+                src="/images/TECHNOLOGY TRAINING CAREER/career-asset-19.png"
                 alt="Clinical Practice Setup Guidance"
                 className="w-full h-full object-cover object-center"
               />

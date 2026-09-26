@@ -1,0 +1,259 @@
+[
+  {
+    "old_path": "public/images/mom.webp",
+    "new_path": "public/images/amruta-nc-kangle.webp",
+    "old_basename": "mom.webp",
+    "new_basename": "amruta-nc-kangle.webp",
+    "usages": [
+      "src\\data\\team.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/rg.avif",
+    "new_path": "public/images/clinic-environment-rg.avif",
+    "old_basename": "rg.avif",
+    "new_basename": "clinic-environment-rg.avif",
+    "usages": [
+      "src\\app\\training\\page.tsx",
+      "src\\data\\cms_storage\\media.json",
+      "src\\data\\cms_storage\\pages.json",
+      "src\\lib\\cms\\cmsStore.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182111.png",
+    "new_path": "public/images/gallery/gallery-gallery-03.png",
+    "old_basename": "Screenshot 2026-08-30 182111.png",
+    "new_basename": "gallery-gallery-03.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182159.png",
+    "new_path": "public/images/gallery/gallery-gallery-04.png",
+    "old_basename": "Screenshot 2026-08-30 182159.png",
+    "new_basename": "gallery-gallery-04.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182243.png",
+    "new_path": "public/images/gallery/gallery-gallery-05.png",
+    "old_basename": "Screenshot 2026-08-30 182243.png",
+    "new_basename": "gallery-gallery-05.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182409.png",
+    "new_path": "public/images/gallery/gallery-gallery-06.png",
+    "old_basename": "Screenshot 2026-08-30 182409.png",
+    "new_basename": "gallery-gallery-06.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182435.png",
+    "new_path": "public/images/gallery/gallery-gallery-07.png",
+    "old_basename": "Screenshot 2026-08-30 182435.png",
+    "new_basename": "gallery-gallery-07.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182504.png",
+    "new_path": "public/images/gallery/gallery-gallery-08.png",
+    "old_basename": "Screenshot 2026-08-30 182504.png",
+    "new_basename": "gallery-gallery-08.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182533.png",
+    "new_path": "public/images/gallery/gallery-gallery-09.png",
+    "old_basename": "Screenshot 2026-08-30 182533.png",
+    "new_basename": "gallery-gallery-09.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182623.png",
+    "new_path": "public/images/gallery/gallery-gallery-10.png",
+    "old_basename": "Screenshot 2026-08-30 182623.png",
+    "new_basename": "gallery-gallery-10.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182650.png",
+    "new_path": "public/images/gallery/gallery-gallery-11.png",
+    "old_basename": "Screenshot 2026-08-30 182650.png",
+    "new_basename": "gallery-gallery-11.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182930.png",
+    "new_path": "public/images/gallery/gallery-gallery-12.png",
+    "old_basename": "Screenshot 2026-08-30 182930.png",
+    "new_basename": "gallery-gallery-12.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 182952.png",
+    "new_path": "public/images/gallery/gallery-gallery-13.png",
+    "old_basename": "Screenshot 2026-08-30 182952.png",
+    "new_basename": "gallery-gallery-13.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 183116.png",
+    "new_path": "public/images/gallery/gallery-gallery-14.png",
+    "old_basename": "Screenshot 2026-08-30 183116.png",
+    "new_basename": "gallery-gallery-14.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 183140.png",
+    "new_path": "public/images/gallery/gallery-gallery-15.png",
+    "old_basename": "Screenshot 2026-08-30 183140.png",
+    "new_basename": "gallery-gallery-15.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 183323.png",
+    "new_path": "public/images/gallery/gallery-gallery-16.png",
+    "old_basename": "Screenshot 2026-08-30 183323.png",
+    "new_basename": "gallery-gallery-16.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 183347.png",
+    "new_path": "public/images/gallery/gallery-gallery-17.png",
+    "old_basename": "Screenshot 2026-08-30 183347.png",
+    "new_basename": "gallery-gallery-17.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/gallery/Screenshot 2026-08-30 183404.png",
+    "new_path": "public/images/gallery/gallery-gallery-18.png",
+    "old_basename": "Screenshot 2026-08-30 183404.png",
+    "new_basename": "gallery-gallery-18.png",
+    "usages": [
+      "src\\data\\gallery.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/TECHNOLOGY TRAINING CAREER/image copy 2.png",
+    "new_path": "public/images/TECHNOLOGY TRAINING CAREER/career-asset-19.png",
+    "old_basename": "image copy 2.png",
+    "new_basename": "career-asset-19.png",
+    "usages": [
+      "src\\app\\career\\page.tsx"
+    ]
+  },
+  {
+    "old_path": "public/images/TECHNOLOGY TRAINING CAREER/image copy.png",
+    "new_path": "public/images/TECHNOLOGY TRAINING CAREER/technology-asset-20.png",
+    "old_basename": "image copy.png",
+    "new_basename": "technology-asset-20.png",
+    "usages": [
+      "src\\app\\technology\\page.tsx",
+      "src\\app\\training\\page.tsx"
+    ]
+  },
+  {
+    "old_path": "public/images/TECHNOLOGY TRAINING CAREER/IMG-20251129-WA0013.jpg",
+    "new_path": "public/images/TECHNOLOGY TRAINING CAREER/training-asset-21.jpg",
+    "old_basename": "IMG-20251129-WA0013.jpg",
+    "new_basename": "training-asset-21.jpg",
+    "usages": [
+      "src\\app\\training\\page.tsx"
+    ]
+  },
+  {
+    "old_path": "public/images/TECHNOLOGY TRAINING CAREER/raw.png",
+    "new_path": "public/images/TECHNOLOGY TRAINING CAREER/technology-asset-22.png",
+    "old_basename": "raw.png",
+    "new_basename": "technology-asset-22.png",
+    "usages": [
+      "src\\app\\technology\\page.tsx"
+    ]
+  },
+  {
+    "old_path": "public/images/TECHNOLOGY TRAINING CAREER/rg2.avif",
+    "new_path": "public/images/TECHNOLOGY TRAINING CAREER/clinic-environment-rg2.avif",
+    "old_basename": "rg2.avif",
+    "new_basename": "clinic-environment-rg2.avif",
+    "usages": [
+      "src\\app\\training\\page.tsx"
+    ]
+  },
+  {
+    "old_path": "public/images/TECHNOLOGY TRAINING CAREER/rg3.avif",
+    "new_path": "public/images/TECHNOLOGY TRAINING CAREER/clinic-environment-rg3.avif",
+    "old_basename": "rg3.avif",
+    "new_basename": "clinic-environment-rg3.avif",
+    "usages": [
+      "src\\app\\training\\page.tsx"
+    ]
+  },
+  {
+    "old_path": "public/images/TECHNOLOGY TRAINING CAREER/WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg",
+    "new_path": "public/images/TECHNOLOGY TRAINING CAREER/training-activity-25.jpg",
+    "old_basename": "WhatsApp Image 2025-11-29 at 15.05.09_4e104cd0.jpg",
+    "new_basename": "training-activity-25.jpg",
+    "usages": [
+      "src\\app\\training\\page.tsx"
+    ]
+  },
+  {
+    "old_path": "public/images/treatments/hifu.jpg",
+    "new_path": "public/images/treatments/technology-asset-26.jpg",
+    "old_basename": "hifu.jpg",
+    "new_basename": "technology-asset-26.jpg",
+    "usages": [
+      "src\\app\\technology\\page.tsx",
+      "src\\data\\treatments.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/treatments/prp.jpg",
+    "new_path": "public/images/treatments/treatments-asset-27.jpg",
+    "old_basename": "prp.jpg",
+    "new_basename": "treatments-asset-27.jpg",
+    "usages": [
+      "src\\data\\treatments.ts"
+    ]
+  },
+  {
+    "old_path": "public/images/treatments/prp.webp",
+    "new_path": "public/images/treatments/treatments-asset-28.webp",
+    "old_basename": "prp.webp",
+    "new_basename": "treatments-asset-28.webp",
+    "usages": [
+      "src\\data\\treatments.ts"
+    ]
+  }
+]
