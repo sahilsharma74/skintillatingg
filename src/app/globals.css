@@ -212,6 +212,7 @@ body {
     width: 0%;
     opacity: 0;
   }
+
   100% {
     width: 100%;
     opacity: 1;
@@ -224,6 +225,7 @@ body {
 
 /* Reduced Motion Fallback */
 @media (prefers-reduced-motion: reduce) {
+
   .cinematic-img-container img,
   .cinematic-img-container video,
   .cinematic-card-lift,
