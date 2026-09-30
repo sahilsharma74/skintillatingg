@@ -94,76 +94,75 @@ export default function RootLayout({
               priceRange: "$$$",
               address: {
                 "@type": "PostalAddress",
-                streetAddress:
-                  "Krishna Apartments, 10, Boat Club Rd, behind Yes Bank, Sangamvadi",
+                streetAddress: "Skintillatingg Clinic, 7 Krishna Apartments, Boat Club Rd., Opp. Clover Infotech, Dhole Patil Road",
                 addressLocality: "Pune",
-                addressRegion: "Maharashtra",
-                postalCode: "411001",
-                addressCountry: "IN",
+        addressRegion: "Maharashtra",
+        postalCode: "411001",
+        addressCountry: "IN",
               },
-              geo: {
-                "@type": "GeoCoordinates",
-                latitude: 18.5362,
-                longitude: 73.8797,
+        geo: {
+          "@type": "GeoCoordinates",
+        latitude: 18.5362,
+        longitude: 73.8797,
               },
-              openingHoursSpecification: [
-                {
-                  "@type": "OpeningHoursSpecification",
-                  dayOfWeek: [
-                    "Tuesday",
-                    "Wednesday",
-                    "Thursday",
-                    "Friday",
-                    "Saturday",
-                    "Sunday",
-                  ],
-                  opens: "10:00",
-                  closes: "19:00",
+        openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+        dayOfWeek: [
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+        ],
+        opens: "10:00",
+        closes: "19:00",
                 },
-              ],
-              medicalSpecialty: [
-                "Dermatology",
-                "Trichology",
-                "CosmeticCosmetology",
-                "NonSurgicalAesthetics",
-              ],
-              founder: {
-                "@type": "Person",
-                name: "Dr. Akshaya Jain",
-                jobTitle: "Lead Aesthetic Cosmetologist & Trichologist",
-                description:
-                  "Award-winning Aesthetic Cosmetologist & Celebrity Hair Specialist with over 13 years of clinical practice.",
+        ],
+        medicalSpecialty: [
+        "Dermatology",
+        "Trichology",
+        "CosmeticCosmetology",
+        "NonSurgicalAesthetics",
+        ],
+        founder: {
+          "@type": "Person",
+        name: "Dr. Akshaya Jain",
+        jobTitle: "Lead Aesthetic Cosmetologist & Trichologist",
+        description:
+        "Award-winning Aesthetic Cosmetologist & Celebrity Hair Specialist with over 13 years of clinical practice.",
               },
-              availableService: [
-                {
-                  "@type": "MedicalProcedure",
-                  name: "Laser Hair Reduction",
-                  description:
-                    "Triple-wavelength diode laser technology for permanent hair reduction.",
+        availableService: [
+        {
+          "@type": "MedicalProcedure",
+        name: "Laser Hair Reduction",
+        description:
+        "Triple-wavelength diode laser technology for permanent hair reduction.",
                 },
-                {
-                  "@type": "MedicalProcedure",
-                  name: "HIFU Facial Sculpting",
-                  description:
-                    "High-Intensity Focused Ultrasound non-surgical skin tightening & lifting.",
+        {
+          "@type": "MedicalProcedure",
+        name: "HIFU Facial Sculpting",
+        description:
+        "High-Intensity Focused Ultrasound non-surgical skin tightening & lifting.",
                 },
-                {
-                  "@type": "MedicalProcedure",
-                  name: "Growth Factor Concentrate (GFC) Hair Therapy",
-                  description:
-                    "Advanced autologous growth factor treatment for hair restoration.",
+        {
+          "@type": "MedicalProcedure",
+        name: "Growth Factor Concentrate (GFC) Hair Therapy",
+        description:
+        "Advanced autologous growth factor treatment for hair restoration.",
                 },
-                {
-                  "@type": "MedicalProcedure",
-                  name: "Dermal Fillers & Botox",
-                  description:
-                    "Precision injectable facial contouring and anti-wrinkle treatments.",
+        {
+          "@type": "MedicalProcedure",
+        name: "Dermal Fillers & Botox",
+        description:
+        "Precision injectable facial contouring and anti-wrinkle treatments.",
                 },
-              ],
-              sameAs: [
-                "https://instagram.com/skintillatingg",
-                "https://wa.me/918669813636",
-              ],
+        ],
+        sameAs: [
+        "https://instagram.com/skintillatingg",
+        "https://wa.me/918669813636",
+        ],
             }),
           }}
         />

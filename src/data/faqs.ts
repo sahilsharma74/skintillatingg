@@ -39,6 +39,6 @@ export const FAQ_DATA: FAQItem[] = [
     id: "faq-location",
     question: "Where is the clinic located?",
     answer:
-      "Skintillatingg clinic is located at Krishna Apartments, 10, Boat Club Road, behind Yes Bank, Sangamvadi, Pune, Maharashtra 411001 (Opp. to Clover Infotech).",
+      "Skintillatingg Clinic is located at 7 Krishna Apartments, Boat Club Rd., Opp. Clover Infotech, Dhole Patil Road, Pune - 411001.",
   },
 ];

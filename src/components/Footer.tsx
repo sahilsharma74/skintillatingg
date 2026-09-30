@@ -76,9 +76,10 @@ export default function Footer() {
             Practice Info
           </h4>
           <ul className="space-y-2 font-body-md text-[#F5F5DC]/75 text-[12px] font-light">
-            <li className="leading-snug">Opp. to Clover Infotech</li>
-            <li className="leading-snug">Krishna Apartments, 10, Boat Club Rd</li>
-            <li>Sangamvadi, Pune, MH 411001</li>
+            <li className="leading-snug">Skintillatingg Clinic</li>
+            <li className="leading-snug">7 Krishna Apartments, Boat Club Rd.</li>
+            <li className="leading-snug">Opp. Clover Infotech, Dhole Patil Road</li>
+            <li>Pune - 411001</li>
             <li className="pt-1">
               <a
                 className="hover:text-[#F5F5DC] transition-colors inline-flex items-center gap-2 text-[#F5F5DC]/85 font-medium"

@@ -137,11 +137,12 @@ export default function ContactPage() {
                 Skintillatingg Clinic
               </h3>
               <p className="font-body-md text-[#F5F5DC]/90 text-base leading-relaxed">
-                Krishna Apartments, 10, Boat Club Rd, behind Yes Bank, <br />
-                Sangamvadi, Pune, Maharashtra 411001
+                Skintillatingg Clinic <br />
+                7 Krishna Apartments, Boat Club Rd., <br />
+                Opp. Clover Infotech, Dhole Patil Road
               </p>
               <p className="font-body-md text-xs text-[#F5F5DC] mt-2 font-medium">
-                Landmark: Opp. to Clover Infotech
+                Pune - 411001
               </p>
             </div>
 
